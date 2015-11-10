@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0701B4031BF2910500A3330A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4021BF2910500A3330A /* main.m */; };
-		0701B4061BF2910500A3330A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4051BF2910500A3330A /* AppDelegate.m */; };
-		0701B4091BF2910500A3330A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4081BF2910500A3330A /* ViewController.m */; };
-		0701B40C1BF2910500A3330A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0701B40A1BF2910500A3330A /* Main.storyboard */; };
-		0701B40E1BF2910500A3330A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0701B40D1BF2910500A3330A /* Assets.xcassets */; };
-		0701B4111BF2910500A3330A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0701B40F1BF2910500A3330A /* LaunchScreen.storyboard */; };
 		0701B41C1BF2910500A3330A /* farFromSoberAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B41B1BF2910500A3330A /* farFromSoberAppTests.m */; };
+		0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4421BF2963C00A3330A /* AppDelegate.m */; };
+		0701B4541BF2963C00A3330A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4441BF2963C00A3330A /* main.m */; };
+		0701B4551BF2963C00A3330A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4481BF2963C00A3330A /* ViewController.m */; };
+		0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0701B44C1BF2963C00A3330A /* Assets.xcassets */; };
+		0701B4571BF2963D00A3330A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0701B44E1BF2963C00A3330A /* LaunchScreen.storyboard */; };
+		0701B4581BF2963D00A3330A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0701B44F1BF2963C00A3330A /* Main.storyboard */; };
+		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,18 +29,21 @@
 
 /* Begin PBXFileReference section */
 		0701B3FE1BF2910500A3330A /* farFromSoberApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = farFromSoberApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0701B4021BF2910500A3330A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0701B4041BF2910500A3330A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		0701B4051BF2910500A3330A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0701B4071BF2910500A3330A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0701B4081BF2910500A3330A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		0701B40B1BF2910500A3330A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0701B40D1BF2910500A3330A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0701B4101BF2910500A3330A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0701B4121BF2910500A3330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0701B4171BF2910500A3330A /* farFromSoberAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = farFromSoberAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0701B41B1BF2910500A3330A /* farFromSoberAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = farFromSoberAppTests.m; sourceTree = "<group>"; };
 		0701B41D1BF2910500A3330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0701B4411BF2963C00A3330A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0701B4421BF2963C00A3330A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0701B4431BF2963C00A3330A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0701B4441BF2963C00A3330A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0701B4471BF2963C00A3330A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0701B4481BF2963C00A3330A /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0701B44C1BF2963C00A3330A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0701B44E1BF2963C00A3330A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0701B44F1BF2963C00A3330A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
+		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +71,8 @@
 				0701B4001BF2910500A3330A /* farFromSoberApp */,
 				0701B41A1BF2910500A3330A /* farFromSoberAppTests */,
 				0701B3FF1BF2910500A3330A /* Products */,
+				55C101240E712F49302D3F97 /* Pods */,
+				B1D813B4A64754D299881408 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,25 +88,16 @@
 		0701B4001BF2910500A3330A /* farFromSoberApp */ = {
 			isa = PBXGroup;
 			children = (
-				0701B4041BF2910500A3330A /* AppDelegate.h */,
-				0701B4051BF2910500A3330A /* AppDelegate.m */,
-				0701B4071BF2910500A3330A /* ViewController.h */,
-				0701B4081BF2910500A3330A /* ViewController.m */,
-				0701B40A1BF2910500A3330A /* Main.storyboard */,
-				0701B40D1BF2910500A3330A /* Assets.xcassets */,
-				0701B40F1BF2910500A3330A /* LaunchScreen.storyboard */,
-				0701B4121BF2910500A3330A /* Info.plist */,
-				0701B4011BF2910500A3330A /* Supporting Files */,
+				0701B4401BF2963C00A3330A /* Application */,
+				0701B4461BF2963C00A3330A /* Controllers */,
+				0701B4491BF2963C00A3330A /* Managers */,
+				0701B44A1BF2963C00A3330A /* Models */,
+				0701B44B1BF2963C00A3330A /* Resources */,
+				0701B44D1BF2963C00A3330A /* Storyboards */,
+				0701B4501BF2963C00A3330A /* Utils */,
+				0701B4511BF2963C00A3330A /* Views */,
 			);
 			path = farFromSoberApp;
-			sourceTree = "<group>";
-		};
-		0701B4011BF2910500A3330A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0701B4021BF2910500A3330A /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		0701B41A1BF2910500A3330A /* farFromSoberAppTests */ = {
@@ -111,6 +109,88 @@
 			path = farFromSoberAppTests;
 			sourceTree = "<group>";
 		};
+		0701B4401BF2963C00A3330A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0701B4411BF2963C00A3330A /* AppDelegate.h */,
+				0701B4421BF2963C00A3330A /* AppDelegate.m */,
+				0701B4431BF2963C00A3330A /* Info.plist */,
+				0701B4441BF2963C00A3330A /* main.m */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		0701B4461BF2963C00A3330A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0701B4471BF2963C00A3330A /* ViewController.h */,
+				0701B4481BF2963C00A3330A /* ViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0701B4491BF2963C00A3330A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		0701B44A1BF2963C00A3330A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0701B44B1BF2963C00A3330A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0701B44C1BF2963C00A3330A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0701B44D1BF2963C00A3330A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0701B44E1BF2963C00A3330A /* LaunchScreen.storyboard */,
+				0701B44F1BF2963C00A3330A /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0701B4501BF2963C00A3330A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0701B4511BF2963C00A3330A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		55C101240E712F49302D3F97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */,
+				8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B1D813B4A64754D299881408 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0701B4201BF2910500A3330A /* Build configuration list for PBXNativeTarget "farFromSoberApp" */;
 			buildPhases = (
+				3D11975C1527633DC5F489AF /* Check Pods Manifest.lock */,
 				0701B3FA1BF2910500A3330A /* Sources */,
 				0701B3FB1BF2910500A3330A /* Frameworks */,
 				0701B3FC1BF2910500A3330A /* Resources */,
+				83153C2D7B07868439BE96C8 /* Embed Pods Frameworks */,
+				95E7241DD7320F96774FFB37 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -191,9 +274,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0701B4111BF2910500A3330A /* LaunchScreen.storyboard in Resources */,
-				0701B40E1BF2910500A3330A /* Assets.xcassets in Resources */,
-				0701B40C1BF2910500A3330A /* Main.storyboard in Resources */,
+				0701B4571BF2963D00A3330A /* LaunchScreen.storyboard in Resources */,
+				0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */,
+				0701B4581BF2963D00A3330A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,14 +289,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3D11975C1527633DC5F489AF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		83153C2D7B07868439BE96C8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95E7241DD7320F96774FFB37 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0701B3FA1BF2910500A3330A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0701B4091BF2910500A3330A /* ViewController.m in Sources */,
-				0701B4061BF2910500A3330A /* AppDelegate.m in Sources */,
-				0701B4031BF2910500A3330A /* main.m in Sources */,
+				0701B4551BF2963C00A3330A /* ViewController.m in Sources */,
+				0701B4541BF2963C00A3330A /* main.m in Sources */,
+				0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,25 +365,6 @@
 			targetProxy = 0701B4181BF2910500A3330A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		0701B40A1BF2910500A3330A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0701B40B1BF2910500A3330A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0701B40F1BF2910500A3330A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0701B4101BF2910500A3330A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0701B41E1BF2910500A3330A /* Debug */ = {
@@ -339,9 +451,10 @@
 		};
 		0701B4211BF2910500A3330A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = farFromSoberApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/farFromSoberApp/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.farFromSober.farFromSoberApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,9 +463,10 @@
 		};
 		0701B4221BF2910500A3330A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = farFromSoberApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/farFromSoberApp/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.farFromSober.farFromSoberApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -402,6 +516,7 @@
 				0701B4221BF2910500A3330A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0701B4231BF2910500A3330A /* Build configuration list for PBXNativeTarget "farFromSoberAppTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +525,7 @@
 				0701B4251BF2910500A3330A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
