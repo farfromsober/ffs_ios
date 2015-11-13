@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AppNavigation.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setupWindow];
+    
     return YES;
 }
 
@@ -41,5 +44,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark - Initialization
+
+- (void)setupWindow {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    
+    
+    
+    self.window.rootViewController = [AppNavigation tabBarController];
+    [self.window makeKeyAndVisible];
+}
+
 
 @end
