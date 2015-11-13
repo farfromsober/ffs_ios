@@ -10,6 +10,6 @@
 
 @interface UINavigationController (Initializer)
 
-+ (UINavigationController *)navigationControllerWithRoot:(UIViewController *)vc;
++ (UINavigationController *)withRoot:(UIViewController *)vc;
 
 @end

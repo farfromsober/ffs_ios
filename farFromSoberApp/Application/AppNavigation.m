@@ -27,11 +27,11 @@
     
     // Create viewcontrollers for each tab EMBEDDED IN NAVIGATION CONTROLLERS!!
     // Why? Because we are going to use 'push' navigation inside each tab.
-    UINavigationController *productsNVC = [UINavigationController navigationControllerWithRoot:[ProductListVC new]];
-    UINavigationController *mapNVC = [UINavigationController navigationControllerWithRoot:[MapVC new]];
-    UINavigationController *newNVC = [UINavigationController navigationControllerWithRoot:[NewItemVC new]];
-    UINavigationController *nofiticationsNVC = [UINavigationController navigationControllerWithRoot:[NotificationListVC new]];
-    UINavigationController *profileNVC = [UINavigationController navigationControllerWithRoot:[ProfileVC new]];
+    UINavigationController *productsNVC = [UINavigationController withRoot:[ProductListVC new]];
+    UINavigationController *mapNVC = [UINavigationController withRoot:[MapVC new]];
+    UINavigationController *newNVC = [UINavigationController withRoot:[NewItemVC new]];
+    UINavigationController *nofiticationsNVC = [UINavigationController withRoot:[NotificationListVC new]];
+    UINavigationController *profileNVC = [UINavigationController withRoot:[ProfileVC new]];
     
     // Create an ORDERED array of VCs.
     NSArray *vcs = @[productsNVC, mapNVC, newNVC, nofiticationsNVC, profileNVC];

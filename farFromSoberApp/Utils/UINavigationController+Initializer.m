@@ -10,7 +10,7 @@
 
 @implementation UINavigationController (Initializer)
 
-+ (UINavigationController *)navigationControllerWithRoot:(UIViewController *)vc {
++ (UINavigationController *)withRoot:(UIViewController *)vc {
     return [[UINavigationController alloc] initWithRootViewController:vc];
 }
 
