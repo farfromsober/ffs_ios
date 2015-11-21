@@ -109,7 +109,6 @@ static NSString * const avatarKey = @"avatar";
 #pragma mark - Utils
 
 + (BOOL)hasNeededInformation:(NSDictionary *)dic {
-    
      if ([NSString isEmpty:dic[idKey]]) {
          return NO;
      } else if ([NSString isEmpty:dic[emailKey]]) {
