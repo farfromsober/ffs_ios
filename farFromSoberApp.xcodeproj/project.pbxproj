@@ -25,6 +25,8 @@
 		07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CEF1BF8FC01002EDBB2 /* NSString+Validator.m */; };
 		07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CF21BFBC92B002EDBB2 /* Transaction.m */; };
 		07564CF91BFBC971002EDBB2 /* SavedSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CF81BFBC971002EDBB2 /* SavedSearch.m */; };
+		075D53231C00819F0043D91C /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 075D53221C00819F0043D91C /* UserManager.m */; };
+		075D53261C0082B90043D91C /* AppConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 075D53251C0082B90043D91C /* AppConstants.m */; };
 		075EBFE61BFE77CE008FBE2E /* FakeModelObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EBFE51BFE77CE008FBE2E /* FakeModelObjects.m */; };
 		07BE597E1BFF8A4600B4A3AA /* NSArray+Comparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE597D1BFF8A4600B4A3AA /* NSArray+Comparator.m */; };
 		07BE59811BFF9B3D00B4A3AA /* NSDate+Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */; };
@@ -81,6 +83,10 @@
 		07564CF21BFBC92B002EDBB2 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		07564CF71BFBC971002EDBB2 /* SavedSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedSearch.h; sourceTree = "<group>"; };
 		07564CF81BFBC971002EDBB2 /* SavedSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedSearch.m; sourceTree = "<group>"; };
+		075D53211C00819F0043D91C /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		075D53221C00819F0043D91C /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		075D53241C0082B90043D91C /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
+		075D53251C0082B90043D91C /* AppConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstants.m; sourceTree = "<group>"; };
 		075EBFE41BFE77CE008FBE2E /* FakeModelObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FakeModelObjects.h; path = Fakes/FakeModelObjects.h; sourceTree = "<group>"; };
 		075EBFE51BFE77CE008FBE2E /* FakeModelObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FakeModelObjects.m; path = Fakes/FakeModelObjects.m; sourceTree = "<group>"; };
 		07878F1C1BF68E33009F68F1 /* JSONCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONCreator.h; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 		0701B4401BF2963C00A3330A /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				075D53241C0082B90043D91C /* AppConstants.h */,
+				075D53251C0082B90043D91C /* AppConstants.m */,
 				0701B4411BF2963C00A3330A /* AppDelegate.h */,
 				0701B4421BF2963C00A3330A /* AppDelegate.m */,
 				07BEAF951BF649D800062D77 /* AppNavigation.h */,
@@ -193,6 +201,8 @@
 		0701B4491BF2963C00A3330A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				075D53211C00819F0043D91C /* UserManager.h */,
+				075D53221C00819F0043D91C /* UserManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -505,12 +515,14 @@
 			files = (
 				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
 				072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */,
+				075D53231C00819F0043D91C /* UserManager.m in Sources */,
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,
 				07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */,
 				0701B4541BF2963C00A3330A /* main.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,
+				075D53261C0082B90043D91C /* AppConstants.m in Sources */,
 				07564CF91BFBC971002EDBB2 /* SavedSearch.m in Sources */,
 				07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */,
 				07BEAFA41BF6558400062D77 /* User.m in Sources */,
