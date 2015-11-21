@@ -12,17 +12,18 @@
 
 @interface User : NSObject <JSONParser, JSONCreator>
 
-@property (readonly, nonatomic) BOOL isActive;
-@property (readonly, nonatomic) NSURL *avatarURL;
-@property (readonly, nonatomic) NSString *firstName;
-@property (readonly, nonatomic) NSString *lastName;
-@property (readonly, nonatomic) NSString *email;
-@property (readonly, nonatomic) NSString *username;
-@property (readonly, nonatomic) NSString *password;     // Are we going to store de password??
-@property (readonly, nonatomic) NSString *city;
-@property (readonly, nonatomic) NSString *region;
+@property (nonatomic) NSInteger sales;
 
-@property (readonly, nonatomic) NSArray *solds;         // array of Products solded by the user
-@property (readonly, nonatomic) NSArray *buys;          // array of Products buyed by the user
+@property (copy, nonatomic) NSString *userId;
+@property (copy, nonatomic) NSString *firstName;
+@property (copy, nonatomic) NSString *lastName;
+@property (copy, nonatomic) NSString *email;
+@property (copy, nonatomic) NSString *username;
+@property (copy, nonatomic) NSString *city;
+@property (copy, nonatomic) NSString *state;
+@property (copy, nonatomic) NSString *latitude;
+@property (copy, nonatomic) NSString *longitude;
+
+@property (strong, nonatomic) NSURL *avatarURL;
 
 @end

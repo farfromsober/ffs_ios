@@ -10,6 +10,8 @@
 
 @protocol JSONParser <NSObject>
 
++ (BOOL)hasNeededInformation:(NSDictionary *)dic;
+
 - (id<JSONParser>)initWithJSON:(NSDictionary *)dic;
 
 @end

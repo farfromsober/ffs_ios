@@ -11,20 +11,22 @@
 #import "JSONCreator.h"
 
 @class User;
-
-typedef NS_ENUM(NSInteger, ProductState) {
-    ProductState_Selling,
-    ProductState_Sold,
-};
+@class ProductCategory;
 
 @interface Product : NSObject <JSONParser, JSONCreator>
 
-@property (readonly, nonatomic) NSString *name;
-@property (readonly, nonatomic) NSString *detail;      // = description
-@property (readonly, nonatomic) NSString *category;
-@property (readonly, nonatomic) NSDate *published;
-@property (readonly, nonatomic) NSNumber *price;
-@property (readonly, nonatomic) User *seller;
-@property (readonly, nonatomic) ProductState state;
+@property (nonatomic) BOOL isSelling;
+
+@property (copy, nonatomic) NSString *productId;
+@property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *detail;      // = description
+@property (copy, nonatomic) NSString *price;
+
+@property (strong, nonatomic) User *seller;
+@property (strong, nonatomic) NSDate *published;
+@property (strong, nonatomic) ProductCategory *category;
+
+// TODO: Array of images
+@property (copy, nonatomic) NSArray *images;      // array of NSURLs !!!!
 
 @end

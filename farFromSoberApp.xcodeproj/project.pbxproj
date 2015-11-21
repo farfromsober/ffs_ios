@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0701B41C1BF2910500A3330A /* farFromSoberAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B41B1BF2910500A3330A /* farFromSoberAppTests.m */; };
 		0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4421BF2963C00A3330A /* AppDelegate.m */; };
 		0701B4541BF2963C00A3330A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4441BF2963C00A3330A /* main.m */; };
 		0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0701B44C1BF2963C00A3330A /* Assets.xcassets */; };
@@ -17,6 +16,19 @@
 		072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2061BF3C9AA00515EB6 /* NewItemVC.m */; };
 		072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2091BF3C9C600515EB6 /* NotificationListVC.m */; };
 		072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF20C1BF3CA1E00515EB6 /* ProfileVC.m */; };
+		07331D2D1BFD256300FDC83F /* UserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D2C1BFD256300FDC83F /* UserTest.m */; };
+		07331D351BFD301A00FDC83F /* ProductTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D341BFD301A00FDC83F /* ProductTest.m */; };
+		07331D371BFD303400FDC83F /* ProductCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D361BFD303400FDC83F /* ProductCategoryTest.m */; };
+		07331D391BFD304E00FDC83F /* SavedSearchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D381BFD304E00FDC83F /* SavedSearchTest.m */; };
+		07331D3B1BFD306400FDC83F /* TransactionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D3A1BFD306400FDC83F /* TransactionTest.m */; };
+		07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CEC1BF7E2C6002EDBB2 /* ProductCategory.m */; };
+		07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CEF1BF8FC01002EDBB2 /* NSString+Validator.m */; };
+		07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CF21BFBC92B002EDBB2 /* Transaction.m */; };
+		07564CF91BFBC971002EDBB2 /* SavedSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CF81BFBC971002EDBB2 /* SavedSearch.m */; };
+		075EBFE61BFE77CE008FBE2E /* FakeModelObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EBFE51BFE77CE008FBE2E /* FakeModelObjects.m */; };
+		07BE597E1BFF8A4600B4A3AA /* NSArray+Comparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE597D1BFF8A4600B4A3AA /* NSArray+Comparator.m */; };
+		07BE59811BFF9B3D00B4A3AA /* NSDate+Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */; };
+		07BE59841BFFA0B500B4A3AA /* NSDictionary+Comparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE59831BFFA0B500B4A3AA /* NSDictionary+Comparator.m */; };
 		07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BEAF931BF6490A00062D77 /* LaunchScreen.storyboard */; };
 		07BEAF971BF649D800062D77 /* AppNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAF961BF649D800062D77 /* AppNavigation.m */; };
 		07BEAF9A1BF64D1000062D77 /* UINavigationController+Initializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAF991BF64D1000062D77 /* UINavigationController+Initializer.m */; };
@@ -38,7 +50,6 @@
 /* Begin PBXFileReference section */
 		0701B3FE1BF2910500A3330A /* farFromSoberApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = farFromSoberApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0701B4171BF2910500A3330A /* farFromSoberAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = farFromSoberAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0701B41B1BF2910500A3330A /* farFromSoberAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = farFromSoberAppTests.m; sourceTree = "<group>"; };
 		0701B41D1BF2910500A3330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0701B4411BF2963C00A3330A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0701B4421BF2963C00A3330A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -57,7 +68,28 @@
 		072AF2091BF3C9C600515EB6 /* NotificationListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationListVC.m; sourceTree = "<group>"; };
 		072AF20B1BF3CA1E00515EB6 /* ProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileVC.h; sourceTree = "<group>"; };
 		072AF20C1BF3CA1E00515EB6 /* ProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileVC.m; sourceTree = "<group>"; };
+		07331D2C1BFD256300FDC83F /* UserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserTest.m; path = Models/UserTest.m; sourceTree = "<group>"; };
+		07331D341BFD301A00FDC83F /* ProductTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductTest.m; path = Models/ProductTest.m; sourceTree = "<group>"; };
+		07331D361BFD303400FDC83F /* ProductCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCategoryTest.m; path = Models/ProductCategoryTest.m; sourceTree = "<group>"; };
+		07331D381BFD304E00FDC83F /* SavedSearchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SavedSearchTest.m; path = Models/SavedSearchTest.m; sourceTree = "<group>"; };
+		07331D3A1BFD306400FDC83F /* TransactionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransactionTest.m; path = Models/TransactionTest.m; sourceTree = "<group>"; };
+		07564CEB1BF7E2C6002EDBB2 /* ProductCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCategory.h; sourceTree = "<group>"; };
+		07564CEC1BF7E2C6002EDBB2 /* ProductCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCategory.m; sourceTree = "<group>"; };
+		07564CEE1BF8FC01002EDBB2 /* NSString+Validator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validator.h"; sourceTree = "<group>"; };
+		07564CEF1BF8FC01002EDBB2 /* NSString+Validator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validator.m"; sourceTree = "<group>"; };
+		07564CF11BFBC92B002EDBB2 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		07564CF21BFBC92B002EDBB2 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		07564CF71BFBC971002EDBB2 /* SavedSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedSearch.h; sourceTree = "<group>"; };
+		07564CF81BFBC971002EDBB2 /* SavedSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedSearch.m; sourceTree = "<group>"; };
+		075EBFE41BFE77CE008FBE2E /* FakeModelObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FakeModelObjects.h; path = Fakes/FakeModelObjects.h; sourceTree = "<group>"; };
+		075EBFE51BFE77CE008FBE2E /* FakeModelObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FakeModelObjects.m; path = Fakes/FakeModelObjects.m; sourceTree = "<group>"; };
 		07878F1C1BF68E33009F68F1 /* JSONCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONCreator.h; sourceTree = "<group>"; };
+		07BE597C1BFF8A4600B4A3AA /* NSArray+Comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Comparator.h"; sourceTree = "<group>"; };
+		07BE597D1BFF8A4600B4A3AA /* NSArray+Comparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Comparator.m"; sourceTree = "<group>"; };
+		07BE597F1BFF9B3D00B4A3AA /* NSDate+Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Parser.h"; sourceTree = "<group>"; };
+		07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Parser.m"; sourceTree = "<group>"; };
+		07BE59821BFFA0B500B4A3AA /* NSDictionary+Comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Comparator.h"; sourceTree = "<group>"; };
+		07BE59831BFFA0B500B4A3AA /* NSDictionary+Comparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Comparator.m"; sourceTree = "<group>"; };
 		07BEAF931BF6490A00062D77 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BEAF951BF649D800062D77 /* AppNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNavigation.h; sourceTree = "<group>"; };
 		07BEAF961BF649D800062D77 /* AppNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppNavigation.m; sourceTree = "<group>"; };
@@ -129,7 +161,8 @@
 		0701B41A1BF2910500A3330A /* farFromSoberAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				0701B41B1BF2910500A3330A /* farFromSoberAppTests.m */,
+				07331D2E1BFD25B600FDC83F /* Fakes */,
+				07331D2B1BFD253200FDC83F /* Models */,
 				0701B41D1BF2910500A3330A /* Info.plist */,
 			);
 			path = farFromSoberAppTests;
@@ -167,12 +200,18 @@
 		0701B44A1BF2963C00A3330A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				07878F1C1BF68E33009F68F1 /* JSONCreator.h */,
+				07BEAFB51BF65F1F00062D77 /* JSONParser.h */,
 				07BEAFA21BF6558400062D77 /* User.h */,
 				07BEAFA31BF6558400062D77 /* User.m */,
 				07BEAFA51BF6559700062D77 /* Product.h */,
 				07BEAFA61BF6559700062D77 /* Product.m */,
-				07BEAFB51BF65F1F00062D77 /* JSONParser.h */,
-				07878F1C1BF68E33009F68F1 /* JSONCreator.h */,
+				07564CEB1BF7E2C6002EDBB2 /* ProductCategory.h */,
+				07564CEC1BF7E2C6002EDBB2 /* ProductCategory.m */,
+				07564CF71BFBC971002EDBB2 /* SavedSearch.h */,
+				07564CF81BFBC971002EDBB2 /* SavedSearch.m */,
+				07564CF11BFBC92B002EDBB2 /* Transaction.h */,
+				07564CF21BFBC92B002EDBB2 /* Transaction.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,8 +228,16 @@
 		0701B4501BF2963C00A3330A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				07564CEE1BF8FC01002EDBB2 /* NSString+Validator.h */,
+				07564CEF1BF8FC01002EDBB2 /* NSString+Validator.m */,
 				07BEAF981BF64D1000062D77 /* UINavigationController+Initializer.h */,
 				07BEAF991BF64D1000062D77 /* UINavigationController+Initializer.m */,
+				07BE597C1BFF8A4600B4A3AA /* NSArray+Comparator.h */,
+				07BE597D1BFF8A4600B4A3AA /* NSArray+Comparator.m */,
+				07BE597F1BFF9B3D00B4A3AA /* NSDate+Parser.h */,
+				07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */,
+				07BE59821BFFA0B500B4A3AA /* NSDictionary+Comparator.h */,
+				07BE59831BFFA0B500B4A3AA /* NSDictionary+Comparator.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -200,6 +247,27 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		07331D2B1BFD253200FDC83F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				07331D2C1BFD256300FDC83F /* UserTest.m */,
+				07331D341BFD301A00FDC83F /* ProductTest.m */,
+				07331D361BFD303400FDC83F /* ProductCategoryTest.m */,
+				07331D381BFD304E00FDC83F /* SavedSearchTest.m */,
+				07331D3A1BFD306400FDC83F /* TransactionTest.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		07331D2E1BFD25B600FDC83F /* Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				075EBFE41BFE77CE008FBE2E /* FakeModelObjects.h */,
+				075EBFE51BFE77CE008FBE2E /* FakeModelObjects.m */,
+			);
+			name = Fakes;
 			sourceTree = "<group>";
 		};
 		07BEAF9B1BF64F0E00062D77 /* TabController */ = {
@@ -435,14 +503,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
 				072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */,
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,
+				07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */,
 				0701B4541BF2963C00A3330A /* main.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,
+				07564CF91BFBC971002EDBB2 /* SavedSearch.m in Sources */,
+				07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */,
 				07BEAFA41BF6558400062D77 /* User.m in Sources */,
+				07BE59841BFFA0B500B4A3AA /* NSDictionary+Comparator.m in Sources */,
+				07BE597E1BFF8A4600B4A3AA /* NSArray+Comparator.m in Sources */,
 				0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */,
+				07BE59811BFF9B3D00B4A3AA /* NSDate+Parser.m in Sources */,
 				072AF2041BF3C95400515EB6 /* MapVC.m in Sources */,
 				07BEAFA71BF6559700062D77 /* Product.m in Sources */,
 				07BEAF9A1BF64D1000062D77 /* UINavigationController+Initializer.m in Sources */,
@@ -454,7 +529,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0701B41C1BF2910500A3330A /* farFromSoberAppTests.m in Sources */,
+				07331D2D1BFD256300FDC83F /* UserTest.m in Sources */,
+				075EBFE61BFE77CE008FBE2E /* FakeModelObjects.m in Sources */,
+				07331D3B1BFD306400FDC83F /* TransactionTest.m in Sources */,
+				07331D391BFD304E00FDC83F /* SavedSearchTest.m in Sources */,
+				07331D371BFD303400FDC83F /* ProductCategoryTest.m in Sources */,
+				07331D351BFD301A00FDC83F /* ProductTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

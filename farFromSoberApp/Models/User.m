@@ -7,52 +7,40 @@
 //
 
 #import "User.h"
+#import "NSString+Validator.h"
 
-static NSString * const activeKey = @"";
-static NSString * const avatarKey = @"";
-static NSString * const firstNameKey = @"";
-static NSString * const lastNameKey = @"";
-static NSString * const emailKey = @"";
-static NSString * const usernameKey = @"";
-static NSString * const cityKey = @"";
-static NSString * const regionKey = @"";
-
-@interface User ()
-
-@property (readwrite, nonatomic) BOOL isActive;
-@property (readwrite, nonatomic) NSURL *avatarURL;
-@property (readwrite, nonatomic) NSString *firstName;
-@property (readwrite, nonatomic) NSString *lastName;
-@property (readwrite, nonatomic) NSString *email;
-@property (readwrite, nonatomic) NSString *username;
-@property (readwrite, nonatomic) NSString *password;        // Are we going to store de password??
-@property (readwrite, nonatomic) NSString *latitude;
-@property (readwrite, nonatomic) NSString *longitude;
-@property (readwrite, nonatomic) NSString *city;
-@property (readwrite, nonatomic) NSString *region;
-
-@property (readwrite, nonatomic) NSMutableArray *solds;     // array of Products solded by the user
-@property (readwrite, nonatomic) NSMutableArray *buys;      // array of Products buyed by the user
-
-@end
+static NSString * const salesKey = @"sales";
+static NSString * const idKey = @"_id";
+static NSString * const firstNameKey = @"first_name";
+static NSString * const lastNameKey = @"last_name";
+static NSString * const emailKey = @"email";
+static NSString * const usernameKey = @"username";
+static NSString * const cityKey = @"city";
+static NSString * const stateKey = @"state";
+static NSString * const latitudeKey = @"latitude";
+static NSString * const longitudeKey = @"longitude";
+static NSString * const avatarKey = @"avatar";
 
 @implementation User
 
 #pragma mark - JSONParser
 
 - (id<JSONParser>)initWithJSON:(NSDictionary *)dic {
-    #pragma mark - TODO: check dic has needed info
-    if (dic) {
+    // Doble comprobación, dos condones mejor que uno...
+    if (dic && [[self class] hasNeededInformation:dic]) {
         User *user = [[User alloc] init];
-        user.isActive = dic[activeKey];
-        user.avatarURL = dic[avatarKey];
-        user.firstName = dic[firstNameKey];
-        user.lastName = dic[lastNameKey];
-        user.email = dic[emailKey];
-        user.username = dic[usernameKey];
-        user.city = dic[cityKey];
-        user.region = dic[regionKey];
-        
+        user.sales = dic[salesKey] ? [dic[salesKey] integerValue] : 0;
+        user.userId = dic[idKey] ? dic[idKey] : @"";
+        user.firstName = dic[firstNameKey] ? dic[firstNameKey] : @"";
+        user.lastName = dic[lastNameKey] ? dic[lastNameKey] : @"";
+        user.email = dic[emailKey] ? dic[emailKey] : @"";
+        user.username = dic[usernameKey] ? dic[usernameKey] : @"";
+        user.city = dic[cityKey] ? dic[cityKey] : @"";
+        user.state = dic[stateKey] ? dic[stateKey] : @"";
+        user.latitude = dic[latitudeKey] ? dic[latitudeKey] : @"";
+        user.longitude = dic[longitudeKey] ? dic[longitudeKey] : @"";
+        user.avatarURL = dic[avatarKey] ? [NSURL URLWithString:dic[avatarKey]] : [NSURL URLWithString:@""];
+
         return user;
     }
     
@@ -62,24 +50,56 @@ static NSString * const regionKey = @"";
 #pragma mark - JSONCreator
 
 - (NSDictionary *)objectToJSON:(id<JSONCreator>)obj {
-#pragma mark - TODO: check dic has needed info
     if (obj && [obj isKindOfClass:[self class]]) {
         User *user = (User *)obj;
         NSMutableDictionary *mDic = [NSMutableDictionary new];
-        mDic[activeKey] = @(user.isActive);
-        mDic[avatarKey] = user.avatarURL;
-        mDic[firstNameKey] = user.firstName;
-        mDic[lastNameKey] = user.lastName;
-        mDic[emailKey] = user.email;
-        mDic[usernameKey] = user.username;
-        mDic[cityKey] = user.region;
-        mDic[regionKey] = user.region;
-        
+        mDic[salesKey] = user.sales ? @(user.sales) : @(0);
+        mDic[idKey] = user.userId ? user.userId : @"";
+        mDic[firstNameKey] = user.firstName ? user.firstName : @"";
+        mDic[lastNameKey] = user.lastName ? user.lastName : @"";
+        mDic[emailKey] = user.email ? user.email : @"";
+        mDic[usernameKey] = user.username ? user.username : @"";
+        mDic[cityKey] = user.city ? user.city : @"";
+        mDic[stateKey] = user.state ? user.state : @"";
+        mDic[latitudeKey] = user.latitude ? user.latitude : @"";
+        mDic[longitudeKey] = user.longitude ? user.longitude : @"";
+        mDic[avatarKey] = user.avatarURL ? [user.avatarURL absoluteString] : @"";
+
         return [mDic copy];
     }
     
     return nil;
 }
+
+#pragma mark - Utils
+
++ (BOOL)hasNeededInformation:(NSDictionary *)dic {
+    
+     if ([NSString isEmpty:dic[idKey]]) {
+         return NO;
+     } else if ([NSString isEmpty:dic[emailKey]]) {
+         return NO;
+     } else if ([NSString isEmpty:dic[usernameKey]]) {
+         return NO;
+     }
+    
+    return YES;
+}
+
+#pragma mark - Overriden
+
+- (BOOL)isEqual:(id)other {
+    if ([other isKindOfClass:[self class]]) {
+        return [self.userId isEqualToString:((User *)other).userId];
+    }
+    
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return [self.userId integerValue];
+}
+
 
 
 @end
