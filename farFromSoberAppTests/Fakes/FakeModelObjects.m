@@ -110,7 +110,7 @@
 }
 
 + (NSString *)fakePublishedString {
-    return @"2015-11-02T14:16:29+00:00";
+    return @"2015-11-02T15:16:29+0100";
 }
 
 + (SavedSearch *)fakeSavedSearchObject {

@@ -11,7 +11,6 @@
 #import "User.h"
 #import "ProductCategory.h"
 #import "FakeModelObjects.h"
-#import "NSDictionary+Comparator.h"
 
 @interface SavedSearchTest : XCTestCase
 
@@ -73,9 +72,9 @@
     NSDictionary *json = [[SavedSearch alloc] objectToJSON:search];
     XCTAssertTrue([search.saveSearchId isEqualToString:json[@"_id"]], @"'saveSearchId' should be equal tu json[\"_id\"]");
     XCTAssertTrue([search.query isEqualToString:json[@"query"]], @"'query' should be equal tu json[\"query\"]");
-    XCTAssertTrue([[FakeModelObjects fakeJSONUser] containsSameKeyAndValues:json[@"user"]],
+    XCTAssertTrue([[FakeModelObjects fakeJSONUser] isEqualToDictionary:json[@"user"]],
                   @"'user' should be equal tu json[\"user\"]");
-    XCTAssertTrue([[FakeModelObjects fakeJSONCategory] containsSameKeyAndValues:json[@"category"]],
+    XCTAssertTrue([[FakeModelObjects fakeJSONCategory] isEqualToDictionary:json[@"category"]],
                   @"'category' should be equal tu json[\"category\"]");
 }
 

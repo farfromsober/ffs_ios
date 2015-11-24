@@ -11,8 +11,6 @@
 #import "User.h"
 #import "ProductCategory.h"
 #import "FakeModelObjects.h"
-#import "NSArray+Comparator.h"
-#import "NSDictionary+Comparator.h"
 
 @interface ProductTest : XCTestCase
 
@@ -84,7 +82,7 @@
     XCTAssertTrue([product.published isEqualToDate:[FakeModelObjects fakePublishedDate]], @"'published' should be equal tu json[\"publised_date\"]");
     XCTAssertTrue([product.category isEqual:[FakeModelObjects fakeCategoryObject]], @"'category' should be equal tu json[\"category\"]");
     XCTAssertTrue([product.images count] == [json[@"images"] count], @"'images' count should be equal tu json[\"images\"] count");
-    XCTAssertTrue([product.images containsSameURLs:[FakeModelObjects fakeImageUrls]], @"'images' array should be equal tu json[\"images\"] array");
+    XCTAssertTrue([product.images isEqualToArray:[FakeModelObjects fakeImageUrls]], @"'images' array should be equal tu json[\"images\"] array");
     XCTAssertTrue(product.isSelling == [json[@"selling"] boolValue], @"'isSelling' should be equal tu json[\"selling\"]");
 }
 
@@ -101,15 +99,15 @@
     XCTAssertTrue([product.productId isEqualToString:json[@"_id"]], @"'productId' should be equal tu json[\"_id\"]");
     XCTAssertTrue([product.name isEqualToString:json[@"name"]], @"'name' should be equal tu json[\"name\"]");
     XCTAssertTrue([product.price isEqualToString:json[@"price"]], @"'price' should be equal tu json[\"email\"]");
-    XCTAssertTrue([[FakeModelObjects fakeJSONUser] containsSameKeyAndValues:json[@"seller"]],
+    XCTAssertTrue([[FakeModelObjects fakeJSONUser] isEqualToDictionary:json[@"seller"]],
                   @"'seller' should be equal tu json[\"seller\"]");
     XCTAssertTrue([product.detail isEqualToString:json[@"description"]], @"'detail' should be equal tu json[\"last_name\"]");
     XCTAssertTrue([product.published isEqualToDate:[FakeModelObjects fakePublishedDate]],
                   @"'published' should be equal tu json[\"publised_date\"]");
-    XCTAssertTrue([[FakeModelObjects fakeJSONCategory] containsSameKeyAndValues:json[@"category"]],
+    XCTAssertTrue([[FakeModelObjects fakeJSONCategory] isEqualToDictionary:json[@"category"]],
                   @"'category' should be equal tu json[\"category\"]");
     XCTAssertTrue([product.images count] == [json[@"images"] count], @"'images' count should be equal tu json[\"images\"] count");
-    XCTAssertTrue([[FakeModelObjects fakeImageStrings] containsSameStrings:json[@"images"]],
+    XCTAssertTrue([[FakeModelObjects fakeImageStrings] isEqualToArray:json[@"images"]],
                   @"'images' array should be equal tu json[\"images\"] array");
     XCTAssertTrue(product.isSelling == [json[@"selling"] boolValue], @"'isSelling' should be equal tu json[\"selling\"]");
 }
