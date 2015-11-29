@@ -37,6 +37,9 @@
 		07BEAFA41BF6558400062D77 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA31BF6558400062D77 /* User.m */; };
 		07BEAFA71BF6559700062D77 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA61BF6559700062D77 /* Product.m */; };
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
+		FB9183581C07BF69001F7C44 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB9183561C07BF69001F7C44 /* LoginViewController.m */; };
+		FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9183571C07BF69001F7C44 /* LoginViewController.xib */; };
+		FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +111,11 @@
 		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
 		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FB9183551C07BF69001F7C44 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FB9183561C07BF69001F7C44 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FB9183571C07BF69001F7C44 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		FBA2BA0C1C08CBF5000C36EE /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
+		FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +254,8 @@
 				07BEAF991BF64D1000062D77 /* UINavigationController+Initializer.m */,
 				07BE597F1BFF9B3D00B4A3AA /* NSDate+Parser.h */,
 				07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */,
+				FBA2BA0C1C08CBF5000C36EE /* AlertUtil.h */,
+				FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -348,6 +358,9 @@
 		07BEAFA11BF64F7900062D77 /* Login/Register */ = {
 			isa = PBXGroup;
 			children = (
+				FB9183551C07BF69001F7C44 /* LoginViewController.h */,
+				FB9183561C07BF69001F7C44 /* LoginViewController.m */,
+				FB9183571C07BF69001F7C44 /* LoginViewController.xib */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -454,6 +467,7 @@
 			files = (
 				0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */,
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
+				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +544,8 @@
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,
 				075D53261C0082B90043D91C /* AppConstants.m in Sources */,
 				075D53291C00879C0043D91C /* APIManager.m in Sources */,
+				FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */,
+				FB9183581C07BF69001F7C44 /* LoginViewController.m in Sources */,
 				07564CF91BFBC971002EDBB2 /* SavedSearch.m in Sources */,
 				07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */,
 				07BEAFA41BF6558400062D77 /* User.m in Sources */,

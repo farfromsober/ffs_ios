@@ -15,6 +15,8 @@
 #import "NotificationListVC.h"
 #import "ProfileVC.h"
 
+#import "LoginViewController.h"
+
 #import "UINavigationController+Initializer.h"
 
 @interface AppNavigation ()
@@ -48,8 +50,17 @@
     nofiticationsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:nil selectedImage:nil];
     profileNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:nil selectedImage:nil];
     
+    // Hide back button
+    tabController.navigationItem.hidesBackButton = YES;
+    
     return tabController;
 }
 
++(UINavigationController *)loginController{
+    LoginViewController *logVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *nav = [UINavigationController withRoot:logVC];
+    
+    return nav;
+}
 
 @end

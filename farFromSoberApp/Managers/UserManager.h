@@ -15,6 +15,7 @@
 
 @property (readonly, nonatomic) User *currentUser;
 
+- (User *)currentUser;
 - (BOOL)createUser:(User *)user;
 - (BOOL)updateUser:(User *)user;
 - (void)resetUser;
