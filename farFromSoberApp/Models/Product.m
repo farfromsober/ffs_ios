@@ -25,6 +25,36 @@ static NSString * const imagesKey = @"images";
 
 @implementation Product
 
+#pragma mark - Storing & retriving
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    [encoder encodeObject:self.productId forKey:idKey];
+    [encoder encodeObject:self.name forKey:nameKey];
+    [encoder encodeObject:self.detail forKey:detailKey];
+    [encoder encodeObject:self.price forKey:priceKey];
+    [encoder encodeObject:self.seller forKey:sellerKey];
+    [encoder encodeObject:self.published forKey:publishedKey];
+    [encoder encodeObject:self.category forKey:categoryKey];
+    [encoder encodeObject:self.images forKey:imagesKey];
+
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        self.productId = [decoder decodeObjectForKey:idKey];
+        self.name = [decoder decodeObjectForKey:nameKey];
+        self.detail = [decoder decodeObjectForKey:detailKey];
+        self.price = [decoder decodeObjectForKey:priceKey];
+        self.seller = [decoder decodeObjectForKey:sellerKey];
+        self.published = [decoder decodeObjectForKey:publishedKey];
+        self.category = [decoder decodeObjectForKey:categoryKey];
+        self.images = [decoder decodeObjectForKey:imagesKey];
+    }
+    return self;
+}
+
 #pragma mark - JSONParser
 
 - (id<JSONParser>)initWithJSON:(NSDictionary *)dic {

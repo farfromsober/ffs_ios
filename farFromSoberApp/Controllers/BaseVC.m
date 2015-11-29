@@ -53,6 +53,7 @@
     
     // Called after the controller's view is loaded into memory.
     // Set up initial/constant ATTRIBUTES of view's elements.
+    self.api = [APIManager sharedManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

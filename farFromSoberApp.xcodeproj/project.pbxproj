@@ -37,6 +37,9 @@
 		07BEAFA41BF6558400062D77 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA31BF6558400062D77 /* User.m */; };
 		07BEAFA71BF6559700062D77 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA61BF6559700062D77 /* Product.m */; };
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
+		FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */; };
+		FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */; };
+		FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241AD31C0B764A000AC1B6 /* ProductListVC.xib */; };
 		FB9183581C07BF69001F7C44 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB9183561C07BF69001F7C44 /* LoginViewController.m */; };
 		FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9183571C07BF69001F7C44 /* LoginViewController.xib */; };
 		FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */; };
@@ -111,6 +114,10 @@
 		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
 		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FB241AC81C0B1EBD000AC1B6 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
+		FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
+		FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
+		FB241AD31C0B764A000AC1B6 /* ProductListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductListVC.xib; sourceTree = "<group>"; };
 		FB9183551C07BF69001F7C44 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FB9183561C07BF69001F7C44 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FB9183571C07BF69001F7C44 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -313,8 +320,10 @@
 		07BEAF9C1BF64F1700062D77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				FB241AC71C0B1E84000AC1B6 /* Cell */,
 				072AF1FF1BF3C92200515EB6 /* ProductListVC.h */,
 				072AF2001BF3C92200515EB6 /* ProductListVC.m */,
+				FB241AD31C0B764A000AC1B6 /* ProductListVC.xib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -380,6 +389,16 @@
 				9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB241AC71C0B1E84000AC1B6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FB241AC81C0B1EBD000AC1B6 /* ProductCollectionViewCell.h */,
+				FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */,
+				FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,6 +487,8 @@
 				0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */,
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
 				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
+				FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */,
+				FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +560,7 @@
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,
 				07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */,
 				0701B4541BF2963C00A3330A /* main.m in Sources */,
+				FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,

@@ -77,7 +77,6 @@ static NSString *const requestPassword = @"";
     [self.reachabilityManager stopMonitoring];
 }
 
-/* sample */
 #pragma mark - Log In requests
 - (NSURLSessionDataTask *)logInViaEmail:(NSString *)userEmail
                             andPassword:(NSString *)userPassword
@@ -88,6 +87,25 @@ static NSString *const requestPassword = @"";
                                  @"app_id":self.appID, @"app_key":self.appKey};
     
     return [[self sessionManager] POST:@"login"
+                            parameters:parameters
+                               success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                                   success(task, responseObject);
+                               } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                   failure(task, error);
+                               }];
+}
+
+#pragma mark - Products request
+- (NSURLSessionDataTask *)productsViaCategory:(NSString *)category
+                                  andDistance:(NSString *)distance
+                                      andWord:(NSString *) word
+                                Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    
+    NSDictionary *parameters = @{@"category":category, @"distance":distance, @"word":word,
+                                 @"app_id":self.appID, @"app_key":self.appKey};
+    
+    return [[self sessionManager] POST:@"product"
                             parameters:parameters
                                success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                                    success(task, responseObject);
