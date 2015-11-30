@@ -24,6 +24,9 @@
     
     [self initializeData];
     
+    self.cvProductsCollection.delegate = self;
+    self.cvProductsCollection.dataSource = self;
+    [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,10 +43,7 @@
             Product *product = [[Product alloc] initWithJSON:productDic];
             [self.products addObject:product];
         }
-        
-        self.cvProductsCollection.delegate = self;
-        self.cvProductsCollection.dataSource = self;
-        [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
+        [self.cvProductsCollection reloadData];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
@@ -59,9 +59,7 @@
             [self.products addObject:product];
         }
         
-        self.cvProductsCollection.delegate = self;
-        self.cvProductsCollection.dataSource = self;
-        [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
+        [self.cvProductsCollection reloadData];
     }];
   
 }
@@ -88,9 +86,20 @@
     
     [dic setObject:seller forKey:@"seller"];
     
+    NSMutableArray *fotos = [NSMutableArray new];
+    
+    [fotos addObject:@"http://placehold.it/350x350"];
+    [fotos addObject:@"http://placehold.it/350x350"];
+    
+    [dic setObject:fotos forKey:@"images"];
+    
     [dicRet addObject:dic];
-    //[dicRet addObject:dic];
-    //[dicRet addObject:dic];
+    [dicRet addObject:dic];
+    [dicRet addObject:dic];
+    [dicRet addObject:dic];
+    [dicRet addObject:dic];
+    [dicRet addObject:dic];
+    [dicRet addObject:dic];
     
     return dicRet;
 }
@@ -111,12 +120,11 @@
     
     ProductCollectionViewCell *cell = (ProductCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    //NSMutableArray *data = [self.products objectAtIndex:indexPath.row];
-    
     Product *cellData = [self.products objectAtIndex:indexPath.row];
     
-    [cell.lbPrice setText:[cellData price]];
-    [cell.lbTitle setText:[cellData name]];
+    cell.lbPrice.text = [cellData price];
+    cell.lbTitle.text = [cellData name];
+    cell.imgProduct.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[cellData images][0]]];
     
     return cell;
 }
