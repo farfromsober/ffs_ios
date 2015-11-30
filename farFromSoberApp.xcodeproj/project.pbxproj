@@ -37,6 +37,7 @@
 		07BEAFA41BF6558400062D77 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA31BF6558400062D77 /* User.m */; };
 		07BEAFA71BF6559700062D77 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA61BF6559700062D77 /* Product.m */; };
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
+		FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */; };
 		FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */; };
 		FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */; };
 		FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241AD31C0B764A000AC1B6 /* ProductListVC.xib */; };
@@ -114,6 +115,7 @@
 		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
 		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		FB241AC81C0B1EBD000AC1B6 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
 		FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
 		FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */,
 				65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +389,7 @@
 		B1D813B4A64754D299881408 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */,
 				9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */,
 			);
 			name = Frameworks;

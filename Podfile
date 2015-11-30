@@ -4,6 +4,7 @@
 target 'farFromSoberApp' do
 
 pod 'AFNetworking'
+pod 'SDWebImage', '~>3.7'
 
 end
 

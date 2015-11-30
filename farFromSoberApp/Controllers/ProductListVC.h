@@ -8,7 +8,7 @@
 
 #import "BaseVC.h"
 
-@interface ProductListVC : BaseVC <UICollectionViewDelegate>
+@interface ProductListVC : BaseVC <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *cvProductsCollection;
 @end

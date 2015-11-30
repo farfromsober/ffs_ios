@@ -7,6 +7,7 @@
 //
 
 #import "ProductCollectionViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation ProductCollectionViewCell
 
@@ -29,7 +30,6 @@
         }
         
         self = [arrayOfViews objectAtIndex:0];
-        
     }
     
     return self;
@@ -38,6 +38,11 @@
 
 - (void)awakeFromNib {
     // Initialization code
+}
+
+-(void) setImageWithURL: (NSURL *) url {
+    [self.imgProduct sd_setImageWithURL:[NSURL URLWithString:@"https://www.facebookbrand.com/img/fb-art.jpg"]
+                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
 }
 
 @end

@@ -124,7 +124,8 @@
     
     cell.lbPrice.text = [cellData price];
     cell.lbTitle.text = [cellData name];
-    cell.imgProduct.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[cellData images][0]]];
+    
+    [cell setImageWithURL:[cellData images][0]];
     
     return cell;
 }
