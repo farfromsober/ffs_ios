@@ -23,7 +23,7 @@
 
 @implementation APIManager
 
-static NSString *const serverBaseURL = @"";
+static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
 static NSString *const requestUsername = @"";
 static NSString *const requestPassword = @"";
 
@@ -86,7 +86,7 @@ static NSString *const requestPassword = @"";
     NSDictionary *parameters = @{@"email":userEmail, @"password":userPassword,
                                  @"app_id":self.appID, @"app_key":self.appKey};
     
-    return [[self sessionManager] POST:@"login"
+    return [[self sessionManager] POST:@"/api/1.0/login"
                             parameters:parameters
                                success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                                    success(task, responseObject);

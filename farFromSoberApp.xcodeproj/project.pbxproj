@@ -44,6 +44,9 @@
 		FB9183581C07BF69001F7C44 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB9183561C07BF69001F7C44 /* LoginViewController.m */; };
 		FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9183571C07BF69001F7C44 /* LoginViewController.xib */; };
 		FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */; };
+		FBE2BD1A1C0E524F0082090B /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE2BD181C0E524F0082090B /* ProductDetailViewController.m */; };
+		FBE2BD1B1C0E524F0082090B /* ProductDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE2BD191C0E524F0082090B /* ProductDetailViewController.xib */; };
+		FBE2BD1D1C0E66370082090B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE2BD1C1C0E66370082090B /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +128,10 @@
 		FB9183571C07BF69001F7C44 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		FBA2BA0C1C08CBF5000C36EE /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
 		FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtil.m; sourceTree = "<group>"; };
+		FBE2BD171C0E524F0082090B /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		FBE2BD181C0E524F0082090B /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		FBE2BD191C0E524F0082090B /* ProductDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductDetailViewController.xib; sourceTree = "<group>"; };
+		FBE2BD1C1C0E66370082090B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBE2BD1D1C0E66370082090B /* MapKit.framework in Frameworks */,
 				FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */,
 				65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */,
 			);
@@ -323,6 +331,7 @@
 		07BEAF9C1BF64F1700062D77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				FBE2BD161C0E52210082090B /* Product Detail */,
 				FB241AC71C0B1E84000AC1B6 /* Cell */,
 				072AF1FF1BF3C92200515EB6 /* ProductListVC.h */,
 				072AF2001BF3C92200515EB6 /* ProductListVC.m */,
@@ -389,6 +398,7 @@
 		B1D813B4A64754D299881408 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBE2BD1C1C0E66370082090B /* MapKit.framework */,
 				FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */,
 				9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */,
 			);
@@ -403,6 +413,16 @@
 				FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		FBE2BD161C0E52210082090B /* Product Detail */ = {
+			isa = PBXGroup;
+			children = (
+				FBE2BD171C0E524F0082090B /* ProductDetailViewController.h */,
+				FBE2BD181C0E524F0082090B /* ProductDetailViewController.m */,
+				FBE2BD191C0E524F0082090B /* ProductDetailViewController.xib */,
+			);
+			name = "Product Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,6 +513,7 @@
 				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
 				FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */,
 				FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */,
+				FBE2BD1B1C0E524F0082090B /* ProductDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +582,7 @@
 				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
 				072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */,
 				075D53231C00819F0043D91C /* UserManager.m in Sources */,
+				FBE2BD1A1C0E524F0082090B /* ProductDetailViewController.m in Sources */,
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,
 				07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */,
 				0701B4541BF2963C00A3330A /* main.m in Sources */,

@@ -10,6 +10,7 @@
 #import "Product.h"
 
 #import "ProductCollectionViewCell.h"
+#import "ProductDetailViewController.h"
 
 #import "AlertUtil.h"
 
@@ -128,6 +129,14 @@
     [cell setImageWithURL:[cellData images][0]];
     
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Product *product = [self.products objectAtIndex:indexPath.row];
+    
+    ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product];
+    [self.navigationController pushViewController:pdVC animated:YES];
 }
 
 @end
