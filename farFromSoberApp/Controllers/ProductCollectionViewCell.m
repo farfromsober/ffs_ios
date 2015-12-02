@@ -41,8 +41,8 @@
 }
 
 -(void) setImageWithURL: (NSURL *) url {
-    [self.imgProduct sd_setImageWithURL:[NSURL URLWithString:@"https://www.facebookbrand.com/img/fb-art.jpg"]
-                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    [self.imgProduct sd_setImageWithURL:url
+                      placeholderImage:[UIImage imageNamed:@"photo_placeholder"]];
 }
 
 @end

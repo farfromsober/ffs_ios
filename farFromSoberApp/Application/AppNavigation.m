@@ -31,12 +31,12 @@
     // Why? Because we are going to use 'push' navigation inside each tab.
     UINavigationController *productsNVC = [UINavigationController withRoot:[ProductListVC new]];
     UINavigationController *mapNVC = [UINavigationController withRoot:[MapVC new]];
-    UINavigationController *newNVC = [UINavigationController withRoot:[NewItemVC new]];
+    //UINavigationController *newNVC = [UINavigationController withRoot:[NewItemVC new]];
     UINavigationController *nofiticationsNVC = [UINavigationController withRoot:[NotificationListVC new]];
     UINavigationController *profileNVC = [UINavigationController withRoot:[ProfileVC new]];
     
     // Create an ORDERED array of VCs.
-    NSArray *vcs = @[productsNVC, mapNVC, newNVC, nofiticationsNVC, profileNVC];
+    NSArray *vcs = @[productsNVC, mapNVC, nofiticationsNVC, profileNVC];
     
     // Create tabBarController
     UITabBarController *tabController = [[UITabBarController alloc] init];
@@ -44,11 +44,14 @@
     
     // Configure tabBarItems
     #pragma mark - TODO: set normal and selected icons
-    productsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Products" image:nil selectedImage:nil];
-    mapNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Map" image:nil selectedImage:nil];
-    newNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"New" image:nil selectedImage:nil];
-    nofiticationsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:nil selectedImage:nil];
-    profileNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:nil selectedImage:nil];
+    productsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Products" image:[UIImage imageNamed:@"Products Inactive"] selectedImage:nil];
+    mapNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Map" image:[UIImage imageNamed:@"Map Inactive"] selectedImage:[UIImage imageNamed:@"Map Active"]];
+    //newNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"New" image:[UIImage imageNamed:@"Products Inactive"] selectedImage:nil];
+    nofiticationsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:[UIImage imageNamed:@"Notification Inactive"] selectedImage:[UIImage imageNamed:@"Notification Active"]];
+    profileNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:nil selectedImage:[UIImage imageNamed:@"Profile Active"]];
+    
+    //Background image
+    tabController.tabBar.backgroundImage = [UIImage imageNamed:@"Bar"];
     
     // Hide back button
     tabController.navigationItem.hidesBackButton = YES;

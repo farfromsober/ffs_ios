@@ -55,11 +55,11 @@
                        placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     self.lbDateProfile.text = [NSString stringWithFormat:@"%@",self.product.published];
-    self.lbDescriptionProduct.text = self.product.description;
+    self.lbDescriptionProduct.text = self.product.detail;
     self.lbNameProfile.text = self.product.seller.username;
     self.lbNumberPhotos.text = [NSString stringWithFormat:@"%lu",[self.product.images count]];
     self.lbPrice.text = self.product.price;
-    //self.lbState.text = self.product.s
+    self.lbState.text = self.product.isSelling ? @"For sell" : @"Selling";
     self.lbTitleProduct.text = self.product.name;
 }
 
