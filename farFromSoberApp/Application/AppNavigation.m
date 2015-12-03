@@ -44,14 +44,18 @@
     
     // Configure tabBarItems
     #pragma mark - TODO: set normal and selected icons
-    productsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Products" image:[UIImage imageNamed:@"Products Inactive"] selectedImage:nil];
-    mapNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Map" image:[UIImage imageNamed:@"Map Inactive"] selectedImage:[UIImage imageNamed:@"Map Active"]];
+    productsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Products" image:[[UIImage imageNamed:@"Products Inactive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"Products Active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    mapNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Map" image:[[UIImage imageNamed:@"Map Inactive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]selectedImage:[[UIImage imageNamed:@"Map Active"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
     //newNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"New" image:[UIImage imageNamed:@"Products Inactive"] selectedImage:nil];
-    nofiticationsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:[UIImage imageNamed:@"Notification Inactive"] selectedImage:[UIImage imageNamed:@"Notification Active"]];
-    profileNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:nil selectedImage:[UIImage imageNamed:@"Profile Active"]];
+    nofiticationsNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:[[UIImage imageNamed:@"Notification Inactive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"Notification Active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    profileNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:[[UIImage imageNamed:@"Profile inactive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"Profile Active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     //Background image
     tabController.tabBar.backgroundImage = [UIImage imageNamed:@"Bar"];
+    
+    //Tabbar text color
+    [UITabBarItem.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+    [UITabBarItem.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:252/255.0f green:114/255.0f blue:50/255.0f alpha:1.0f]} forState:UIControlStateSelected];
     
     // Hide back button
     tabController.navigationItem.hidesBackButton = YES;

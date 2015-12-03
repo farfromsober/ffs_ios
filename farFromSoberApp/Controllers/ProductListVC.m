@@ -23,11 +23,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //NavigationBar
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"] style:UIBarButtonItemStylePlain target:self action:@selector(favoriteProducts)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Filter icon"] style:UIBarButtonItemStylePlain target:self action:@selector(filterProducts)];
+    
     [self initializeData];
     
     self.cvProductsCollection.delegate = self;
     self.cvProductsCollection.dataSource = self;
     [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapNewProduct:)];
+    tap.cancelsTouchesInView = YES;
+    tap.numberOfTapsRequired = 1;
+    tap.delegate = self;
+    [self.imgNewProduct addGestureRecognizer:tap];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,6 +148,21 @@
     
     ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product];
     [self.navigationController pushViewController:pdVC animated:YES];
+}
+
+#pragma mark - Navigation buttons action
+
+-(void) favoriteProducts {
+    
+}
+
+-(void) filterProducts {
+    
+}
+
+#pragma mark - Tap New Product
+-(void) tapNewProduct:(UIGestureRecognizer *)gestureRecognizer {
+    NSLog(@"Tap");
 }
 
 @end

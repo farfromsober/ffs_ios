@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductListVC">
             <connections>
                 <outlet property="cvProductsCollection" destination="HIJ-K2-vJk" id="Qhz-yK-b79"/>
+                <outlet property="imgNewProduct" destination="bJe-7g-pQb" id="WgF-az-zRC"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ZT3-HE-p4c"/>
             </connections>
         </placeholder>
@@ -26,16 +27,29 @@
                         <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="New Button" translatesAutoresizingMaskIntoConstraints="NO" id="bJe-7g-pQb">
+                    <rect key="frame" x="309" y="530" width="56" height="56"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="56" id="1sp-pP-SyE"/>
+                        <constraint firstAttribute="height" constant="56" id="PBG-64-JlZ"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="HIJ-K2-vJk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6EF-da-Zyd"/>
                 <constraint firstItem="HIJ-K2-vJk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="A9Y-4G-fs0"/>
+                <constraint firstAttribute="trailing" secondItem="bJe-7g-pQb" secondAttribute="trailing" constant="10" id="FMq-Z1-heo"/>
                 <constraint firstAttribute="trailing" secondItem="HIJ-K2-vJk" secondAttribute="trailing" id="Z0G-u4-FCd"/>
+                <constraint firstAttribute="bottom" secondItem="bJe-7g-pQb" secondAttribute="bottom" constant="81" id="pW5-3x-xTg"/>
                 <constraint firstAttribute="bottom" secondItem="HIJ-K2-vJk" secondAttribute="bottom" id="qBS-xH-IN2"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>
+    <resources>
+        <image name="New Button" width="76" height="85"/>
+    </resources>
 </document>
