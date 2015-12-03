@@ -54,6 +54,13 @@
     // Called after the controller's view is loaded into memory.
     // Set up initial/constant ATTRIBUTES of view's elements.
     self.api = [APIManager sharedManager];
+    
+    //NavigationBar
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:252/255.0f green:114/255.0f blue:50/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"] style:UIBarButtonItemStylePlain target:self action:@selector(favoriteProducts)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Filter icon"] style:UIBarButtonItemStylePlain target:self action:@selector(filterProducts)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,6 +88,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Navigation buttons action
+
+-(void) favoriteProducts {
+    
+}
+
+-(void) filterProducts {
+    
 }
 
 
