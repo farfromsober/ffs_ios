@@ -41,7 +41,6 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcg-wf-3mU">
                                             <rect key="frame" x="301" y="202" width="66" height="21"/>
                                             <animations/>
-                                            <color key="backgroundColor" red="0.98823529409999999" green="0.71764705880000002" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="DAp-du-tzC"/>
                                                 <constraint firstAttribute="width" constant="66" id="vjy-PH-cKU"/>
@@ -88,24 +87,24 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMX-vc-tJW">
-                                            <rect key="frame" x="56" y="14" width="250" height="21"/>
+                                            <rect key="frame" x="56" y="14" width="213" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0P3-6l-amW">
-                                            <rect key="frame" x="56" y="38" width="250" height="14"/>
+                                            <rect key="frame" x="56" y="38" width="213" height="14"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7Y-Wy-N94">
-                                            <rect key="frame" x="314" y="11" width="53" height="40"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7Y-Wy-N94">
+                                            <rect key="frame" x="277" y="11" width="90" height="40"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="53" id="pG0-J4-pS7"/>
+                                                <constraint firstAttribute="width" constant="90" id="pG0-J4-pS7"/>
                                                 <constraint firstAttribute="height" constant="40" id="xjY-qb-Ery"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>

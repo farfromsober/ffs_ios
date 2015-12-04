@@ -75,7 +75,7 @@
                             </constraints>
                             <color key="textColor" red="0.18187996745109558" green="0.16301068663597107" blue="0.16284632682800293" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                     </subviews>
                     <animations/>

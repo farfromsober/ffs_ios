@@ -63,11 +63,12 @@
     self.lbDescriptionProduct.text = self.product.detail;
     self.lbNameProfile.text = self.product.seller.username;
     
-    self.lbNumberPhotos.text = [NSString stringWithFormat:@"%lu",[self.product.images count]];
+    NSString *photos = [self.product.images count] <= 0 ? [NSString stringWithFormat:@"%lu Photo",[self.product.images count] ] : [NSString stringWithFormat:@"%lu Photos",[self.product.images count]];
+    self.lbNumberPhotos.text = photos;
     self.lbNumberPhotos.layer.backgroundColor = [[UIColor colorWithRed:252/255.0f green:183/255.0f blue:151/255.0f alpha:1.0f] CGColor];
     self.lbNumberPhotos.layer.cornerRadius = 12;
     
-    self.lbPrice.text = self.product.price;
+    self.lbPrice.text = [NSString stringWithFormat:@"%@€",self.product.price];
     
     self.lbState.text = self.product.isSelling ? @"For sell" : @"Selling";
     self.lbState.layer.backgroundColor = [[UIColor colorWithRed:252/255.0f green:183/255.0f blue:151/255.0f alpha:1.0f] CGColor];

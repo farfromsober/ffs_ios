@@ -62,58 +62,9 @@
         [self presentViewController:alert animated:YES completion:nil];
         
         NSLog(@"Error: %@", error);
-        
-#warning BorrarRRRRRRR
-        self.products = [NSMutableArray new];
-        
-        for (NSDictionary *productDic in [self dummyData]) {
-            Product *product = [[Product alloc] initWithJSON:productDic];
-            [self.products addObject:product];
-        }
-        
-        [self.cvProductsCollection reloadData];
+
     }];
   
-}
-
-#warning DummyData BorrarrrrRRRR
--(NSArray *) dummyData {
-    NSMutableArray *dicRet = [NSMutableArray new];
-    NSMutableDictionary *dic = [NSMutableDictionary new];
-    
-    [dic setObject:@"5649b6eae9a246eed43f0174" forKey:@"_id"];
-    [dic setObject:@"true" forKey:@"selling"];
-    [dic setObject:@"2015-11-02T14:16:29+00:00" forKey:@"published_date"];
-    [dic setObject:@"387.96" forKey:@"price"];
-    [dic setObject:@"tempor in laboris" forKey:@"name"];
-    [dic setObject:@"mollit nisi nisi ea exercitation deserunt anim et cupidatat fugiat ullamco fugiat amet irure cillum aute Lorem est nostrud" forKey:@"description"];
-
-    NSMutableDictionary *seller = [NSMutableDictionary new];
-    
-    [seller setObject:@"5649ae77dbca133e4e385a58" forKey:@"_id"];
-    [seller setObject:@"jmartinez" forKey:@"username"];
-    [seller setObject:@"Julio" forKey:@"first_name"];
-    [seller setObject:@"Marinez" forKey:@"last_name"];
-    [seller setObject:@"juliomb89@gmail.com" forKey:@"email"];
-    
-    [dic setObject:seller forKey:@"seller"];
-    
-    NSMutableArray *fotos = [NSMutableArray new];
-    
-    [fotos addObject:@"http://placehold.it/350x350"];
-    [fotos addObject:@"http://placehold.it/350x350"];
-    
-    [dic setObject:fotos forKey:@"images"];
-    
-    [dicRet addObject:dic];
-    [dicRet addObject:dic];
-    [dicRet addObject:dic];
-    [dicRet addObject:dic];
-    [dicRet addObject:dic];
-    [dicRet addObject:dic];
-    [dicRet addObject:dic];
-    
-    return dicRet;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -134,7 +85,7 @@
     
     Product *cellData = [self.products objectAtIndex:indexPath.row];
     
-    cell.lbPrice.text = [cellData price];
+    cell.lbPrice.text = [NSString stringWithFormat:@"%@€",[cellData price]];
     cell.lbTitle.text = [cellData name];
     
     [cell setImageWithURL:[cellData images][0]];

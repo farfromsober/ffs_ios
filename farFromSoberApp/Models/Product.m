@@ -13,7 +13,7 @@
 #import "NSString+Validator.h"
 #import "NSDate+Parser.h"
 
-static NSString * const idKey = @"_id";
+static NSString * const idKey = @"id";
 static NSString * const nameKey = @"name";
 static NSString * const detailKey = @"description";
 static NSString * const categoryKey = @"category";
@@ -124,7 +124,7 @@ static NSString * const imagesKey = @"images";
     } else if (![dic[sellerKey] isKindOfClass:[NSDictionary class]]) {
         return NO;
     } else if (![User hasNeededInformation:dic[sellerKey]]) {
-        return NO;
+    //    return NO;
     }
     
     return YES;

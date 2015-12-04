@@ -24,8 +24,8 @@
 @implementation APIManager
 
 static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
-static NSString *const requestUsername = @"";
-static NSString *const requestPassword = @"";
+static NSString *const requestUsername = @"agustin";
+static NSString *const requestPassword = @"123456";
 
 #pragma mark - accessors
 - (NSString *)appID  {
@@ -83,10 +83,9 @@ static NSString *const requestPassword = @"";
                                 Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     
-    NSDictionary *parameters = @{@"email":userEmail, @"password":userPassword,
-                                 @"app_id":self.appID, @"app_key":self.appKey};
+    NSDictionary *parameters = @{@"user":userEmail, @"password":userPassword};
     
-    return [[self sessionManager] POST:@"/api/1.0/login"
+    return [[self sessionManager] POST:@"/api/1.0/login/"
                             parameters:parameters
                                success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                                    success(task, responseObject);
@@ -102,10 +101,9 @@ static NSString *const requestPassword = @"";
                                 Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     
-    NSDictionary *parameters = @{@"category":category, @"distance":distance, @"word":word,
-                                 @"app_id":self.appID, @"app_key":self.appKey};
+    NSDictionary *parameters = @{@"category":category, @"distance":distance, @"word":word};
     
-    return [[self sessionManager] POST:@"product"
+    return [[self sessionManager] GET:@"/api/1.0/products/"
                             parameters:parameters
                                success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                                    success(task, responseObject);
