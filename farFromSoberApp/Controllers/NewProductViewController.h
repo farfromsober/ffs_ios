@@ -11,7 +11,7 @@
 
 @class Product;
 
-@interface NewProductViewController : BaseVC
+@interface NewProductViewController : BaseVC <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *lbTitle;
 @property (weak, nonatomic) IBOutlet UITextView *lbDescription;

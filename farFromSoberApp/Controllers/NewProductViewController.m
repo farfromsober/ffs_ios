@@ -9,6 +9,9 @@
 #import "NewProductViewController.h"
 
 #import "Product.h"
+#import "ProductCategory.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface NewProductViewController ()
 
@@ -31,7 +34,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.lbTitle.delegate = self;
+    self.lbCategory.delegate = self;
+    self.lbPrice.delegate = self;
+    
+    [self.imgProduct1 setImage:[UIImage imageNamed:@"photo_placeholder"]];
+    [self.imgProduct2 setImage:[UIImage imageNamed:@"photo_placeholder"]];
+    [self.imgProduct3 setImage:[UIImage imageNamed:@"photo_placeholder"]];
+    [self.imgProduct4 setImage:[UIImage imageNamed:@"photo_placeholder"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,13 +51,58 @@
 }
 
 
+#pragma mark - Buttons Action
 
 - (IBAction)btSellIt:(id)sender {
+    
+    self.product.name = self.lbTitle.text;
+    self.product.detail = self.lbDescription.text;
+    
+    //ProductCategory *category = [[ProductCategory alloc] init];
+    //category.name
+    //self.product.category
+    
+    self.product.price = self.lbPrice.text;
+    
+    
+    
 }
 
 - (IBAction)btAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+#pragma mark - Keyboar hide
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([self.lbTitle isFirstResponder] && [touch view] != self.lbTitle) {
+        [self.lbTitle resignFirstResponder];
+    } else if ([self.lbCategory isFirstResponder] && [touch view] != self.lbCategory) {
+        [self.lbCategory resignFirstResponder];
+    } else if ([self.lbPrice isFirstResponder] && [touch view] != self.lbPrice) {
+        [self.lbPrice resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
+#pragma mark - UITextView delegates
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField.tag == 0) {
+        [self.lbDescription becomeFirstResponder];
+    } else if (textField.tag == 1) {
+        [self.lbCategory becomeFirstResponder];
+    } else if (textField.tag == 2) {
+        [self.lbPrice becomeFirstResponder];
+    } else {
+        [self btSellIt:nil];
+    }
+    
+    return YES;
 }
 @end
