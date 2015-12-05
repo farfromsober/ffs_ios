@@ -65,7 +65,7 @@ static NSString * const imagesKey = @"images";
         mDic[nameKey] = product.name;
         mDic[detailKey] = product.detail;
         mDic[categoryKey] = [[ProductCategory alloc] objectToJSON:product.category];
-        mDic[publishedKey] = product.published;
+        mDic[publishedKey] = [NSDate stringWithISO8601FormatDate:product.published];
         mDic[priceKey] = product.price;
         mDic[sellerKey] = [[User alloc] objectToJSON:product.seller];
         

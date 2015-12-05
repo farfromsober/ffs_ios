@@ -11,7 +11,6 @@
 #import "User.h"
 #import "Product.h"
 #import "FakeModelObjects.h"
-#import "NSDictionary+Comparator.h"
 
 @interface TransactionTest : XCTestCase
 
@@ -78,9 +77,9 @@
     Transaction *transaction = [FakeModelObjects fakeTransactionObject];
     NSDictionary *json = [[Transaction alloc] objectToJSON:transaction];
     XCTAssertTrue([transaction.transactionId isEqualToString:json[@"_id"]], @"'saveSearchId' should be equal tu json[\"_id\"]");
-    XCTAssertTrue([[FakeModelObjects fakeJSONUser] containsSameKeyAndValues:json[@"buyer"]],
+    XCTAssertTrue([[FakeModelObjects fakeJSONUser] isEqualToDictionary:json[@"buyer"]],
                   @"'buyer' should be equal tu json[\"buyer\"]");
-    XCTAssertTrue([[FakeModelObjects fakeJSONProduct] containsSameKeyAndValues:json[@"product"]],
+    XCTAssertTrue([[FakeModelObjects fakeJSONProduct] isEqualToDictionary:json[@"product"]],
                   @"'product' should be equal tu json[\"product\"]");
     XCTAssertTrue([[FakeModelObjects fakePublishedString] isEqualToString:json[@"date"]],
                   @"'date' should be equal tu json[\"date\"]");

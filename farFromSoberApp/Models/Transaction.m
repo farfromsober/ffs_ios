@@ -43,7 +43,7 @@ static NSString * const dateKey = @"date";
         mDic[idKey] = transaction.transactionId;
         mDic[productKey] = [[Product alloc] objectToJSON:transaction.product];
         mDic[buyerKey] = [[User alloc] objectToJSON:transaction.buyer];
-        mDic[dateKey] = transaction.date;
+        mDic[dateKey] = [NSDate stringWithISO8601FormatDate:transaction.date];
         
         return [mDic copy];
     }

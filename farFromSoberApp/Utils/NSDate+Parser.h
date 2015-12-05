@@ -11,5 +11,6 @@
 @interface NSDate (Parser)
 
 + (NSDate *)parseISO8601Date:(NSString *)jsonDate;
++ (NSString *)stringWithISO8601FormatDate:(NSDate *)date;
 
 @end

@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class UITabBarController;
+@class UINavigationController;
 
 @interface AppNavigation : NSObject
 
 + (UITabBarController *)tabBarController;
++ (UINavigationController *)loginController;
 
 @end

@@ -25,16 +25,21 @@
 		07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CEF1BF8FC01002EDBB2 /* NSString+Validator.m */; };
 		07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CF21BFBC92B002EDBB2 /* Transaction.m */; };
 		07564CF91BFBC971002EDBB2 /* SavedSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 07564CF81BFBC971002EDBB2 /* SavedSearch.m */; };
+		075D53231C00819F0043D91C /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 075D53221C00819F0043D91C /* UserManager.m */; };
+		075D53261C0082B90043D91C /* AppConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 075D53251C0082B90043D91C /* AppConstants.m */; };
+		075D53291C00879C0043D91C /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 075D53281C00879C0043D91C /* APIManager.m */; };
 		075EBFE61BFE77CE008FBE2E /* FakeModelObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EBFE51BFE77CE008FBE2E /* FakeModelObjects.m */; };
-		07BE597E1BFF8A4600B4A3AA /* NSArray+Comparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE597D1BFF8A4600B4A3AA /* NSArray+Comparator.m */; };
+		079149511C0515E3007606ED /* NSDateParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 079149501C0515E3007606ED /* NSDateParserTest.m */; };
 		07BE59811BFF9B3D00B4A3AA /* NSDate+Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */; };
-		07BE59841BFFA0B500B4A3AA /* NSDictionary+Comparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BE59831BFFA0B500B4A3AA /* NSDictionary+Comparator.m */; };
 		07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BEAF931BF6490A00062D77 /* LaunchScreen.storyboard */; };
 		07BEAF971BF649D800062D77 /* AppNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAF961BF649D800062D77 /* AppNavigation.m */; };
 		07BEAF9A1BF64D1000062D77 /* UINavigationController+Initializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAF991BF64D1000062D77 /* UINavigationController+Initializer.m */; };
 		07BEAFA41BF6558400062D77 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA31BF6558400062D77 /* User.m */; };
 		07BEAFA71BF6559700062D77 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA61BF6559700062D77 /* Product.m */; };
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
+		FB9183581C07BF69001F7C44 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB9183561C07BF69001F7C44 /* LoginViewController.m */; };
+		FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9183571C07BF69001F7C44 /* LoginViewController.xib */; };
+		FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,15 +86,18 @@
 		07564CF21BFBC92B002EDBB2 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		07564CF71BFBC971002EDBB2 /* SavedSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedSearch.h; sourceTree = "<group>"; };
 		07564CF81BFBC971002EDBB2 /* SavedSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedSearch.m; sourceTree = "<group>"; };
+		075D53211C00819F0043D91C /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		075D53221C00819F0043D91C /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		075D53241C0082B90043D91C /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
+		075D53251C0082B90043D91C /* AppConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstants.m; sourceTree = "<group>"; };
+		075D53271C00879C0043D91C /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		075D53281C00879C0043D91C /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		075EBFE41BFE77CE008FBE2E /* FakeModelObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FakeModelObjects.h; path = Fakes/FakeModelObjects.h; sourceTree = "<group>"; };
 		075EBFE51BFE77CE008FBE2E /* FakeModelObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FakeModelObjects.m; path = Fakes/FakeModelObjects.m; sourceTree = "<group>"; };
 		07878F1C1BF68E33009F68F1 /* JSONCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONCreator.h; sourceTree = "<group>"; };
-		07BE597C1BFF8A4600B4A3AA /* NSArray+Comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Comparator.h"; sourceTree = "<group>"; };
-		07BE597D1BFF8A4600B4A3AA /* NSArray+Comparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Comparator.m"; sourceTree = "<group>"; };
+		079149501C0515E3007606ED /* NSDateParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateParserTest.m; sourceTree = "<group>"; };
 		07BE597F1BFF9B3D00B4A3AA /* NSDate+Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Parser.h"; sourceTree = "<group>"; };
 		07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Parser.m"; sourceTree = "<group>"; };
-		07BE59821BFFA0B500B4A3AA /* NSDictionary+Comparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Comparator.h"; sourceTree = "<group>"; };
-		07BE59831BFFA0B500B4A3AA /* NSDictionary+Comparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Comparator.m"; sourceTree = "<group>"; };
 		07BEAF931BF6490A00062D77 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BEAF951BF649D800062D77 /* AppNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNavigation.h; sourceTree = "<group>"; };
 		07BEAF961BF649D800062D77 /* AppNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppNavigation.m; sourceTree = "<group>"; };
@@ -103,6 +111,11 @@
 		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
 		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FB9183551C07BF69001F7C44 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FB9183561C07BF69001F7C44 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FB9183571C07BF69001F7C44 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		FBA2BA0C1C08CBF5000C36EE /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
+		FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,9 +174,10 @@
 		0701B41A1BF2910500A3330A /* farFromSoberAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				0701B41D1BF2910500A3330A /* Info.plist */,
 				07331D2E1BFD25B600FDC83F /* Fakes */,
 				07331D2B1BFD253200FDC83F /* Models */,
-				0701B41D1BF2910500A3330A /* Info.plist */,
+				0791494B1C050CFB007606ED /* Utils */,
 			);
 			path = farFromSoberAppTests;
 			sourceTree = "<group>";
@@ -171,6 +185,8 @@
 		0701B4401BF2963C00A3330A /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				075D53241C0082B90043D91C /* AppConstants.h */,
+				075D53251C0082B90043D91C /* AppConstants.m */,
 				0701B4411BF2963C00A3330A /* AppDelegate.h */,
 				0701B4421BF2963C00A3330A /* AppDelegate.m */,
 				07BEAF951BF649D800062D77 /* AppNavigation.h */,
@@ -193,6 +209,10 @@
 		0701B4491BF2963C00A3330A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				075D53211C00819F0043D91C /* UserManager.h */,
+				075D53221C00819F0043D91C /* UserManager.m */,
+				075D53271C00879C0043D91C /* APIManager.h */,
+				075D53281C00879C0043D91C /* APIManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -232,12 +252,10 @@
 				07564CEF1BF8FC01002EDBB2 /* NSString+Validator.m */,
 				07BEAF981BF64D1000062D77 /* UINavigationController+Initializer.h */,
 				07BEAF991BF64D1000062D77 /* UINavigationController+Initializer.m */,
-				07BE597C1BFF8A4600B4A3AA /* NSArray+Comparator.h */,
-				07BE597D1BFF8A4600B4A3AA /* NSArray+Comparator.m */,
 				07BE597F1BFF9B3D00B4A3AA /* NSDate+Parser.h */,
 				07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */,
-				07BE59821BFFA0B500B4A3AA /* NSDictionary+Comparator.h */,
-				07BE59831BFFA0B500B4A3AA /* NSDictionary+Comparator.m */,
+				FBA2BA0C1C08CBF5000C36EE /* AlertUtil.h */,
+				FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -268,6 +286,14 @@
 				075EBFE51BFE77CE008FBE2E /* FakeModelObjects.m */,
 			);
 			name = Fakes;
+			sourceTree = "<group>";
+		};
+		0791494B1C050CFB007606ED /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				079149501C0515E3007606ED /* NSDateParserTest.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		07BEAF9B1BF64F0E00062D77 /* TabController */ = {
@@ -332,6 +358,9 @@
 		07BEAFA11BF64F7900062D77 /* Login/Register */ = {
 			isa = PBXGroup;
 			children = (
+				FB9183551C07BF69001F7C44 /* LoginViewController.h */,
+				FB9183561C07BF69001F7C44 /* LoginViewController.m */,
+				FB9183571C07BF69001F7C44 /* LoginViewController.xib */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -438,6 +467,7 @@
 			files = (
 				0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */,
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
+				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,17 +535,20 @@
 			files = (
 				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
 				072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */,
+				075D53231C00819F0043D91C /* UserManager.m in Sources */,
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,
 				07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */,
 				0701B4541BF2963C00A3330A /* main.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,
+				075D53261C0082B90043D91C /* AppConstants.m in Sources */,
+				075D53291C00879C0043D91C /* APIManager.m in Sources */,
+				FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */,
+				FB9183581C07BF69001F7C44 /* LoginViewController.m in Sources */,
 				07564CF91BFBC971002EDBB2 /* SavedSearch.m in Sources */,
 				07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */,
 				07BEAFA41BF6558400062D77 /* User.m in Sources */,
-				07BE59841BFFA0B500B4A3AA /* NSDictionary+Comparator.m in Sources */,
-				07BE597E1BFF8A4600B4A3AA /* NSArray+Comparator.m in Sources */,
 				0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */,
 				07BE59811BFF9B3D00B4A3AA /* NSDate+Parser.m in Sources */,
 				072AF2041BF3C95400515EB6 /* MapVC.m in Sources */,
@@ -535,6 +568,7 @@
 				07331D391BFD304E00FDC83F /* SavedSearchTest.m in Sources */,
 				07331D371BFD303400FDC83F /* ProductCategoryTest.m in Sources */,
 				07331D351BFD301A00FDC83F /* ProductTest.m in Sources */,
+				079149511C0515E3007606ED /* NSDateParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +671,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/farFromSoberApp/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.farFromSober.farFromSoberApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -649,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/farFromSoberApp/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.farFromSober.farFromSoberApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "AppNavigation.h"
 
+#import "UserManager.h"
+
 @interface AppDelegate ()
 
 @end
@@ -50,7 +52,14 @@
 - (void)setupWindow {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [AppNavigation tabBarController];
+    
+    UserManager *user = [UserManager sharedInstance];
+    if ([user currentUser]) {
+        self.window.rootViewController = [AppNavigation tabBarController];
+    }else {
+        self.window.rootViewController = [AppNavigation loginController];
+    }
+    
     [self.window makeKeyAndVisible];
 }
 

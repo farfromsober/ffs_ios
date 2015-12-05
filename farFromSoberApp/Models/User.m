@@ -23,6 +23,41 @@ static NSString * const avatarKey = @"avatar";
 
 @implementation User
 
+#pragma mark - Storing & retriving
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    [encoder encodeInteger:self.sales forKey:salesKey];
+    [encoder encodeObject:self.userId forKey:idKey];
+    [encoder encodeObject:self.firstName forKey:firstNameKey];
+    [encoder encodeObject:self.lastName forKey:lastNameKey];
+    [encoder encodeObject:self.email forKey:emailKey];
+    [encoder encodeObject:self.username forKey:usernameKey];
+    [encoder encodeObject:self.city forKey:cityKey];
+    [encoder encodeObject:self.state forKey:stateKey];
+    [encoder encodeObject:self.latitude forKey:latitudeKey];
+    [encoder encodeObject:self.longitude forKey:longitudeKey];
+    [encoder encodeObject:self.avatarURL forKey:avatarKey];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        self.sales = [decoder decodeIntegerForKey:salesKey];
+        self.userId = [decoder decodeObjectForKey:idKey];
+        self.firstName = [decoder decodeObjectForKey:firstNameKey];
+        self.lastName = [decoder decodeObjectForKey:lastNameKey];
+        self.email = [decoder decodeObjectForKey:emailKey];
+        self.username = [decoder decodeObjectForKey:usernameKey];
+        self.city = [decoder decodeObjectForKey:cityKey];
+        self.state = [decoder decodeObjectForKey:stateKey];
+        self.latitude = [decoder decodeObjectForKey:latitudeKey];
+        self.longitude = [decoder decodeObjectForKey:longitudeKey];
+        self.avatarURL = [decoder decodeObjectForKey:avatarKey];
+    }
+    return self;
+}
+
 #pragma mark - JSONParser
 
 - (id<JSONParser>)initWithJSON:(NSDictionary *)dic {
@@ -74,7 +109,6 @@ static NSString * const avatarKey = @"avatar";
 #pragma mark - Utils
 
 + (BOOL)hasNeededInformation:(NSDictionary *)dic {
-    
      if ([NSString isEmpty:dic[idKey]]) {
          return NO;
      } else if ([NSString isEmpty:dic[emailKey]]) {
