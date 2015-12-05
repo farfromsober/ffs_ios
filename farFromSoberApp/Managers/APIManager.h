@@ -19,9 +19,16 @@
 - (void)startReachabilityMonitor;
 - (void)stopReachabilityMonitor;
 
-// login sample *****
+// login *****
 - (NSURLSessionDataTask *)logInViaEmail:(NSString *)userEmail
                             andPassword:(NSString *)userPassword
                                 Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+// products 
+- (NSURLSessionDataTask *)productsViaCategory:(NSString *)category
+                                  andDistance:(NSString *)distance
+                                      andWord:(NSString *) word
+                                      Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end

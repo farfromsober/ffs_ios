@@ -33,6 +33,7 @@
     self.txtUser.delegate = self;
     self.txtPass.delegate = self;
     
+    self.navigationController.navigationBarHidden = YES;
 
 }
 

@@ -23,9 +23,9 @@
 
 @implementation APIManager
 
-static NSString *const serverBaseURL = @"";
-static NSString *const requestUsername = @"";
-static NSString *const requestPassword = @"";
+static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
+static NSString *const requestUsername = @"agustin";
+static NSString *const requestPassword = @"123456";
 
 #pragma mark - accessors
 - (NSString *)appID  {
@@ -77,17 +77,33 @@ static NSString *const requestPassword = @"";
     [self.reachabilityManager stopMonitoring];
 }
 
-/* sample */
 #pragma mark - Log In requests
 - (NSURLSessionDataTask *)logInViaEmail:(NSString *)userEmail
                             andPassword:(NSString *)userPassword
                                 Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     
-    NSDictionary *parameters = @{@"email":userEmail, @"password":userPassword,
-                                 @"app_id":self.appID, @"app_key":self.appKey};
+    NSDictionary *parameters = @{@"user":userEmail, @"password":userPassword};
     
-    return [[self sessionManager] POST:@"login"
+    return [[self sessionManager] POST:@"/api/1.0/login/"
+                            parameters:parameters
+                               success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                                   success(task, responseObject);
+                               } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                   failure(task, error);
+                               }];
+}
+
+#pragma mark - Products request
+- (NSURLSessionDataTask *)productsViaCategory:(NSString *)category
+                                  andDistance:(NSString *)distance
+                                      andWord:(NSString *) word
+                                Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    
+    NSDictionary *parameters = @{@"category":category, @"distance":distance, @"word":word};
+    
+    return [[self sessionManager] GET:@"/api/1.0/products/"
                             parameters:parameters
                                success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                                    success(task, responseObject);

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btLogin;
 @property (weak, nonatomic) IBOutlet UIButton *btRememberPass;
 @property (weak, nonatomic) IBOutlet UIButton *btSignUp;
+@property (weak, nonatomic) IBOutlet UIImageView *img4Sale;
 
 - (IBAction)btLogin:(id)sender;
 - (IBAction)btRememberPass:(id)sender;

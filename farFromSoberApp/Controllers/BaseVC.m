@@ -53,6 +53,13 @@
     
     // Called after the controller's view is loaded into memory.
     // Set up initial/constant ATTRIBUTES of view's elements.
+    self.api = [APIManager sharedManager];
+    
+    //NavigationBar
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:252/255.0f green:114/255.0f blue:50/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,6 +88,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 @end

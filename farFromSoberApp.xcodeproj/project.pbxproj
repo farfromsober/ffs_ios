@@ -37,9 +37,18 @@
 		07BEAFA41BF6558400062D77 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA31BF6558400062D77 /* User.m */; };
 		07BEAFA71BF6559700062D77 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA61BF6559700062D77 /* Product.m */; };
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
+		FB129C631C12EE940017721D /* NewProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C611C12EE940017721D /* NewProductViewController.m */; };
+		FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB129C621C12EE940017721D /* NewProductViewController.xib */; };
+		FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */; };
+		FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */; };
+		FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */; };
+		FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241AD31C0B764A000AC1B6 /* ProductListVC.xib */; };
 		FB9183581C07BF69001F7C44 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB9183561C07BF69001F7C44 /* LoginViewController.m */; };
 		FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9183571C07BF69001F7C44 /* LoginViewController.xib */; };
 		FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */; };
+		FBE2BD1A1C0E524F0082090B /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE2BD181C0E524F0082090B /* ProductDetailViewController.m */; };
+		FBE2BD1B1C0E524F0082090B /* ProductDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE2BD191C0E524F0082090B /* ProductDetailViewController.xib */; };
+		FBE2BD1D1C0E66370082090B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE2BD1C1C0E66370082090B /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,11 +120,23 @@
 		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
 		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FB129C601C12EE940017721D /* NewProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProductViewController.h; sourceTree = "<group>"; };
+		FB129C611C12EE940017721D /* NewProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProductViewController.m; sourceTree = "<group>"; };
+		FB129C621C12EE940017721D /* NewProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewProductViewController.xib; sourceTree = "<group>"; };
+		FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		FB241AC81C0B1EBD000AC1B6 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
+		FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
+		FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
+		FB241AD31C0B764A000AC1B6 /* ProductListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductListVC.xib; sourceTree = "<group>"; };
 		FB9183551C07BF69001F7C44 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FB9183561C07BF69001F7C44 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FB9183571C07BF69001F7C44 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		FBA2BA0C1C08CBF5000C36EE /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
 		FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtil.m; sourceTree = "<group>"; };
+		FBE2BD171C0E524F0082090B /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		FBE2BD181C0E524F0082090B /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		FBE2BD191C0E524F0082090B /* ProductDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductDetailViewController.xib; sourceTree = "<group>"; };
+		FBE2BD1C1C0E66370082090B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +144,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBE2BD1D1C0E66370082090B /* MapKit.framework in Frameworks */,
+				FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */,
 				65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,8 +336,12 @@
 		07BEAF9C1BF64F1700062D77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				FB129C5F1C12EE620017721D /* New Product */,
+				FBE2BD161C0E52210082090B /* Product Detail */,
+				FB241AC71C0B1E84000AC1B6 /* Cell */,
 				072AF1FF1BF3C92200515EB6 /* ProductListVC.h */,
 				072AF2001BF3C92200515EB6 /* ProductListVC.m */,
+				FB241AD31C0B764A000AC1B6 /* ProductListVC.xib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -377,9 +404,41 @@
 		B1D813B4A64754D299881408 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBE2BD1C1C0E66370082090B /* MapKit.framework */,
+				FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */,
 				9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB129C5F1C12EE620017721D /* New Product */ = {
+			isa = PBXGroup;
+			children = (
+				FB129C601C12EE940017721D /* NewProductViewController.h */,
+				FB129C611C12EE940017721D /* NewProductViewController.m */,
+				FB129C621C12EE940017721D /* NewProductViewController.xib */,
+			);
+			name = "New Product";
+			sourceTree = "<group>";
+		};
+		FB241AC71C0B1E84000AC1B6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FB241AC81C0B1EBD000AC1B6 /* ProductCollectionViewCell.h */,
+				FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */,
+				FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		FBE2BD161C0E52210082090B /* Product Detail */ = {
+			isa = PBXGroup;
+			children = (
+				FBE2BD171C0E524F0082090B /* ProductDetailViewController.h */,
+				FBE2BD181C0E524F0082090B /* ProductDetailViewController.m */,
+				FBE2BD191C0E524F0082090B /* ProductDetailViewController.xib */,
+			);
+			name = "Product Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,6 +527,10 @@
 				0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */,
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
 				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
+				FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */,
+				FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */,
+				FBE2BD1B1C0E524F0082090B /* ProductDetailViewController.xib in Resources */,
+				FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,9 +599,12 @@
 				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
 				072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */,
 				075D53231C00819F0043D91C /* UserManager.m in Sources */,
+				FBE2BD1A1C0E524F0082090B /* ProductDetailViewController.m in Sources */,
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,
+				FB129C631C12EE940017721D /* NewProductViewController.m in Sources */,
 				07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */,
 				0701B4541BF2963C00A3330A /* main.m in Sources */,
+				FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,
