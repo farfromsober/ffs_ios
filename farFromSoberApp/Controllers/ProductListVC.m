@@ -11,6 +11,7 @@
 
 #import "ProductCollectionViewCell.h"
 #import "ProductDetailViewController.h"
+#import "NewProductViewController.h"
 
 #import "AlertUtil.h"
 
@@ -113,7 +114,13 @@
 
 #pragma mark - Tap New Product
 -(void) tapNewProduct:(UIGestureRecognizer *)gestureRecognizer {
-    NSLog(@"Tap");
+    
+    Product *product = [[Product alloc] init];
+    
+    NewProductViewController *npVC = [[NewProductViewController alloc] initWithProduct:product];
+    [self presentViewController:npVC animated:YES completion:^{
+        
+    }];
 }
 
 @end

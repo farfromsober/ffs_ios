@@ -70,7 +70,7 @@
     
     self.lbPrice.text = [NSString stringWithFormat:@"%@€",self.product.price];
     
-    self.lbState.text = self.product.isSelling ? @"For sell" : @"Selling";
+    self.lbState.text = self.product.isSelling ? @"For sell" : @"Sold";
     self.lbState.layer.backgroundColor = [[UIColor colorWithRed:252/255.0f green:183/255.0f blue:151/255.0f alpha:1.0f] CGColor];
     self.lbState.layer.cornerRadius = 12;
     
