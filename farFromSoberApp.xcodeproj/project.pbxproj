@@ -39,6 +39,8 @@
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
 		FB129C631C12EE940017721D /* NewProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C611C12EE940017721D /* NewProductViewController.m */; };
 		FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB129C621C12EE940017721D /* NewProductViewController.xib */; };
+		FB129C6F1C1375ED0017721D /* ABSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C6C1C1375ED0017721D /* ABSManager.m */; };
+		FB129C701C1375ED0017721D /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB129C6E1C1375ED0017721D /* WindowsAzureMobileServices.framework */; };
 		FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */; };
 		FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */; };
 		FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */; };
@@ -123,6 +125,10 @@
 		FB129C601C12EE940017721D /* NewProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProductViewController.h; sourceTree = "<group>"; };
 		FB129C611C12EE940017721D /* NewProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProductViewController.m; sourceTree = "<group>"; };
 		FB129C621C12EE940017721D /* NewProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewProductViewController.xib; sourceTree = "<group>"; };
+		FB129C6B1C1375ED0017721D /* ABSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSManager.h; sourceTree = "<group>"; };
+		FB129C6C1C1375ED0017721D /* ABSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSManager.m; sourceTree = "<group>"; };
+		FB129C6D1C1375ED0017721D /* AzureDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AzureDefines.h; sourceTree = "<group>"; };
+		FB129C6E1C1375ED0017721D /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		FB241AC81C0B1EBD000AC1B6 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
 		FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 			files = (
 				FBE2BD1D1C0E66370082090B /* MapKit.framework in Frameworks */,
 				FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */,
+				FB129C701C1375ED0017721D /* WindowsAzureMobileServices.framework in Frameworks */,
 				65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +269,7 @@
 		0701B44B1BF2963C00A3330A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FB129C6A1C1375E10017721D /* Azure */,
 				07BEAF931BF6490A00062D77 /* LaunchScreen.storyboard */,
 				0701B44C1BF2963C00A3330A /* Assets.xcassets */,
 			);
@@ -419,6 +427,17 @@
 				FB129C621C12EE940017721D /* NewProductViewController.xib */,
 			);
 			name = "New Product";
+			sourceTree = "<group>";
+		};
+		FB129C6A1C1375E10017721D /* Azure */ = {
+			isa = PBXGroup;
+			children = (
+				FB129C6B1C1375ED0017721D /* ABSManager.h */,
+				FB129C6C1C1375ED0017721D /* ABSManager.m */,
+				FB129C6D1C1375ED0017721D /* AzureDefines.h */,
+				FB129C6E1C1375ED0017721D /* WindowsAzureMobileServices.framework */,
+			);
+			name = Azure;
 			sourceTree = "<group>";
 		};
 		FB241AC71C0B1E84000AC1B6 /* Cell */ = {
@@ -604,6 +623,7 @@
 				FB129C631C12EE940017721D /* NewProductViewController.m in Sources */,
 				07564CF31BFBC92B002EDBB2 /* Transaction.m in Sources */,
 				0701B4541BF2963C00A3330A /* main.m in Sources */,
+				FB129C6F1C1375ED0017721D /* ABSManager.m in Sources */,
 				FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
@@ -736,6 +756,11 @@
 			baseConfigurationReference = B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/farFromSoberApp/Resources",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/farFromSoberApp/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -749,6 +774,11 @@
 			baseConfigurationReference = 8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/farFromSoberApp/Resources",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/farFromSoberApp/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

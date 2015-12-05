@@ -31,4 +31,7 @@
                                       andWord:(NSString *) word
                                       Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)newProductViaProduct: (NSDictionary *) product
+                                       Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end

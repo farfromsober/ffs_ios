@@ -136,7 +136,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WPa-xx-PFt">
+                <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WPa-xx-PFt">
                     <rect key="frame" x="30" y="325" width="70" height="70"/>
                     <animations/>
                     <constraints>
@@ -144,7 +144,7 @@
                         <constraint firstAttribute="width" constant="70" id="B1g-r5-tBK"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A7u-pU-3ad">
+                <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A7u-pU-3ad">
                     <rect key="frame" x="112" y="325" width="70" height="70"/>
                     <animations/>
                     <constraints>
@@ -152,7 +152,7 @@
                         <constraint firstAttribute="width" constant="70" id="ZBI-0e-Guk"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-tg-ux3">
+                <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-tg-ux3">
                     <rect key="frame" x="194" y="325" width="70" height="70"/>
                     <animations/>
                     <constraints>
@@ -160,7 +160,7 @@
                         <constraint firstAttribute="height" constant="70" id="Jwm-jY-lNK"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aio-bM-L5r">
+                <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aio-bM-L5r">
                     <rect key="frame" x="276" y="325" width="70" height="70"/>
                     <animations/>
                     <constraints>
