@@ -96,11 +96,11 @@
 - (void)testJSONCreatedShouldMatchInputFields  {
     Product *product = [FakeModelObjects fakeProductObject];
     NSDictionary *json = [[Product alloc] objectToJSON:product];
-    XCTAssertTrue([product.productId isEqualToString:json[@"_id"]], @"'productId' should be equal tu json[\"_id\"]");
+    XCTAssertTrue([product.productId isEqualToString:json[@"id"]], @"'productId' should be equal tu json[\"_id\"]");
     XCTAssertTrue([product.name isEqualToString:json[@"name"]], @"'name' should be equal tu json[\"name\"]");
     XCTAssertTrue([product.price isEqualToString:json[@"price"]], @"'price' should be equal tu json[\"email\"]");
-    XCTAssertTrue([[FakeModelObjects fakeJSONUser] isEqualToDictionary:json[@"seller"]],
-                  @"'seller' should be equal tu json[\"seller\"]");
+    XCTAssertTrue([product.seller.userId isEqualToNumber:json[@"seller"][@"id"]],
+                  @"'seller' id should be equal tu json[\"seller\"][\"id\"]");
     XCTAssertTrue([product.detail isEqualToString:json[@"description"]], @"'detail' should be equal tu json[\"last_name\"]");
     XCTAssertTrue([product.published isEqualToDate:[FakeModelObjects fakePublishedDate]],
                   @"'published' should be equal tu json[\"publised_date\"]");
