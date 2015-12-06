@@ -42,6 +42,11 @@
 		FB129C6F1C1375ED0017721D /* ABSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C6C1C1375ED0017721D /* ABSManager.m */; };
 		FB129C701C1375ED0017721D /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB129C6E1C1375ED0017721D /* WindowsAzureMobileServices.framework */; };
 		FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */; };
+		FB1E9EB71C1444FC008B2B69 /* FilterProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E9EB51C1444FC008B2B69 /* FilterProductsViewController.m */; };
+		FB1E9EB81C1444FC008B2B69 /* FilterProductsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1E9EB61C1444FC008B2B69 /* FilterProductsViewController.xib */; };
+		FB1E9EBD1C144845008B2B69 /* FilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E9EBB1C144845008B2B69 /* FilterTableViewCell.m */; };
+		FB1E9EBE1C144845008B2B69 /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1E9EBC1C144845008B2B69 /* FilterTableViewCell.xib */; };
+		FB1E9EC11C144F7D008B2B69 /* CategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E9EC01C144F7D008B2B69 /* CategoryManager.m */; };
 		FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */; };
 		FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */; };
 		FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB241AD31C0B764A000AC1B6 /* ProductListVC.xib */; };
@@ -130,6 +135,14 @@
 		FB129C6D1C1375ED0017721D /* AzureDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AzureDefines.h; sourceTree = "<group>"; };
 		FB129C6E1C1375ED0017721D /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		FB1E9EB41C1444FC008B2B69 /* FilterProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterProductsViewController.h; sourceTree = "<group>"; };
+		FB1E9EB51C1444FC008B2B69 /* FilterProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterProductsViewController.m; sourceTree = "<group>"; };
+		FB1E9EB61C1444FC008B2B69 /* FilterProductsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterProductsViewController.xib; sourceTree = "<group>"; };
+		FB1E9EBA1C144845008B2B69 /* FilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTableViewCell.h; sourceTree = "<group>"; };
+		FB1E9EBB1C144845008B2B69 /* FilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterTableViewCell.m; sourceTree = "<group>"; };
+		FB1E9EBC1C144845008B2B69 /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterTableViewCell.xib; sourceTree = "<group>"; };
+		FB1E9EBF1C144F7D008B2B69 /* CategoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryManager.h; sourceTree = "<group>"; };
+		FB1E9EC01C144F7D008B2B69 /* CategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryManager.m; sourceTree = "<group>"; };
 		FB241AC81C0B1EBD000AC1B6 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
 		FB241AC91C0B1EBD000AC1B6 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
 		FB241ACA1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -243,6 +256,8 @@
 				075D53221C00819F0043D91C /* UserManager.m */,
 				075D53271C00879C0043D91C /* APIManager.h */,
 				075D53281C00879C0043D91C /* APIManager.m */,
+				FB1E9EBF1C144F7D008B2B69 /* CategoryManager.h */,
+				FB1E9EC01C144F7D008B2B69 /* CategoryManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -344,6 +359,7 @@
 		07BEAF9C1BF64F1700062D77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				FB1E9EB31C1444D7008B2B69 /* Filter Products */,
 				FB129C5F1C12EE620017721D /* New Product */,
 				FBE2BD161C0E52210082090B /* Product Detail */,
 				FB241AC71C0B1E84000AC1B6 /* Cell */,
@@ -438,6 +454,27 @@
 				FB129C6E1C1375ED0017721D /* WindowsAzureMobileServices.framework */,
 			);
 			name = Azure;
+			sourceTree = "<group>";
+		};
+		FB1E9EB31C1444D7008B2B69 /* Filter Products */ = {
+			isa = PBXGroup;
+			children = (
+				FB1E9EB91C144828008B2B69 /* Cell */,
+				FB1E9EB41C1444FC008B2B69 /* FilterProductsViewController.h */,
+				FB1E9EB51C1444FC008B2B69 /* FilterProductsViewController.m */,
+				FB1E9EB61C1444FC008B2B69 /* FilterProductsViewController.xib */,
+			);
+			name = "Filter Products";
+			sourceTree = "<group>";
+		};
+		FB1E9EB91C144828008B2B69 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FB1E9EBA1C144845008B2B69 /* FilterTableViewCell.h */,
+				FB1E9EBB1C144845008B2B69 /* FilterTableViewCell.m */,
+				FB1E9EBC1C144845008B2B69 /* FilterTableViewCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		FB241AC71C0B1E84000AC1B6 /* Cell */ = {
@@ -547,6 +584,8 @@
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
 				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
 				FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */,
+				FB1E9EBE1C144845008B2B69 /* FilterTableViewCell.xib in Resources */,
+				FB1E9EB81C1444FC008B2B69 /* FilterProductsViewController.xib in Resources */,
 				FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */,
 				FBE2BD1B1C0E524F0082090B /* ProductDetailViewController.xib in Resources */,
 				FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */,
@@ -633,13 +672,16 @@
 				FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */,
 				FB9183581C07BF69001F7C44 /* LoginViewController.m in Sources */,
 				07564CF91BFBC971002EDBB2 /* SavedSearch.m in Sources */,
+				FB1E9EB71C1444FC008B2B69 /* FilterProductsViewController.m in Sources */,
 				07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */,
 				07BEAFA41BF6558400062D77 /* User.m in Sources */,
+				FB1E9EBD1C144845008B2B69 /* FilterTableViewCell.m in Sources */,
 				0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */,
 				07BE59811BFF9B3D00B4A3AA /* NSDate+Parser.m in Sources */,
 				072AF2041BF3C95400515EB6 /* MapVC.m in Sources */,
 				07BEAFA71BF6559700062D77 /* Product.m in Sources */,
 				07BEAF9A1BF64D1000062D77 /* UINavigationController+Initializer.m in Sources */,
+				FB1E9EC11C144F7D008B2B69 /* CategoryManager.m in Sources */,
 				07BEAF971BF649D800062D77 /* AppNavigation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

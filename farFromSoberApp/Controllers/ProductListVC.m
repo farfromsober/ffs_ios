@@ -12,6 +12,7 @@
 #import "ProductCollectionViewCell.h"
 #import "ProductDetailViewController.h"
 #import "NewProductViewController.h"
+#import "FilterProductsViewController.h"
 
 #import "AlertUtil.h"
 
@@ -109,7 +110,10 @@
 }
 
 -(void) filterProducts {
-    
+    FilterProductsViewController *filVC = [[FilterProductsViewController alloc] init];
+    [self presentViewController:filVC animated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - Tap New Product

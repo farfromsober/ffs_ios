@@ -10,11 +10,17 @@
 
 #import "Product.h"
 #import "ProductCategory.h"
+#import "User.h"
+
+#import "CategoryManager.h"
 
 #import "AlertUtil.h"
+#import "UserManager.h"
 
 #import "AzureDefines.h"
 #import "ABSManager.h"
+
+#import "NSDate+Parser.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -22,6 +28,9 @@
 
 @property (nonatomic, strong) Product *product;
 @property (nonatomic, strong) ABSManager *manager;
+@property (nonatomic, strong) UserManager *userM;
+@property (nonatomic, strong) CategoryManager *cateManager;
+@property (nonatomic, copy) NSArray *categories;
 
 @property (nonatomic, strong) UIImage *imageSelected;
 
@@ -42,6 +51,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.userM = [UserManager sharedInstance];
+    
+    self.cateManager = [CategoryManager sharedInstance];
+    self.categories = [self.cateManager loadCategories];
+    
+    self.pkCategories.dataSource = self;
+    self.pkCategories.delegate = self;
     
     self.lbTitle.delegate = self;
     self.lbCategory.delegate = self;
@@ -76,6 +93,11 @@
     NSDictionary *prod = [[Product alloc] objectToJSON:self.product];
     
     [self.api newProductViaProduct:prod Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        
+        [self uploadPhoto:self.imgProduct1.image];
+        [self uploadPhoto:self.imgProduct2.image];
+        [self uploadPhoto:self.imgProduct3.image];
+        [self uploadPhoto:self.imgProduct4.image];
         [self dismissViewControllerAnimated:YES completion:^{
             
         }];
@@ -93,17 +115,20 @@
     }];
 }
 
-#pragma mark - Keyboar hide
+#pragma mark - Keyboar hide and events
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [[event allTouches] anyObject];
     if ([self.lbTitle isFirstResponder] && [touch view] != self.lbTitle) {
         [self.lbTitle resignFirstResponder];
-    } else if ([self.lbCategory isFirstResponder] && [touch view] != self.lbCategory) {
-        [self.lbCategory resignFirstResponder];
     } else if ([self.lbPrice isFirstResponder] && [touch view] != self.lbPrice) {
         [self.lbPrice resignFirstResponder];
+    }
+    
+    if ([touch view] == self.lbCategory) {
+        self.pkCategories.userInteractionEnabled = NO;
+        self.pkCategories.hidden = NO;
     }
     
     if ([touch view] == self.imgProduct1) {
@@ -181,8 +206,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
                          // animación que muestra al picker.
                          
                          imaView.image = self.imageSelected;
-#warning Subir la foto aqui? o cuando le damos a vender? cambiar el nombre del blob
-                         [self uploadPhoto:self.imageSelected];
                          
                          // Quito de encima el controlador que estamos presentando
                          [self dismissViewControllerAnimated:YES
@@ -196,22 +219,48 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 -(void) uploadPhoto: (UIImage *) img {
     self.manager = [[ABSManager alloc] init];
     
-    //UPLOAD IMAGE
-    [self.manager giveMeSaSURLBlobName:@"test12.png"
-                         containerName:AZURE_CONTAINER
-                      completionSaSURL:^(NSURL *sasURL) {
-                          if (sasURL != nil) {
-                              [self.manager handleImageToUploadAzureBlob:sasURL
-                                                                 blobImg:img
-                                                    completionUploadTask:^(BOOL result, NSError *error) {
-                                                       
-
-                                                    }];
-                          } else {
-                              NSLog(@"Error al obtener la SAS URL");
-                          }
-                          
-                      }];
+    if (img) {
+        User *user = [self.userM currentUser];
+        NSString *now = [NSDate stringWithISO8601FormatDate:[NSDate new]];
+        
+        NSString *blobName = [NSString stringWithFormat:@"%@-%@",[user userId], now];
+        
+        //UPLOAD IMAGE
+        [self.manager giveMeSaSURLBlobName:blobName
+                             containerName:AZURE_CONTAINER
+                          completionSaSURL:^(NSURL *sasURL) {
+                              if (sasURL != nil) {
+                                  [self.manager handleImageToUploadAzureBlob:sasURL
+                                                                     blobImg:img
+                                                        completionUploadTask:^(BOOL result, NSError *error) {
+                                                            
+                                                            
+                                                        }];
+                              } else {
+                                  NSLog(@"Error al obtener la SAS URL");
+                              }
+                              
+                          }];
+    }
 }
 
+#pragma mark - Picker View Delegate
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.categories.count;
+}
+
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [[self.categories objectAtIndex:row] name];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    self.lbCategory.text = [self.categories objectAtIndex:row];
+    self.pkCategories.hidden = YES;
+}
 @end
