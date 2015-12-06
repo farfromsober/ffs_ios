@@ -18,9 +18,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9zT-Cb-KAk">
                                 <rect key="frame" x="2" y="2" width="156" height="157"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="157" id="Rl9-Nm-eiY"/>
-                                </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzF-d5-42s">
                                 <rect key="frame" x="2" y="159" width="156" height="28"/>
@@ -29,6 +26,7 @@
                                         <rect key="frame" x="98" y="7" width="50" height="15"/>
                                         <animations/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="h8Y-EZ-euC"/>
                                             <constraint firstAttribute="width" constant="50" id="wEb-sg-OPT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -38,6 +36,9 @@
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEV-PI-oNK">
                                         <rect key="frame" x="8" y="7" width="82" height="15"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="1Cq-pK-uRy"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -51,6 +52,7 @@
                                     <constraint firstItem="uEV-PI-oNK" firstAttribute="centerY" secondItem="HzF-d5-42s" secondAttribute="centerY" id="JLb-WK-GsG"/>
                                     <constraint firstAttribute="trailing" secondItem="O3G-VT-ZKc" secondAttribute="trailing" constant="8" id="MI7-mZ-yT4"/>
                                     <constraint firstItem="O3G-VT-ZKc" firstAttribute="centerY" secondItem="HzF-d5-42s" secondAttribute="centerY" id="Nj0-Qy-yPU"/>
+                                    <constraint firstAttribute="bottom" secondItem="uEV-PI-oNK" secondAttribute="bottom" constant="6" id="aB5-xN-KsK"/>
                                 </constraints>
                             </view>
                         </subviews>
