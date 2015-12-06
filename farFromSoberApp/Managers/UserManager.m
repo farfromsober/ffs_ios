@@ -48,6 +48,10 @@
 
 - (BOOL)createUser:(User *)user {
     
+    if (!user) {
+        return NO;
+    }
+    
     if (self.currentUser) {
         [self resetUser];
     }
@@ -60,7 +64,7 @@
         return YES;
     }
     
-    return NO;
+    return NO; 
 }
 
 - (BOOL)updateUser:(User *)user {

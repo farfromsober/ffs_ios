@@ -9,8 +9,10 @@
 #import "User.h"
 #import "NSString+Validator.h"
 
+static NSString * const userKey = @"user";
+
 static NSString * const salesKey = @"sales";
-static NSString * const idKey = @"_id";
+static NSString * const idKey = @"id";
 static NSString * const firstNameKey = @"first_name";
 static NSString * const lastNameKey = @"last_name";
 static NSString * const emailKey = @"email";
@@ -27,7 +29,7 @@ static NSString * const avatarKey = @"avatar";
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
-    [encoder encodeInteger:self.sales forKey:salesKey];
+    [encoder encodeObject:self.sales forKey:salesKey];
     [encoder encodeObject:self.userId forKey:idKey];
     [encoder encodeObject:self.firstName forKey:firstNameKey];
     [encoder encodeObject:self.lastName forKey:lastNameKey];
@@ -43,7 +45,7 @@ static NSString * const avatarKey = @"avatar";
 - (id)initWithCoder:(NSCoder *)decoder {
     if((self = [super init])) {
         //decode properties, other class vars
-        self.sales = [decoder decodeIntegerForKey:salesKey];
+        self.sales = [decoder decodeObjectForKey:salesKey];
         self.userId = [decoder decodeObjectForKey:idKey];
         self.firstName = [decoder decodeObjectForKey:firstNameKey];
         self.lastName = [decoder decodeObjectForKey:lastNameKey];
@@ -64,17 +66,20 @@ static NSString * const avatarKey = @"avatar";
     // Doble comprobación, dos condones mejor que uno...
     if (dic && [[self class] hasNeededInformation:dic]) {
         User *user = [[User alloc] init];
-        user.sales = dic[salesKey] ? [dic[salesKey] integerValue] : 0;
-        user.userId = dic[idKey] ? dic[idKey] : @"";
-        user.firstName = dic[firstNameKey] ? dic[firstNameKey] : @"";
-        user.lastName = dic[lastNameKey] ? dic[lastNameKey] : @"";
-        user.email = dic[emailKey] ? dic[emailKey] : @"";
-        user.username = dic[usernameKey] ? dic[usernameKey] : @"";
-        user.city = dic[cityKey] ? dic[cityKey] : @"";
-        user.state = dic[stateKey] ? dic[stateKey] : @"";
+        
+        NSDictionary *userDic = dic[userKey];
+        user.userId = userDic[idKey] ? userDic[idKey] : @(0);
+        user.firstName = userDic[firstNameKey] ? userDic[firstNameKey] : @"";
+        user.lastName = userDic[lastNameKey] ? userDic[lastNameKey] : @"";
+        user.email = userDic[emailKey] ? userDic[emailKey] : @"";
+        user.username = userDic[usernameKey] ? userDic[usernameKey] : @"";
+        
+        user.avatarURL = dic[avatarKey] ? [NSURL URLWithString:dic[avatarKey]] : [NSURL URLWithString:@""];
         user.latitude = dic[latitudeKey] ? dic[latitudeKey] : @"";
         user.longitude = dic[longitudeKey] ? dic[longitudeKey] : @"";
-        user.avatarURL = dic[avatarKey] ? [NSURL URLWithString:dic[avatarKey]] : [NSURL URLWithString:@""];
+        user.city = dic[cityKey] ? dic[cityKey] : @"";
+        user.state = dic[stateKey] ? dic[stateKey] : @"";
+        user.sales = dic[salesKey] ? dic[salesKey] : @(0);
 
         return user;
     }
@@ -88,7 +93,7 @@ static NSString * const avatarKey = @"avatar";
     if (obj && [obj isKindOfClass:[self class]]) {
         User *user = (User *)obj;
         NSMutableDictionary *mDic = [NSMutableDictionary new];
-        mDic[salesKey] = user.sales ? @(user.sales) : @(0);
+        mDic[salesKey] = user.sales ? user.sales : @(0);
         mDic[idKey] = user.userId ? user.userId : @"";
         mDic[firstNameKey] = user.firstName ? user.firstName : @"";
         mDic[lastNameKey] = user.lastName ? user.lastName : @"";
@@ -109,11 +114,16 @@ static NSString * const avatarKey = @"avatar";
 #pragma mark - Utils
 
 + (BOOL)hasNeededInformation:(NSDictionary *)dic {
-     if ([NSString isEmpty:dic[idKey]]) {
+    
+    NSDictionary *userDic = [dic objectForKey:userKey];
+    
+    if (!userDic) {
+        return NO;
+    } else if (!userDic[idKey]) {
          return NO;
-     } else if ([NSString isEmpty:dic[emailKey]]) {
+     } else if ([NSString isEmpty:userDic[emailKey]]) {
          return NO;
-     } else if ([NSString isEmpty:dic[usernameKey]]) {
+     } else if ([NSString isEmpty:userDic[usernameKey]]) {
          return NO;
      }
     
@@ -124,7 +134,7 @@ static NSString * const avatarKey = @"avatar";
 
 - (BOOL)isEqual:(id)other {
     if ([other isKindOfClass:[self class]]) {
-        return [self.userId isEqualToString:((User *)other).userId];
+        return [self.userId isEqualToNumber:((User *)other).userId];
     }
     
     return NO;

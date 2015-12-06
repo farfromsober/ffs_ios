@@ -20,13 +20,23 @@
 #pragma mark - User
 
 + (NSDictionary *)fakeJSONUser {
-    return @{
+    return @{@"id": @(6),
+             @"user": @{
+                 @"id": @(6),
+                 @"password": @"pbkdf2_sha256$20000$XwPGBxasqiZ5$ARHLY+JUFgyVLi61+vWcHDj+zkN/KYZ6SssPYjYGE2g=",
+                 @"last_login": @"2015-12-06T10:42:46.450688Z",
+                 @"is_superuser": @(NO),
+                 @"username": @"dregatos",
+                 @"first_name": @"David",
+                 @"last_name": @"Regatos",
+                 @"email": @"david.regatos@gmail.com",
+                 @"is_staff": @(NO),
+                 @"is_active": @(YES),
+                 @"date_joined": @"2015-12-02T19:42:26Z",
+                 @"groups": @[],
+                 @"user_permissions": @[]
+             },
              @"avatar": @"http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png",
-             @"_id": @"5649ae77dbca133e4e385a58",
-             @"first_name": @"Julio",
-             @"last_name": @"Martínez",
-             @"username": @"jmartinez",
-             @"email": @"juliomb89@gmail.com",
              @"latitude": @"40.375762",
              @"longitude": @"-3.599271",
              @"city": @"Madrid",
@@ -38,7 +48,7 @@
 + (User *)fakeUserObject {
     User *user = [[User alloc] init];
     user.avatarURL = [NSURL URLWithString:@"http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png"];
-    user.userId = @"5649ae77dbca133e4e385a58";
+    user.userId = @(123456);
     user.firstName = @"Julio";
     user.lastName = @"Martínez";
     user.username = @"jmartinez";
@@ -47,7 +57,7 @@
     user.longitude = @"-3.599271";
     user.city = @"Madrid";
     user.state = @"Madrid";
-    user.sales = 11;
+    user.sales = @(11);
     
     return user;
 }
@@ -69,7 +79,7 @@
 
 + (NSDictionary *)fakeJSONProduct {
     return @{
-             @"_id": @"5649b6eae9a246eed43f0174",
+             @"id": @"5649b6eae9a246eed43f0174",
              @"name": @"tempor in laboris",
              @"description": @"mollit nisi nisi ea exercitation deserunt anim et cupidatat fugiat ullamco fugiat amet",
              @"published_date": [self fakePublishedString],
@@ -125,7 +135,7 @@
 
 + (NSDictionary *)fakeJSONSavedSearch {
     return @{
-             @"_id": @"5649c39ba323833e50d48d58",
+             @"id": @"5649c39ba323833e50d48d58",
              @"query": @"ipsum incididunt esse",
              @"user":[self fakeJSONUser],
              @"category":[self fakeJSONCategory]
@@ -144,7 +154,7 @@
 
 + (NSDictionary *)fakeJSONTransaction {
     return @{
-             @"_id": @"5649c11c3fc81426a5b17fbc",
+             @"id": @"5649c11c3fc81426a5b17fbc",
              @"product": [self fakeJSONProduct],
              @"buyer":[self fakeJSONUser],
              @"date": [self fakePublishedString]
