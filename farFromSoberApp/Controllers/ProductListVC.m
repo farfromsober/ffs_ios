@@ -26,8 +26,14 @@
     [super viewDidLoad];
     
     //NavigationBar
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"] style:UIBarButtonItemStylePlain target:self action:@selector(favoriteProducts)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Filter icon"] style:UIBarButtonItemStylePlain target:self action:@selector(filterProducts)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"]
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(favoriteProducts)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Filter"]
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(filterProducts)];
     
     [self initializeData];
     
@@ -48,7 +54,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) initializeData {
+- (void)initializeData {
     [self.api productsViaCategory:@"" andDistance:@"" andWord:@"" Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         
         self.products = [NSMutableArray new];
@@ -101,6 +107,15 @@
     
     ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product];
     [self.navigationController pushViewController:pdVC animated:YES];
+}
+
+// Adjust CollectionView Cell Size
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGFloat cellWidth = (self.view.bounds.size.width-20-20-15)/2;
+    return CGSizeMake(cellWidth, cellWidth*1.33);
 }
 
 #pragma mark - Navigation buttons action

@@ -35,6 +35,8 @@
 		07BEAF9A1BF64D1000062D77 /* UINavigationController+Initializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAF991BF64D1000062D77 /* UINavigationController+Initializer.m */; };
 		07BEAFA41BF6558400062D77 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA31BF6558400062D77 /* User.m */; };
 		07BEAFA71BF6559700062D77 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA61BF6559700062D77 /* Product.m */; };
+		07E08C731C14ED24001DD8E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0701B44C1BF2963C00A3330A /* Assets.xcassets */; };
+		07E08C761C14EF94001DD8E1 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E08C751C14EF94001DD8E1 /* UIImage+ImageWithColor.m */; };
 		07F365DD1C1460430029F8AD /* DRGKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */; };
 		07F365E01C1463DF0029F8AD /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F365DF1C1463DF0029F8AD /* AppStyle.m */; };
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
@@ -125,6 +127,8 @@
 		07BEAFA51BF6559700062D77 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		07BEAFA61BF6559700062D77 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		07BEAFB51BF65F1F00062D77 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
+		07E08C741C14EF94001DD8E1 /* UIImage+ImageWithColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithColor.h"; sourceTree = "<group>"; };
+		07E08C751C14EF94001DD8E1 /* UIImage+ImageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithColor.m"; sourceTree = "<group>"; };
 		07F365DB1C1460430029F8AD /* DRGKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRGKeyboardManager.h; sourceTree = "<group>"; };
 		07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRGKeyboardManager.m; sourceTree = "<group>"; };
 		07F365DE1C1463DF0029F8AD /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 		0701B4501BF2963C00A3330A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				07E08C741C14EF94001DD8E1 /* UIImage+ImageWithColor.h */,
+				07E08C751C14EF94001DD8E1 /* UIImage+ImageWithColor.m */,
 				07564CEE1BF8FC01002EDBB2 /* NSString+Validator.h */,
 				07564CEF1BF8FC01002EDBB2 /* NSString+Validator.m */,
 				07BEAF981BF64D1000062D77 /* UINavigationController+Initializer.h */,
@@ -596,6 +602,7 @@
 				FB1E9EB81C1444FC008B2B69 /* FilterProductsViewController.xib in Resources */,
 				FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */,
 				FBE2BD1B1C0E524F0082090B /* ProductDetailViewController.xib in Resources */,
+				07E08C731C14ED24001DD8E1 /* Assets.xcassets in Resources */,
 				FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,6 +698,7 @@
 				07BEAFA71BF6559700062D77 /* Product.m in Sources */,
 				07BEAF9A1BF64D1000062D77 /* UINavigationController+Initializer.m in Sources */,
 				FB1E9EC11C144F7D008B2B69 /* CategoryManager.m in Sources */,
+				07E08C761C14EF94001DD8E1 /* UIImage+ImageWithColor.m in Sources */,
 				07F365DD1C1460430029F8AD /* DRGKeyboardManager.m in Sources */,
 				07BEAF971BF649D800062D77 /* AppNavigation.m in Sources */,
 			);
