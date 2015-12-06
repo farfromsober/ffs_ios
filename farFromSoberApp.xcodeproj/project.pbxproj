@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4421BF2963C00A3330A /* AppDelegate.m */; };
 		0701B4541BF2963C00A3330A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4441BF2963C00A3330A /* main.m */; };
-		0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0701B44C1BF2963C00A3330A /* Assets.xcassets */; };
 		072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF1FD1BF3C88900515EB6 /* BaseVC.m */; };
 		072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2001BF3C92200515EB6 /* ProductListVC.m */; };
 		072AF2041BF3C95400515EB6 /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2031BF3C95400515EB6 /* MapVC.m */; };
@@ -36,6 +35,8 @@
 		07BEAF9A1BF64D1000062D77 /* UINavigationController+Initializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAF991BF64D1000062D77 /* UINavigationController+Initializer.m */; };
 		07BEAFA41BF6558400062D77 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA31BF6558400062D77 /* User.m */; };
 		07BEAFA71BF6559700062D77 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BEAFA61BF6559700062D77 /* Product.m */; };
+		07F365DD1C1460430029F8AD /* DRGKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */; };
+		07F365E01C1463DF0029F8AD /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F365DF1C1463DF0029F8AD /* AppStyle.m */; };
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
 		FB129C631C12EE940017721D /* NewProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C611C12EE940017721D /* NewProductViewController.m */; };
 		FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB129C621C12EE940017721D /* NewProductViewController.xib */; };
@@ -117,6 +118,10 @@
 		07BEAFA51BF6559700062D77 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		07BEAFA61BF6559700062D77 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		07BEAFB51BF65F1F00062D77 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
+		07F365DB1C1460430029F8AD /* DRGKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRGKeyboardManager.h; sourceTree = "<group>"; };
+		07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRGKeyboardManager.m; sourceTree = "<group>"; };
+		07F365DE1C1463DF0029F8AD /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
+		07F365DF1C1463DF0029F8AD /* AppStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStyle.m; sourceTree = "<group>"; };
 		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
 		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +219,8 @@
 				0701B4421BF2963C00A3330A /* AppDelegate.m */,
 				07BEAF951BF649D800062D77 /* AppNavigation.h */,
 				07BEAF961BF649D800062D77 /* AppNavigation.m */,
+				07F365DE1C1463DF0029F8AD /* AppStyle.h */,
+				07F365DF1C1463DF0029F8AD /* AppStyle.m */,
 				0701B4431BF2963C00A3330A /* Info.plist */,
 				0701B4441BF2963C00A3330A /* main.m */,
 			);
@@ -232,6 +239,8 @@
 		0701B4491BF2963C00A3330A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				07F365DB1C1460430029F8AD /* DRGKeyboardManager.h */,
+				07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */,
 				075D53211C00819F0043D91C /* UserManager.h */,
 				075D53221C00819F0043D91C /* UserManager.m */,
 				075D53271C00879C0043D91C /* APIManager.h */,
@@ -524,7 +533,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0701B4561BF2963D00A3330A /* Assets.xcassets in Resources */,
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
 				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
 				FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */,
@@ -607,6 +615,7 @@
 				FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
+				07F365E01C1463DF0029F8AD /* AppStyle.m in Sources */,
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,
 				075D53261C0082B90043D91C /* AppConstants.m in Sources */,
 				075D53291C00879C0043D91C /* APIManager.m in Sources */,
@@ -620,6 +629,7 @@
 				072AF2041BF3C95400515EB6 /* MapVC.m in Sources */,
 				07BEAFA71BF6559700062D77 /* Product.m in Sources */,
 				07BEAF9A1BF64D1000062D77 /* UINavigationController+Initializer.m in Sources */,
+				07F365DD1C1460430029F8AD /* DRGKeyboardManager.m in Sources */,
 				07BEAF971BF649D800062D77 /* AppNavigation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
