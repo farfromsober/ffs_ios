@@ -18,6 +18,8 @@
 
 @interface ProductListVC ()
 @property (nonatomic) NSMutableArray *products;
+@property (nonatomic) NSInteger indexCategory;
+@property (nonatomic) NSInteger indexDistance;
 @end
 
 @implementation ProductListVC
@@ -49,6 +51,9 @@
 }
 
 -(void) initializeData {
+    self.indexCategory = -1;
+    self.indexDistance = -1;
+    
     [self.api productsViaCategory:@"" andDistance:@"" andWord:@"" Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         
         self.products = [NSMutableArray new];
@@ -110,8 +115,38 @@
 }
 
 -(void) filterProducts {
-    FilterProductsViewController *filVC = [[FilterProductsViewController alloc] init];
+    
+    NSInteger indexC = self.indexCategory > -1 ? self.indexCategory : -1;
+    NSInteger indexD = self.indexDistance > -1 ? self.indexDistance : -1;
+    
+    FilterProductsViewController *filVC = [[FilterProductsViewController alloc] initWithIndexCategorySelected:indexC andIndexDistance:indexD];
+    filVC.myDelegate = self;
     [self presentViewController:filVC animated:YES completion:^{
+        
+    }];
+}
+
+#pragma mark - FilterViewController delegate
+-(void)filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance{
+    
+    self.indexCategory = [indexCategory integerValue] - 1;
+    self.indexDistance = [indexDistance integerValue] - 1;
+    
+    [self.api productsViaCategory:indexCategory andDistance:indexDistance andWord:@"" Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        
+        self.products = [NSMutableArray new];
+        
+        for (NSDictionary *productDic in responseObject) {
+            Product *product = [[Product alloc] initWithJSON:productDic];
+            [self.products addObject:product];
+        }
+        [self.cvProductsCollection reloadData];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        NSLog(@"Error: %@", error);
         
     }];
 }
