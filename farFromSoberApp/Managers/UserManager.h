@@ -18,6 +18,6 @@
 - (User *)currentUser;
 - (BOOL)createUser:(User *)user;
 - (BOOL)updateUser:(User *)user;
-- (void)resetUser;
+- (BOOL)resetUser;
 
 @end

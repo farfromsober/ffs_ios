@@ -63,11 +63,29 @@
     return tabController;
 }
 
-+(UINavigationController *)loginController{
++ (UINavigationController *)loginController {
     LoginViewController *logVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
     UINavigationController *nav = [UINavigationController withRoot:logVC];
     
     return nav;
 }
+
++ (void)onLoginFromViewController:(UIViewController *)vc {
+    // Create next VC
+    UITabBarController *tabController = [self tabBarController];
+    tabController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    // Present next VC from current VC
+    [vc presentViewController:tabController animated:YES completion:nil];
+}
+
++ (void)onLogoutFromViewController:(UIViewController *)vc {
+    // Create next VC
+    LoginViewController *logVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *nav = [UINavigationController withRoot:logVC];
+    nav.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    // Present next VC from current VC
+    [vc presentViewController:nav animated:YES completion:nil];
+}
+
 
 @end
