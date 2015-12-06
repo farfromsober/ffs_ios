@@ -75,8 +75,13 @@
     return NO;
 }
 
-- (void)resetUser {
-    // TODO - remove stored User
+- (BOOL)resetUser {
+
+    if ([[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:nil]) {
+        return YES;
+    };
+    
+    return NO;
 }
 
 #pragma mark - Utils

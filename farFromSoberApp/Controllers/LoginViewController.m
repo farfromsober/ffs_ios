@@ -34,7 +34,6 @@
     self.txtPass.delegate = self;
     
     self.navigationController.navigationBarHidden = YES;
-
 }
 
 #pragma mark - Button Action	
@@ -44,36 +43,36 @@
     [self.api logInViaEmail:self.txtUser.text andPassword:self.txtPass.text Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject){
         User *user = [[User alloc] initWithJSON:responseObject];
         
-        if ([self.userManager createUser:user]) {
-            NSLog(@"Usuario creado correctamente: %@", user);
-            
-            [self.navigationController pushViewController:[AppNavigation tabBarController] animated:YES];
-        }else {
+        if (![self.userManager createUser:user]) {
             NSLog(@"Error al crear el usuario");
-            UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error"
-                                                               andMessage:@"Error al crear el usuario"
-                                                        andYesButtonTitle:@""
-                                                         andNoButtonTitle:@"Cerrar"];
-            [self presentViewController:alert animated:YES completion:nil];
+            [self showAlertWithMessage:@"Sorry. Unable to create User"];
         }
         
+        NSLog(@"Usuario creado correctamente: %@", user);
+        [AppNavigation onLoginFromViewController:self];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error"
-                                                           andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"]
-                                                    andYesButtonTitle:@""
-                                                     andNoButtonTitle:@"Cerrar"];
-        [self presentViewController:alert animated:YES completion:nil];
-        
         NSLog(@"Error: %@", error);
-        
+        [self showAlertWithMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
     }];
 }
 
 - (IBAction)btRememberPass:(id)sender {
+    
 }
 
 - (IBAction)btSignUp:(id)sender {
+    
+}
+
+#pragma mark - Utils
+
+- (void)showAlertWithMessage:(NSString *)message {
+    UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error"
+                                                       andMessage:message
+                                                andYesButtonTitle:@""
+                                                 andNoButtonTitle:@"Close"];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #warning Crear KeyboardManager para ocultar el teclado

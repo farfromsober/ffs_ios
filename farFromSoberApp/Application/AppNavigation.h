@@ -6,14 +6,14 @@
 //  Copyright © 2015 David Regatos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@class UITabBarController;
-@class UINavigationController;
+#import <UIKit/UIKit.h>
 
 @interface AppNavigation : NSObject
 
 + (UITabBarController *)tabBarController;
 + (UINavigationController *)loginController;
+
++ (void)onLoginFromViewController:(UIViewController *)vc;
++ (void)onLogoutFromViewController:(UIViewController *)vc;
 
 @end
