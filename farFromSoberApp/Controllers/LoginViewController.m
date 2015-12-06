@@ -18,7 +18,7 @@
 @interface LoginViewController ()
 
 @property (nonatomic, strong) APIManager *api;
-@property (nonatomic, strong) UserManager *userM;
+@property (nonatomic, strong) UserManager *userManager;
 
 @end
 
@@ -28,16 +28,12 @@
     [super viewDidLoad];
     
     self.api = [APIManager sharedManager];
-    self.userM = [UserManager sharedInstance];
+    self.userManager = [UserManager sharedInstance];
     
     self.txtUser.delegate = self;
     self.txtPass.delegate = self;
     
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    self.navigationController.navigationBarHidden = YES;
 
 }
 
@@ -48,17 +44,25 @@
     [self.api logInViaEmail:self.txtUser.text andPassword:self.txtPass.text Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject){
         User *user = [[User alloc] initWithJSON:responseObject];
         
-        if ([self.userM createUser:user]) {
+        if ([self.userManager createUser:user]) {
             NSLog(@"Usuario creado correctamente: %@", user);
             
             [self.navigationController pushViewController:[AppNavigation tabBarController] animated:YES];
         }else {
             NSLog(@"Error al crear el usuario");
+            UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error"
+                                                               andMessage:@"Error al crear el usuario"
+                                                        andYesButtonTitle:@""
+                                                         andNoButtonTitle:@"Cerrar"];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error"
+                                                           andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"]
+                                                    andYesButtonTitle:@""
+                                                     andNoButtonTitle:@"Cerrar"];
         [self presentViewController:alert animated:YES completion:nil];
         
         NSLog(@"Error: %@", error);

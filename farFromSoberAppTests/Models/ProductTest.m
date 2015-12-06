@@ -54,7 +54,7 @@
 }
 
 - (void)testUserInitializedWithIdUsernameAndEmailShouldBeCreated  {
-    NSDictionary *dic = @{@"_id":@"12345",
+    NSDictionary *dic = @{@"id":@"12345",
                           @"name":@"Luck Patrol",
                           @"price":@"125.50",
                           @"seller":[FakeModelObjects fakeJSONUser]
@@ -64,7 +64,7 @@
 }
 
 - (void)testProductInitializedWithDictionaryInWhichSellerIsNotADictionaryShouldBeNil  {
-    Product *product = [[Product alloc] initWithJSON:@{@"_id":@"12345",
+    Product *product = [[Product alloc] initWithJSON:@{@"id":@"12345",
                                                        @"name":@"Luck Patrol",
                                                        @"price":@"125.50",
                                                        @"seller":@""}];
@@ -74,7 +74,7 @@
 - (void)testProductCreatedShouldMatchInputFields {
     NSDictionary *json = [FakeModelObjects fakeJSONProduct];
     Product *product = [[Product alloc] initWithJSON:json];
-    XCTAssertTrue([product.productId isEqualToString:json[@"_id"]], @"'productId' should be equal tu json[\"_id\"]");
+    XCTAssertTrue([product.productId isEqualToString:json[@"id"]], @"'productId' should be equal tu json[\"_id\"]");
     XCTAssertTrue([product.name isEqualToString:json[@"name"]], @"'name' should be equal tu json[\"name\"]");
     XCTAssertTrue([product.price isEqualToString:json[@"price"]], @"'price' should be equal tu json[\"email\"]");
     XCTAssertTrue([product.seller isEqual:[FakeModelObjects fakeUserObject]], @"'seller' should be equal tu json[\"seller\"]");
