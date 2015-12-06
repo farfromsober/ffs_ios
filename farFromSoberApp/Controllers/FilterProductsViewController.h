@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FilterProductsViewControllerDelegate <NSObject>
+-(void) filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance;
+@end
+
 @interface FilterProductsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic) id<FilterProductsViewControllerDelegate> myDelegate;
+
 @property (weak, nonatomic) IBOutlet UIButton *btCancel;
 @property (weak, nonatomic) IBOutlet UIButton *btSave;
 @property (weak, nonatomic) IBOutlet UITableView *tvCategories;
@@ -16,4 +23,6 @@
 
 - (IBAction)btCancel:(id)sender;
 - (IBAction)btSave:(id)sender;
+
+-(instancetype) initWithIndexCategorySelected: (NSInteger) indexCategory andIndexDistance: (NSInteger) indexDistance;
 @end

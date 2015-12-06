@@ -24,15 +24,22 @@
 
 @implementation FilterProductsViewController
 
+-(instancetype) initWithIndexCategorySelected: (NSInteger) indexCategory andIndexDistance: (NSInteger) indexDistance {
+    self = [super init];
+    
+    if (self) {
+        _indexCategorySelected = indexCategory >= 0 ? [NSIndexPath indexPathForRow:indexCategory inSection:0] : nil;
+        _indexDistanceSelected = indexDistance >= 0 ? [NSIndexPath indexPathForRow:indexDistance inSection:0] : nil;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Register nib
     [self registerNib];
-    
-    //Init category and distance selected
-    //self.indexCategorySelected = [NSIndexPath init];
-    //self.indexDistanceSelected = [NSIndexPath init];
     
     // Set height for all cells
     self.tvCategories.rowHeight = [FilterTableViewCell height];
@@ -87,10 +94,20 @@
         ProductCategory *cellData = [self.categories objectAtIndex:indexPath.row];
         
         cell.lbName.text = cellData.name;
-        cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
+        if (self.indexCategorySelected && indexPath.row == self.indexCategorySelected.row) {
+            cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
+        }else{
+            cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
+        }
+        
         
     } else {
         cell.lbName.text = @"Test";
+        /*if (cellData.index == self.indexDistance) {
+            cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
+        }else{
+            cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
+        }*/
     }
     
     return cell;
@@ -107,8 +124,14 @@
              cellSelected.imgCheck.image = [UIImage imageNamed:@"checkOff"];
             
         }
-        self.indexCategorySelected = indexPath;
-        cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
+        if (self.indexCategorySelected && self.indexCategorySelected.row == indexPath.row) {
+            self.indexCategorySelected = nil;
+            cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
+        } else {
+            self.indexCategorySelected = indexPath;
+            cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
+        }
+        
         
     } else {
         if (self.indexDistanceSelected && self.indexDistanceSelected.row >= 0) {
@@ -124,6 +147,8 @@
     
 }
 
+#pragma mark - Buttons Action
+
 - (IBAction)btCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -131,7 +156,20 @@
 }
 
 - (IBAction)btSave:(id)sender {
+    
+    if([self.myDelegate respondsToSelector:@selector(filterProductsViewControllerDismissed:indexDistance:)])
+    {
+        //Sumamos 1 ya que en la api el index comienza en 1
+        NSString *indexC = self.indexCategorySelected ? [NSString stringWithFormat:@"%ld",self.indexCategorySelected.row + 1] : @"";
+        NSString *indexD = self.indexDistanceSelected ? [NSString stringWithFormat:@"%ld",self.indexDistanceSelected.row + 1] : @"";
+        [self.myDelegate filterProductsViewControllerDismissed:indexC indexDistance:indexD];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
+
+#pragma mark - Register cell
 
 -(void) registerNib{
     

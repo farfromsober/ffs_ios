@@ -7,8 +7,9 @@
 //
 
 #import "BaseVC.h"
+#import "FilterProductsViewController.h"
 
-@interface ProductListVC : BaseVC <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate>
+@interface ProductListVC : BaseVC <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate, FilterProductsViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *cvProductsCollection;
 @property (weak, nonatomic) IBOutlet UIImageView *imgNewProduct;
