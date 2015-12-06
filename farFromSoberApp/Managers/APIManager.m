@@ -112,4 +112,19 @@ static NSString *const requestPassword = @"123456";
                                }];
 }
 
+- (NSURLSessionDataTask *)newProductViaProduct: (NSDictionary *) product
+                                      Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    
+    //NSDictionary *parameters = @{@"name":product.name, @"description":product.detail, @"price":product.price ,@"seller":product.seller ,@"category":product.category};
+    
+    return [[self sessionManager] POST:@"/api/1.0/products/"
+                           parameters:product
+                              success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                                  success(task, responseObject);
+                              } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                  failure(task, error);
+                              }];
+}
+
 @end

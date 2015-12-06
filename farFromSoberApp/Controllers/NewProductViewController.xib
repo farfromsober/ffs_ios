@@ -17,6 +17,7 @@
                 <outlet property="lbMoney" destination="vzr-e4-LXe" id="ncT-Kp-34t"/>
                 <outlet property="lbPrice" destination="bta-gr-Lkk" id="631-uz-fhW"/>
                 <outlet property="lbTitle" destination="dON-bm-VbG" id="YbF-Gw-tIr"/>
+                <outlet property="pkCategories" destination="iju-rH-5f7" id="QkM-p7-RDi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -136,7 +137,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WPa-xx-PFt">
+                <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WPa-xx-PFt">
                     <rect key="frame" x="30" y="325" width="70" height="70"/>
                     <animations/>
                     <constraints>
@@ -144,7 +145,7 @@
                         <constraint firstAttribute="width" constant="70" id="B1g-r5-tBK"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A7u-pU-3ad">
+                <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A7u-pU-3ad">
                     <rect key="frame" x="112" y="325" width="70" height="70"/>
                     <animations/>
                     <constraints>
@@ -152,7 +153,7 @@
                         <constraint firstAttribute="width" constant="70" id="ZBI-0e-Guk"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-tg-ux3">
+                <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-tg-ux3">
                     <rect key="frame" x="194" y="325" width="70" height="70"/>
                     <animations/>
                     <constraints>
@@ -160,7 +161,7 @@
                         <constraint firstAttribute="height" constant="70" id="Jwm-jY-lNK"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aio-bM-L5r">
+                <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aio-bM-L5r">
                     <rect key="frame" x="276" y="325" width="70" height="70"/>
                     <animations/>
                     <constraints>
@@ -204,12 +205,18 @@
                         <action selector="btSellIt:" destination="-1" eventType="touchUpInside" id="syO-Al-BJR"/>
                     </connections>
                 </button>
+                <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iju-rH-5f7">
+                    <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.98925501108169556" green="0.62638062238693237" blue="0.43950390815734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </pickerView>
             </subviews>
             <animations/>
             <color key="backgroundColor" red="0.98937636613845825" green="0.87379169464111328" blue="0.81683111190795898" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="A7u-pU-3ad" firstAttribute="top" secondItem="ixl-YZ-esz" secondAttribute="bottom" constant="31" id="0mH-r7-O3a"/>
                 <constraint firstItem="L1b-tg-ux3" firstAttribute="top" secondItem="bta-gr-Lkk" secondAttribute="bottom" constant="31" id="1M0-Jq-Q3J"/>
+                <constraint firstItem="iju-rH-5f7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3BF-OF-BDM"/>
                 <constraint firstAttribute="trailing" secondItem="dON-bm-VbG" secondAttribute="trailing" constant="29" id="8AV-Dq-DYK"/>
                 <constraint firstItem="WEc-kf-6y5" firstAttribute="top" secondItem="tr4-ug-vJr" secondAttribute="bottom" constant="6" id="8fc-KT-knc"/>
                 <constraint firstItem="UKY-qI-2K4" firstAttribute="top" secondItem="QiC-BV-Rep" secondAttribute="bottom" constant="17" id="9Pu-Xi-w6M"/>
@@ -226,11 +233,15 @@
                 <constraint firstItem="dON-bm-VbG" firstAttribute="top" secondItem="K5a-gc-m3R" secondAttribute="bottom" constant="6" id="Px7-1Z-PC2"/>
                 <constraint firstAttribute="trailing" secondItem="QiC-BV-Rep" secondAttribute="trailing" constant="98" id="Qr6-ib-dbb"/>
                 <constraint firstItem="WPa-xx-PFt" firstAttribute="top" secondItem="ixl-YZ-esz" secondAttribute="bottom" constant="31" id="REM-a8-X6m"/>
+                <constraint firstItem="hvI-JW-VgR" firstAttribute="leading" secondItem="YMu-5P-dhT" secondAttribute="trailing" constant="106" id="TQD-1Q-Q2H"/>
                 <constraint firstItem="vzr-e4-LXe" firstAttribute="top" secondItem="WEc-kf-6y5" secondAttribute="bottom" constant="36" id="UVL-Ds-ROy"/>
                 <constraint firstItem="QiC-BV-Rep" firstAttribute="top" secondItem="L1b-tg-ux3" secondAttribute="bottom" constant="135" id="WsI-rh-yhl"/>
+                <constraint firstAttribute="bottom" secondItem="iju-rH-5f7" secondAttribute="bottom" id="Xk0-IC-wVs"/>
                 <constraint firstItem="L1b-tg-ux3" firstAttribute="leading" secondItem="A7u-pU-3ad" secondAttribute="trailing" constant="12" id="YF3-Vp-if6"/>
+                <constraint firstAttribute="trailing" secondItem="iju-rH-5f7" secondAttribute="trailing" id="ZNu-5r-6UT"/>
                 <constraint firstItem="K5a-gc-m3R" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="atV-jf-8ef"/>
                 <constraint firstItem="ixl-YZ-esz" firstAttribute="top" secondItem="YMu-5P-dhT" secondAttribute="bottom" constant="7" id="d55-PW-ady"/>
+                <constraint firstAttribute="bottom" secondItem="UKY-qI-2K4" secondAttribute="bottom" constant="58" id="dZa-lb-Y6j"/>
                 <constraint firstAttribute="trailing" secondItem="hvI-JW-VgR" secondAttribute="trailing" constant="156" id="ecZ-dj-LGe"/>
                 <constraint firstAttribute="trailing" secondItem="UKY-qI-2K4" secondAttribute="trailing" constant="165" id="g9h-Ry-1Eb"/>
                 <constraint firstItem="dON-bm-VbG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="gcA-JY-NZZ"/>
@@ -248,6 +259,13 @@
                 <constraint firstItem="K5a-gc-m3R" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="zcv-he-J5v"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ecZ-dj-LGe"/>
+                    <exclude reference="j8w-2J-QtF"/>
+                    <exclude reference="WsI-rh-yhl"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="570.5" y="424.5"/>
         </view>
     </objects>

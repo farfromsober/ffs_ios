@@ -11,7 +11,7 @@
 
 @class Product;
 
-@interface NewProductViewController : BaseVC <UITextFieldDelegate>
+@interface NewProductViewController : BaseVC <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextField *lbTitle;
 @property (weak, nonatomic) IBOutlet UITextView *lbDescription;
@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgProduct4;
 @property (weak, nonatomic) IBOutlet UIButton *btSellIt;
 @property (weak, nonatomic) IBOutlet UIButton *btCancel;
+@property (weak, nonatomic) IBOutlet UIPickerView *pkCategories;
 - (IBAction)btSellIt:(id)sender;
 - (IBAction)btAction:(id)sender;
 
