@@ -12,9 +12,9 @@
 
 @interface User : NSObject <JSONParser, JSONCreator>
 
-@property (nonatomic) NSInteger sales;
+@property (strong, nonatomic) NSNumber *userId;
+@property (strong, nonatomic) NSNumber *sales;
 
-@property (copy, nonatomic) NSString *userId;
 @property (copy, nonatomic) NSString *firstName;
 @property (copy, nonatomic) NSString *lastName;
 @property (copy, nonatomic) NSString *email;

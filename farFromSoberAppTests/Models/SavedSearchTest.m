@@ -54,8 +54,8 @@
 - (void)testSavedSearchCreatedShouldMatchInputFields  {
     NSDictionary *json = [FakeModelObjects fakeJSONSavedSearch];
     SavedSearch *search = [[SavedSearch alloc] initWithJSON:json];
-    XCTAssertTrue([search.saveSearchId isEqualToString:json[@"_id"]], @"'saveSearchId' should be equal tu json[\"_id\"]");
-    XCTAssertTrue([search.saveSearchId isEqualToString:json[@"_id"]], @"'saveSearchId' should be equal tu json[\"_id\"]");
+    XCTAssertTrue([search.saveSearchId isEqualToString:json[@"id"]], @"'saveSearchId' should be equal tu json[\"_id\"]");
+    XCTAssertTrue([search.saveSearchId isEqualToString:json[@"id"]], @"'saveSearchId' should be equal tu json[\"id\"]");
     XCTAssertTrue([search.user isEqual:[FakeModelObjects fakeUserObject]], @"'seller' should be equal tu json[\"user\"]");
     XCTAssertTrue([search.category isEqual:[FakeModelObjects fakeCategoryObject]], @"'category' should be equal tu json[\"category\"]");
 }
@@ -70,7 +70,7 @@
 - (void)testJSONCreatedShouldMatchInputFields  {
     SavedSearch *search = [FakeModelObjects fakeSavedSearchObject];
     NSDictionary *json = [[SavedSearch alloc] objectToJSON:search];
-    XCTAssertTrue([search.saveSearchId isEqualToString:json[@"_id"]], @"'saveSearchId' should be equal tu json[\"_id\"]");
+    XCTAssertTrue([search.saveSearchId isEqualToString:json[@"id"]], @"'saveSearchId' should be equal tu json[\"id\"]");
     XCTAssertTrue([search.query isEqualToString:json[@"query"]], @"'query' should be equal tu json[\"query\"]");
     XCTAssertTrue([[FakeModelObjects fakeJSONUser] isEqualToDictionary:json[@"user"]],
                   @"'user' should be equal tu json[\"user\"]");
