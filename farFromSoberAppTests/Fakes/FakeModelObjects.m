@@ -20,9 +20,9 @@
 #pragma mark - User
 
 + (NSDictionary *)fakeJSONUser {
-    return @{@"id": @(6),
+    return @{@"id": @(123456),
              @"user": @{
-                 @"id": @(6),
+                 @"id": @(123456),
                  @"password": @"pbkdf2_sha256$20000$XwPGBxasqiZ5$ARHLY+JUFgyVLi61+vWcHDj+zkN/KYZ6SssPYjYGE2g=",
                  @"last_login": @"2015-12-06T10:42:46.450688Z",
                  @"is_superuser": @(NO),
@@ -49,10 +49,10 @@
     User *user = [[User alloc] init];
     user.avatarURL = [NSURL URLWithString:@"http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png"];
     user.userId = @(123456);
-    user.firstName = @"Julio";
-    user.lastName = @"Martínez";
-    user.username = @"jmartinez";
-    user.email = @"juliomb89@gmail.com";
+    user.firstName = @"David";
+    user.lastName = @"Regatos";
+    user.username = @"dregatos";
+    user.email = @"david.regatos@gmail.com";
     user.latitude = @"40.375762";
     user.longitude = @"-3.599271";
     user.city = @"Madrid";
@@ -78,6 +78,7 @@
 #pragma mark - Utils
 
 + (NSDictionary *)fakeJSONProduct {
+    
     return @{
              @"id": @"5649b6eae9a246eed43f0174",
              @"name": @"tempor in laboris",
