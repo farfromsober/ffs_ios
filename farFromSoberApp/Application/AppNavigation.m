@@ -14,10 +14,10 @@
 #import "NewItemVC.h"
 #import "NotificationListVC.h"
 #import "ProfileVC.h"
-
 #import "LoginViewController.h"
-
 #import "UINavigationController+Initializer.h"
+
+#import "UIImage+ImageWithColor.h"
 
 @interface AppNavigation ()
 
@@ -52,6 +52,7 @@
     
     //Background image
     tabController.tabBar.backgroundImage = [UIImage imageNamed:@"Bar"];
+    tabController.tabBar.shadowImage = [[UIImage alloc] init];
     
     //Tabbar text color
     [UITabBarItem.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];

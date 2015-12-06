@@ -6,14 +6,18 @@
 //  Copyright © 2015 David Regatos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class LoginViewController;
+@class ProductCollectionViewCell;
 
 @interface AppStyle : NSObject
 
-+ (void)applyGlobalStyle;
++ (void)applyGlobalStyles;
++ (void)styleNavBar:(UINavigationBar *)navBar;
 
 + (void)styleLoginViewController:(LoginViewController *)vc;
+
++ (void)styleProductCell:(ProductCollectionViewCell *)cell;
 
 @end

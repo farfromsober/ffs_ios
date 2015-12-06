@@ -8,6 +8,7 @@
 
 #import "ProductCollectionViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AppStyle.h"
 
 @implementation ProductCollectionViewCell
 
@@ -38,9 +39,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [AppStyle styleProductCell:self];
 }
 
--(void) setImageWithURL: (NSURL *) url {
+- (void)setImageWithURL:(NSURL *)url {
     [self.imgProduct sd_setImageWithURL:url
                       placeholderImage:[UIImage imageNamed:@"photo_placeholder"]];
 }

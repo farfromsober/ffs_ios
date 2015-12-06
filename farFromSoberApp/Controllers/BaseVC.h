@@ -10,5 +10,7 @@
 #import "APIManager.h"
 
 @interface BaseVC : UIViewController
+
 @property (nonatomic, strong) APIManager *api;
+
 @end

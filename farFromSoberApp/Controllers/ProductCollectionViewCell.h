@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lbPrice;
 
--(void) setImageWithURL: (NSURL *) url;
+- (void)setImageWithURL:(NSURL *)url;
 
 @end
