@@ -101,7 +101,7 @@
     cell.lbPrice.text = [NSString stringWithFormat:@"%@€",[cellData price]];
     cell.lbTitle.text = [cellData name];
     
-    [cell setImageWithURL:[cellData images][0]];
+    [cell setImageWithURL:[[cellData images] firstObject]];
     
     return cell;
 }
