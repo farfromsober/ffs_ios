@@ -50,7 +50,7 @@
     
     self.title = @"Product";
     
-    [self.imgProduct sd_setImageWithURL:self.product.images[0]
+    [self.imgProduct sd_setImageWithURL:[self.product.images firstObject]
                        placeholderImage:[UIImage imageNamed:@"photo_placeholder"]];
     [self.imgProfile sd_setImageWithURL:self.product.seller.avatarURL
                        placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
