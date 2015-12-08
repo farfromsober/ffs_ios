@@ -43,11 +43,14 @@ Summary:
 			DetailViewController *destination = [DetailViewController new];
 			navController pushViewController:destination withAnimation:YES];
 		}
-
+		
+- AppStyle: views' elements should be styled here.
 
 ### Controllers
 
-- TabController contains 5 Tabs: *ProductsVC, MapVC, NewVC, NotificationVC, and ProfileVC*. All these classes have a superclass called BaseVC and they are embedded in a Navigation Controller to support push navigation.
+- TabController contains 5 Tabs: *ProductsVC, MapVC, NotificationVC, and ProfileVC*. All these classes have a superclass called BaseVC and they are embedded in a Navigation Controller to support push navigation.
+- LoginViewController: login screen.
+- NewVC: post a new product.
 
 ### Managers
 
