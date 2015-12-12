@@ -33,6 +33,9 @@
 @property (nonatomic, copy) NSArray *categories;
 
 @property (nonatomic, strong) UIImageView *imageSelected;
+@property (nonatomic) NSInteger imageSelectedTag;
+
+@property (nonatomic, copy) NSMutableArray *images;
 
 @end
 
@@ -44,6 +47,8 @@
     self = [super init];
     if (self) {
         _product = produt;
+        //_images = [[NSMutableArray alloc] initWithObjects:@(0), @(0), @(0), @(0), nil];
+        _images = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -68,6 +73,10 @@
     [self.imgProduct2 setImage:[UIImage imageNamed:@"photo_placeholder"]];
     [self.imgProduct3 setImage:[UIImage imageNamed:@"photo_placeholder"]];
     [self.imgProduct4 setImage:[UIImage imageNamed:@"photo_placeholder"]];
+    
+    [self.imgProduct2 setHidden:YES];
+    [self.imgProduct3 setHidden:YES];
+    [self.imgProduct4 setHidden:YES];
     
 }
 
@@ -115,7 +124,7 @@
     }];
 }
 
-#pragma mark - Keyboar hide and events
+#pragma mark - Keyboard hide and events
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -132,13 +141,17 @@
     }
     
     if ([touch view] == self.imgProduct1) {
-        [self tapAddPhoto: self.imgProduct1];
+        //[self tapAddPhoto: self.imgProduct1];
+        [self checkRemoveImage:self.imgProduct1];
     } else if ([touch view] == self.imgProduct2) {
-        [self tapAddPhoto: self.imgProduct2];
+        //[self tapAddPhoto: self.imgProduct2];
+        [self checkRemoveImage:self.imgProduct2];
     } else if ([touch view] == self.imgProduct3) {
-        [self tapAddPhoto: self.imgProduct3];
+        //[self tapAddPhoto: self.imgProduct3];
+        [self checkRemoveImage:self.imgProduct3];
     }else if ([touch view] == self.imgProduct4) {
-        [self tapAddPhoto: self.imgProduct4];
+        //[self tapAddPhoto: self.imgProduct4];
+        [self checkRemoveImage:self.imgProduct4];
     }
     
     [super touchesBegan:touches withEvent:event];
@@ -169,25 +182,103 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // ¡OJO! Pico de memoria asegurado, especialmente en
     // dispositivos antiguos
     
-    
     // Sacamos la UIImage del diccionario
     UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    self.imageSelected.image = img;
+    //self.imageSelected.image = img;
+    UIImageView *actualPhoto = [self getImageWithTag:self.imageSelectedTag];
+    actualPhoto.image = img;
+    
+    // Añadimos el tag de la imagen al array de imágenes añadidas.
+    [self.images addObject:@(actualPhoto.tag)];
+    
+    UIImageView *nextPhoto = [self getImageWithTag:self.imageSelectedTag+1];
+    nextPhoto.hidden = NO;
 
     // Quito de encima el controlador que estamos presentando
     [self dismissViewControllerAnimated:YES
-                             completion:^{
-                                 // Se ejecutará cuando se haya ocultado del todo
-                                 self.imageSelected = nil;
-                             }];
+                             completion:nil];
+}
+
+#pragma mark - UIImageView Utils
+
+-(UIImageView *) getImageWithTag:(NSInteger) tag {
+    
+    switch (tag) {
+        case 5:
+            return self.imgProduct1;
+            break;
+        case 6:
+            return self.imgProduct2;
+            break;
+        case 7:
+            return self.imgProduct3;
+            break;
+        default:
+            return self.imgProduct4;
+            break;
+    }
+}
+
+-(void) checkRemoveImage: (UIImageView *) imageView {
+    self.imageSelectedTag = imageView.tag;
+    
+    // Si la imagen ya ha sido añadida con anterioridad
+    if ([self.images containsObject:@(self.imageSelectedTag)]) {
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Product photo"
+                                      message:@"What do you want to do with this picture?"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* addNew = [UIAlertAction
+                                 actionWithTitle:@"Add New"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action) {
+                                     [self tapAddPhoto:imageView];
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                 }];
+        UIAlertAction* remove = [UIAlertAction
+                                 actionWithTitle:@"Remove"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action) {
+                                     [self removePhoto:imageView];
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                 }];
+        
+        [alert addAction:addNew];
+        [alert addAction:remove];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        [self tapAddPhoto:imageView];
+    }
+}
+
+-(void) removePhoto:(UIImageView *) imageView {
+    
+    NSUInteger actualImagesCount = [self.images count];
+    int imageToRemoveIndex = (int)[self.images indexOfObject:@(imageView.tag)];
+    
+    for (int i = imageToRemoveIndex; i<actualImagesCount; i++) {
+        //Intercambiamos la imagen con la del ImageView posterior
+        NSInteger actualTag = [[self.images objectAtIndex:i] integerValue];
+        UIImageView *actualImageView = [self getImageWithTag:actualTag];
+        UIImageView *nextImageView = [self getImageWithTag:actualTag + 1];
+        [actualImageView setImage: nextImageView.image];
+        if (i == actualImagesCount - 1) {
+            //Si es la última imagen, la ponemos el placeholder y ocultamos la posterior
+            [actualImageView setImage: [UIImage imageNamed:@"photo_placeholder"]];
+            UIImageView *lastImageView = [self getImageWithTag:actualTag+1];
+            lastImageView.hidden = YES;
+        }
+    }
+    // Eliminamos el último tag del array de imágenes
+    [self.images removeLastObject];
+    NSLog(@"Fin");
 }
 
 #pragma mark - Tap Add photo
 -(void) tapAddPhoto: (UIImageView *) imageView {
-    
-    //Guardamos el ImageView seleccionado para tenerlo como referencia
-    self.imageSelected = imageView;
     
     // Creamos un UIImagePickerController
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
