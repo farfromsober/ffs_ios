@@ -32,7 +32,6 @@
 @property (nonatomic, strong) CategoryManager *cateManager;
 @property (nonatomic, copy) NSArray *categories;
 
-@property (nonatomic, strong) UIImageView *imageSelected;
 @property (nonatomic) NSInteger imageSelectedTag;
 
 @property (nonatomic, copy) NSMutableArray *images;
@@ -47,7 +46,6 @@
     self = [super init];
     if (self) {
         _product = produt;
-        //_images = [[NSMutableArray alloc] initWithObjects:@(0), @(0), @(0), @(0), nil];
         _images = [[NSMutableArray alloc] init];
     }
     
@@ -69,10 +67,10 @@
     self.lbCategory.delegate = self;
     self.lbPrice.delegate = self;
     
-    [self.imgProduct1 setImage:[UIImage imageNamed:@"photo_placeholder"]];
-    [self.imgProduct2 setImage:[UIImage imageNamed:@"photo_placeholder"]];
-    [self.imgProduct3 setImage:[UIImage imageNamed:@"photo_placeholder"]];
-    [self.imgProduct4 setImage:[UIImage imageNamed:@"photo_placeholder"]];
+    [self.imgProduct1 setImage:[UIImage imageNamed:@"new_product_photo_placeholder"]];
+    [self.imgProduct2 setImage:[UIImage imageNamed:@"new_product_photo_placeholder"]];
+    [self.imgProduct3 setImage:[UIImage imageNamed:@"new_product_photo_placeholder"]];
+    [self.imgProduct4 setImage:[UIImage imageNamed:@"new_product_photo_placeholder"]];
     
     [self.imgProduct2 setHidden:YES];
     [self.imgProduct3 setHidden:YES];
@@ -141,16 +139,12 @@
     }
     
     if ([touch view] == self.imgProduct1) {
-        //[self tapAddPhoto: self.imgProduct1];
         [self checkRemoveImage:self.imgProduct1];
     } else if ([touch view] == self.imgProduct2) {
-        //[self tapAddPhoto: self.imgProduct2];
         [self checkRemoveImage:self.imgProduct2];
     } else if ([touch view] == self.imgProduct3) {
-        //[self tapAddPhoto: self.imgProduct3];
         [self checkRemoveImage:self.imgProduct3];
     }else if ([touch view] == self.imgProduct4) {
-        //[self tapAddPhoto: self.imgProduct4];
         [self checkRemoveImage:self.imgProduct4];
     }
     
@@ -185,7 +179,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // Sacamos la UIImage del diccionario
     UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    //self.imageSelected.image = img;
     UIImageView *actualPhoto = [self getImageWithTag:self.imageSelectedTag];
     actualPhoto.image = img;
     
@@ -267,14 +260,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
         [actualImageView setImage: nextImageView.image];
         if (i == actualImagesCount - 1) {
             //Si es la última imagen, la ponemos el placeholder y ocultamos la posterior
-            [actualImageView setImage: [UIImage imageNamed:@"photo_placeholder"]];
+            [actualImageView setImage: [UIImage imageNamed:@"new_product_photo_placeholder"]];
             UIImageView *lastImageView = [self getImageWithTag:actualTag+1];
             lastImageView.hidden = YES;
         }
     }
     // Eliminamos el último tag del array de imágenes
     [self.images removeLastObject];
-    NSLog(@"Fin");
 }
 
 #pragma mark - Tap Add photo
