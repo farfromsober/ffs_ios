@@ -32,7 +32,7 @@
 @property (nonatomic, strong) CategoryManager *cateManager;
 @property (nonatomic, copy) NSArray *categories;
 
-@property (nonatomic, strong) UIImage *imageSelected;
+@property (nonatomic, strong) UIImageView *imageSelected;
 
 @end
 
@@ -173,46 +173,41 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // Sacamos la UIImage del diccionario
     UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    self.imageSelected = img;
-    
+    self.imageSelected.image = img;
+
+    // Quito de encima el controlador que estamos presentando
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 // Se ejecutará cuando se haya ocultado del todo
+                                 self.imageSelected = nil;
+                             }];
 }
 
 #pragma mark - Tap Add photo
--(void) tapAddPhoto: (UIImageView *) imaView {
+-(void) tapAddPhoto: (UIImageView *) imageView {
+    
+    //Guardamos el ImageView seleccionado para tenerlo como referencia
+    self.imageSelected = imageView;
     
     // Creamos un UIImagePickerController
-    UIImagePickerController *picker = [UIImagePickerController new];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     
     // Lo configuro
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
         // Uso la cámara
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
     }else{
         // Tiro del carrete
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     
     picker.delegate = self;
-    
     picker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     // Lo muestro de forma modal
     [self presentViewController:picker
                        animated:YES
-                     completion:^{
-                         // Esto se va a ejecutar cuando termine la
-                         // animación que muestra al picker.
-                         
-                         imaView.image = self.imageSelected;
-                         
-                         // Quito de encima el controlador que estamos presentando
-                         [self dismissViewControllerAnimated:YES
-                                                  completion:^{
-                                                      // Se ejecutará cuando se haya ocultado del todo
-                                                  }];
-                     }];
+                     completion:nil];
     
 }
 
