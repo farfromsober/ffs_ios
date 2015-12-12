@@ -13,6 +13,9 @@
 
 @interface AppStyle : NSObject
 
++ (UIColor *)mainColorLight;
++ (UIColor *)mainColorDark;
+
 + (void)applyGlobalStyles;
 + (void)styleNavBar:(UINavigationBar *)navBar;
 

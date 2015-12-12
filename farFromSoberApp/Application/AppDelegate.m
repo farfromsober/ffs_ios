@@ -10,6 +10,7 @@
 #import "AppNavigation.h"
 
 #import "UserManager.h"
+#import "AppStyle.h"
 
 @interface AppDelegate ()
 
@@ -51,7 +52,7 @@
 
 - (void)setupWindow {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [AppStyle mainColorLight];
     
     UserManager *user = [UserManager sharedInstance];
     if ([user currentUser]) {
