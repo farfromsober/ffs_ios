@@ -14,6 +14,7 @@
                 <outlet property="imgProduct4" destination="Aio-bM-L5r" id="I9e-0r-61p"/>
                 <outlet property="lbCategory" destination="ixl-YZ-esz" id="EiH-RQ-PNd"/>
                 <outlet property="lbDescription" destination="WEc-kf-6y5" id="iBW-YD-Us1"/>
+                <outlet property="lbDescriptionLength" destination="bEJ-MQ-hNa" id="fqd-8Y-11L"/>
                 <outlet property="lbMoney" destination="vzr-e4-LXe" id="ncT-Kp-34t"/>
                 <outlet property="lbPrice" destination="bta-gr-Lkk" id="631-uz-fhW"/>
                 <outlet property="lbTitle" destination="dON-bm-VbG" id="YbF-Gw-tIr"/>
@@ -68,7 +69,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000/120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEJ-MQ-hNa">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEJ-MQ-hNa">
                     <rect key="frame" x="311" y="172" width="44" height="21"/>
                     <animations/>
                     <constraints>

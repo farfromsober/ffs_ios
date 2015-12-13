@@ -11,9 +11,10 @@
 
 @class Product;
 
-@interface NewProductViewController : BaseVC <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface NewProductViewController : BaseVC <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *lbTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lbDescriptionLength;
 @property (weak, nonatomic) IBOutlet UITextView *lbDescription;
 @property (weak, nonatomic) IBOutlet UITextField *lbCategory;
 @property (weak, nonatomic) IBOutlet UITextField *lbPrice;

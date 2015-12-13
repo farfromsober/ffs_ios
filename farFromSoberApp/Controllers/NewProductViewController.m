@@ -22,6 +22,7 @@
 
 #import "NSDate+Parser.h"
 #import "AppStyle.h"
+#import "AppConstants.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -63,12 +64,10 @@
     self.cateManager = [CategoryManager sharedInstance];
     self.categories = [self.cateManager loadCategories];
     
-    //self.pkCategories.dataSource = self;
-    //self.pkCategories.delegate = self;
-    
     self.lbTitle.delegate = self;
     self.lbCategory.delegate = self;
     self.lbPrice.delegate = self;
+    self.lbDescription.delegate = self;
     
     [self.imgProduct1 setImage:[UIImage imageNamed:@"new_product_photo_placeholder"]];
     [self.imgProduct2 setImage:[UIImage imageNamed:@"new_product_photo_placeholder"]];
@@ -85,12 +84,6 @@
     self.pkCategories.delegate = self;
     self.pkCategories.dataSource = self;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - Buttons Action
 
@@ -158,7 +151,7 @@
     [super touchesBegan:touches withEvent:event];
 }
 
-#pragma mark - UITextView delegates
+#pragma mark - UITextView & UITextField delegates
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
@@ -179,8 +172,23 @@
     if (textField.tag == 2) {
         return NO;
     }
-    
     return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if([text length] == 0) {
+        if([textView.text length] != 0) {
+            return YES;
+        }
+    } else if([[textView text] length] > [AppConstants maxPermitedChars] - 1) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    int textLength = (int)textView.text.length;
+    self.lbDescriptionLength.text = [NSString stringWithFormat:@"%i/%i",textLength, [AppConstants maxPermitedChars]];
 }
 
 #pragma mark - UIImagePickerControllerDelegate

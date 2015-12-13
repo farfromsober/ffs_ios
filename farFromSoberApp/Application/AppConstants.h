@@ -11,5 +11,6 @@
 @interface AppConstants : NSObject
 
 + (NSString *)userStoragePath;
++ (int) maxPermitedChars;
 
 @end

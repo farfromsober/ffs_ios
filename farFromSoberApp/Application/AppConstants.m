@@ -15,4 +15,8 @@
     return @"user_profile";
 }
 
++ (int) maxPermitedChars {
+    return 140;
+}
+
 @end
