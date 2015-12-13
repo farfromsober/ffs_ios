@@ -344,18 +344,16 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 }
 
 - (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    //return self.categories.count;
-    return 4;
+    return self.categories.count;
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    //return [[self.categories objectAtIndex:row] name];
-    return [@[@"uno", @"dos", @"tres", @"cuatro"] objectAtIndex:row];
+    return [[self.categories objectAtIndex:row] name];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    self.lbCategory.text = [@[@"uno", @"dos", @"tres", @"cuatro"] objectAtIndex:row];//[self.categories objectAtIndex:row];
+    self.lbCategory.text = [[self.categories objectAtIndex:row] name];
     [self.lbCategory resignFirstResponder];
 }
 @end
