@@ -38,6 +38,7 @@
 @property (nonatomic) NSInteger imageSelectedTag;
 @property (nonatomic, copy) NSMutableArray *images;
 @property (strong, nonatomic) UIPickerView *pkCategories;
+@property (nonatomic) int uploadedImages;
 
 @end
 
@@ -88,35 +89,76 @@
 
 - (IBAction)btSellIt:(id)sender {
     
-    self.product.name = self.lbTitle.text;
-    self.product.detail = self.lbDescription.text;
-    self.product.category = self.productCategory;
-    self.product.price = self.lbPrice.text;
-    
-    NSDictionary *prod = [[Product alloc] objectToJSON:self.product];
+    [self.btSellIt setEnabled:NO];
+    [self.btSellIt setUserInteractionEnabled:NO];
     
     for (int i=0; i<[self.images count]; i++) {
-        UIImageView *photoToUpload = [self getImageWithTag:(int)[self.images objectAtIndex:i]];
-        [self uploadPhoto:photoToUpload.image];
+        NSLog(@"Tag to upload: %@", [self.images objectAtIndex:i]);
+        UIImageView *photoToUpload = [self getImageWithTag:[[self.images objectAtIndex:i] integerValue]];
+        [self uploadPhoto:photoToUpload];
     }
-    
-    //[self uploadPhoto:self.imgProduct1.image];
-    /*
-    [self.api newProductViaProduct:prod Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+}
+
+-(void) photoUploaded {
+    self.uploadedImages+=1;
+    if (self.uploadedImages >= [self.images count]) {
+        NSLog(@"SUBIDAS FINALIZADAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        /*self.product.name = self.lbTitle.text;
+        self.product.detail = self.lbDescription.text;
+        self.product.category = self.productCategory;
+        self.product.price = self.lbPrice.text;
         
-        [self uploadPhoto:self.imgProduct1.image];
-        [self uploadPhoto:self.imgProduct2.image];
-        [self uploadPhoto:self.imgProduct3.image];
-        [self uploadPhoto:self.imgProduct4.image];
-        [self dismissViewControllerAnimated:YES completion:^{
+        NSDictionary *prod = [[Product alloc] objectToJSON:self.product];
+        
+        [self.api newProductViaProduct:prod Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+            self.uploadedImages=0;
+            [self dismissViewControllerAnimated:YES completion:^{
+                NSLog(@"Producto subido con éxito");
+            }];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+            [self presentViewController:alert animated:YES completion:nil];
             
-        }];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
-        [self presentViewController:alert animated:YES completion:nil];
+            NSLog(@"Error: %@", error);
+        }];*/
+    }
+}
+
+-(void) photoUploadedWithError: (NSError *) error {
+    NSLog(@"ALGUNA IMAGEN HA TENIDO UN ERROR EN LA SUBIDA");
+}
+
+-(void) uploadPhoto: (UIImageView *) imageView {
+    UIImage *img = imageView.image;
+    self.manager = [[ABSManager alloc] init];
+    
+    if (img) {
+        User *user = [self.userM currentUser];
+        NSString *now = [NSDate stringWithISO8601FormatDate:[NSDate new]];
         
-        NSLog(@"Error: %@", error);
-    }];*/
+        NSString *blobName = [NSString stringWithFormat:@"%@-%ld-%@",[user userId], (long)imageView.tag, now];
+        
+        //UPLOAD IMAGE
+        [self.manager giveMeSaSURLBlobName:blobName
+                             containerName:AZURE_CONTAINER
+                          completionSaSURL:^(NSURL *sasURL) {
+                              if (sasURL != nil) {
+                                  [self.manager handleImageToUploadAzureBlob:sasURL
+                                                                     blobImg:img
+                                                        completionUploadTask:^(BOOL result, NSError *error) {
+                                                            if (error) {
+                                                                //NSLog(@"Error uploading image: %@", error);
+                                                                [self photoUploadedWithError:error];
+                                                            } else {
+                                                                //NSLog(@"Success uploading image");
+                                                                [self photoUploaded];
+                                                            }
+                                                        }];
+                              } else {
+                                  NSLog(@"Error al obtener la SAS URL");
+                              }
+                          }];
+    }
 }
 
 - (IBAction)btAction:(id)sender {
@@ -221,7 +263,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     {
         compression -= 0.10;
         imageData = UIImageJPEGRepresentation(img, compression);
-        NSLog(@"Compress : %lu",(unsigned long)imageData.length);
+        //NSLog(@"Compress : %lu",(unsigned long)imageData.length);
     }
     
     UIImageView *actualPhoto = [self getImageWithTag:self.imageSelectedTag];
@@ -282,8 +324,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
                                       message:@"What do you want to do with this picture?"
                                       preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* addNew = [UIAlertAction
-                                 actionWithTitle:@"Add New"
+        UIAlertAction* replace = [UIAlertAction
+                                 actionWithTitle:@"Replace"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * action) {
                                      [self tapAddPhoto:imageView];
@@ -297,7 +339,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                  }];
         
-        [alert addAction:addNew];
+        [alert addAction:replace];
         [alert addAction:remove];
         
         [self presentViewController:alert animated:YES completion:nil];
@@ -350,34 +392,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
                        animated:YES
                      completion:nil];
     
-}
-
--(void) uploadPhoto: (UIImage *) img {
-    self.manager = [[ABSManager alloc] init];
-    
-    if (img) {
-        User *user = [self.userM currentUser];
-        NSString *now = [NSDate stringWithISO8601FormatDate:[NSDate new]];
-        
-        NSString *blobName = [NSString stringWithFormat:@"%@-%@",[user userId], now];
-        
-        //UPLOAD IMAGE
-        [self.manager giveMeSaSURLBlobName:blobName
-                             containerName:AZURE_CONTAINER
-                          completionSaSURL:^(NSURL *sasURL) {
-                              if (sasURL != nil) {
-                                  [self.manager handleImageToUploadAzureBlob:sasURL
-                                                                     blobImg:img
-                                                        completionUploadTask:^(BOOL result, NSError *error) {
-                                                            
-                                                            
-                                                        }];
-                              } else {
-                                  NSLog(@"Error al obtener la SAS URL");
-                              }
-                              
-                          }];
-    }
 }
 
 #pragma mark - Picker View Delegate
