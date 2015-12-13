@@ -29,15 +29,14 @@
 @interface NewProductViewController ()
 
 @property (nonatomic, strong) Product *product;
+@property (nonatomic, strong) ProductCategory *productCategory;
 @property (nonatomic, strong) ABSManager *manager;
 @property (nonatomic, strong) UserManager *userM;
 @property (nonatomic, strong) CategoryManager *cateManager;
 @property (nonatomic, copy) NSArray *categories;
 
 @property (nonatomic) NSInteger imageSelectedTag;
-
 @property (nonatomic, copy) NSMutableArray *images;
-
 @property (strong, nonatomic) UIPickerView *pkCategories;
 
 @end
@@ -45,11 +44,11 @@
 @implementation NewProductViewController
 
 #pragma mark - Inits
--(instancetype) initWithProduct: (Product *) produt {
+-(instancetype) initWithProduct: (Product *) product {
     
     self = [super init];
     if (self) {
-        _product = produt;
+        _product = product;
         _images = [[NSMutableArray alloc] init];
     }
     
@@ -91,15 +90,18 @@
     
     self.product.name = self.lbTitle.text;
     self.product.detail = self.lbDescription.text;
-    
-    //ProductCategory *category = [[ProductCategory alloc] init];
-    //category.name
-    //self.product.category
-    
+    self.product.category = self.productCategory;
     self.product.price = self.lbPrice.text;
     
     NSDictionary *prod = [[Product alloc] objectToJSON:self.product];
     
+    for (int i=0; i<[self.images count]; i++) {
+        UIImageView *photoToUpload = [self getImageWithTag:(int)[self.images objectAtIndex:i]];
+        [self uploadPhoto:photoToUpload.image];
+    }
+    
+    //[self uploadPhoto:self.imgProduct1.image];
+    /*
     [self.api newProductViaProduct:prod Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         
         [self uploadPhoto:self.imgProduct1.image];
@@ -114,13 +116,11 @@
         [self presentViewController:alert animated:YES completion:nil];
         
         NSLog(@"Error: %@", error);
-    }];
+    }];*/
 }
 
 - (IBAction)btAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Keyboard hide and events
@@ -202,8 +202,31 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // Sacamos la UIImage del diccionario
     UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
     
+    // Resize the image to 800x600
+    if (img.size.height > img.size.width) {
+        img = [self scaleImage:img toSize:CGSizeMake(600.0f,800.0f)];
+    } else if (img.size.height < img.size.width){
+        img = [self scaleImage:img toSize:CGSizeMake(800.0f,600.0f)];
+    } else {
+        img = [self scaleImage:img toSize:CGSizeMake(800.0f,800.0f)];
+    }
+    
+    //Compress the image
+    CGFloat compression = 0.9f;
+    CGFloat maxCompression = 0.5f;
+    
+    NSData *imageData = UIImageJPEGRepresentation(img, compression);
+    
+    while ([imageData length] > 75000 && compression > maxCompression)
+    {
+        compression -= 0.10;
+        imageData = UIImageJPEGRepresentation(img, compression);
+        NSLog(@"Compress : %lu",(unsigned long)imageData.length);
+    }
+    
     UIImageView *actualPhoto = [self getImageWithTag:self.imageSelectedTag];
-    actualPhoto.image = img;
+    //actualPhoto.image = img;
+    actualPhoto.image = [UIImage imageWithData:imageData];
     
     // Añadimos el tag de la imagen al array de imágenes añadidas.
     [self.images addObject:@(actualPhoto.tag)];
@@ -217,6 +240,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 }
 
 #pragma mark - UIImageView Utils
+
+- (UIImage *) scaleImage:(UIImage*)image toSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 1.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 -(UIImageView *) getImageWithTag:(NSInteger) tag {
     
@@ -235,6 +269,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
             break;
     }
 }
+
+#pragma mark - Photo methods
 
 -(void) checkRemoveImage: (UIImageView *) imageView {
     self.imageSelectedTag = imageView.tag;
@@ -292,7 +328,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [self.images removeLastObject];
 }
 
-#pragma mark - Tap Add photo
 -(void) tapAddPhoto: (UIImageView *) imageView {
     
     // Creamos un UIImagePickerController
@@ -360,7 +395,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
+    self.productCategory = [self.categories objectAtIndex:row];
     self.lbCategory.text = [[self.categories objectAtIndex:row] name];
     [self.lbCategory resignFirstResponder];
 }
