@@ -21,6 +21,7 @@
 #import "ABSManager.h"
 
 #import "NSDate+Parser.h"
+#import "AppStyle.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -35,6 +36,8 @@
 @property (nonatomic) NSInteger imageSelectedTag;
 
 @property (nonatomic, copy) NSMutableArray *images;
+
+@property (strong, nonatomic) UIPickerView *pkCategories;
 
 @end
 
@@ -60,8 +63,8 @@
     self.cateManager = [CategoryManager sharedInstance];
     self.categories = [self.cateManager loadCategories];
     
-    self.pkCategories.dataSource = self;
-    self.pkCategories.delegate = self;
+    //self.pkCategories.dataSource = self;
+    //self.pkCategories.delegate = self;
     
     self.lbTitle.delegate = self;
     self.lbCategory.delegate = self;
@@ -76,6 +79,11 @@
     [self.imgProduct3 setHidden:YES];
     [self.imgProduct4 setHidden:YES];
     
+    self.pkCategories = [[UIPickerView alloc] init];
+    //self.pkCategories.backgroundColor = [AppStyle mainColorLight];
+    self.lbCategory.inputView =self.pkCategories;
+    self.pkCategories.delegate = self;
+    self.pkCategories.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,11 +139,10 @@
         [self.lbTitle resignFirstResponder];
     } else if ([self.lbPrice isFirstResponder] && [touch view] != self.lbPrice) {
         [self.lbPrice resignFirstResponder];
-    }
-    
-    if ([touch view] == self.lbCategory) {
-        self.pkCategories.userInteractionEnabled = NO;
-        self.pkCategories.hidden = NO;
+    } else if ([self.lbDescription isFirstResponder] && [touch view] != self.lbDescription) {
+        [self.lbDescription resignFirstResponder];
+    } else if ([self.lbCategory isFirstResponder] && [touch view] != self.lbCategory) {
+        [self.lbCategory resignFirstResponder];
     }
     
     if ([touch view] == self.imgProduct1) {
@@ -329,16 +336,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 }
 
 - (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.categories.count;
+    //return self.categories.count;
+    return 4;
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [[self.categories objectAtIndex:row] name];
+    //return [[self.categories objectAtIndex:row] name];
+    return [@[@"uno", @"dos", @"tres", @"cuatro"] objectAtIndex:row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    self.lbCategory.text = [self.categories objectAtIndex:row];
-    self.pkCategories.hidden = YES;
+    self.lbCategory.text = [@[@"uno", @"dos", @"tres", @"cuatro"] objectAtIndex:row];//[self.categories objectAtIndex:row];
+    [self.lbCategory resignFirstResponder];
 }
 @end

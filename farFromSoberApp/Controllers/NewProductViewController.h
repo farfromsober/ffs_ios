@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgProduct4;
 @property (weak, nonatomic) IBOutlet UIButton *btSellIt;
 @property (weak, nonatomic) IBOutlet UIButton *btCancel;
-@property (weak, nonatomic) IBOutlet UIPickerView *pkCategories;
+
 - (IBAction)btSellIt:(id)sender;
 - (IBAction)btAction:(id)sender;
 
