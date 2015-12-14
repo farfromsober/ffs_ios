@@ -39,7 +39,7 @@
 		07E08C761C14EF94001DD8E1 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E08C751C14EF94001DD8E1 /* UIImage+ImageWithColor.m */; };
 		07F365DD1C1460430029F8AD /* DRGKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */; };
 		07F365E01C1463DF0029F8AD /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F365DF1C1463DF0029F8AD /* AppStyle.m */; };
-		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
+		BB514B159EDF9FE30725DF9D /* Pods_farFromSoberApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */; };
 		FB129C631C12EE940017721D /* NewProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C611C12EE940017721D /* NewProductViewController.m */; };
 		FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB129C621C12EE940017721D /* NewProductViewController.xib */; };
 		FB129C6F1C1375ED0017721D /* ABSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C6C1C1375ED0017721D /* ABSManager.m */; };
@@ -134,8 +134,8 @@
 		07F365DE1C1463DF0029F8AD /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
 		07F365DF1C1463DF0029F8AD /* AppStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStyle.m; sourceTree = "<group>"; };
 		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
-		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_farFromSoberApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB129C601C12EE940017721D /* NewProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProductViewController.h; sourceTree = "<group>"; };
 		FB129C611C12EE940017721D /* NewProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProductViewController.m; sourceTree = "<group>"; };
 		FB129C621C12EE940017721D /* NewProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewProductViewController.xib; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 				FBE2BD1D1C0E66370082090B /* MapKit.framework in Frameworks */,
 				FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */,
 				FB129C701C1375ED0017721D /* WindowsAzureMobileServices.framework in Frameworks */,
-				65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */,
+				BB514B159EDF9FE30725DF9D /* Pods_farFromSoberApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +445,7 @@
 			children = (
 				FBE2BD1C1C0E66370082090B /* MapKit.framework */,
 				FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */,
-				9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */,
+				F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

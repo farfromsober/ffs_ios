@@ -23,6 +23,7 @@
 #import "NSDate+Parser.h"
 #import "AppStyle.h"
 #import "AppConstants.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -38,7 +39,6 @@
 @property (nonatomic) NSInteger imageSelectedTag;
 @property (nonatomic, copy) NSMutableArray *images;
 @property (strong, nonatomic) UIPickerView *pkCategories;
-@property (nonatomic) int uploadedImages;
 
 @end
 
@@ -92,18 +92,23 @@
     [self.btSellIt setEnabled:NO];
     [self.btSellIt setUserInteractionEnabled:NO];
     
+    NSMutableArray *requestSignals = [NSMutableArray array];
+    
     for (int i=0; i<[self.images count]; i++) {
-        NSLog(@"Tag to upload: %@", [self.images objectAtIndex:i]);
         UIImageView *photoToUpload = [self getImageWithTag:[[self.images objectAtIndex:i] integerValue]];
-        [self uploadPhoto:photoToUpload];
+        RACSignal *jsonSignal = [[self uploadPhoto:photoToUpload] catch:^(NSError *error) {
+            NSLog(@"Error ocurred: %@", error);
+            return RACSignal.empty;
+        }];
+        [requestSignals addObject:jsonSignal];
     }
-}
-
--(void) photoUploaded {
-    self.uploadedImages+=1;
-    if (self.uploadedImages >= [self.images count]) {
+    
+    RACSignal *requestSignalsSignal = requestSignals.rac_sequence.signal;
+    RACSignal *results = [requestSignalsSignal flatten];
+    
+    [results subscribeCompleted:^{
         NSLog(@"SUBIDAS FINALIZADAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        /*self.product.name = self.lbTitle.text;
+        self.product.name = self.lbTitle.text;
         self.product.detail = self.lbDescription.text;
         self.product.category = self.productCategory;
         self.product.price = self.lbPrice.text;
@@ -111,7 +116,6 @@
         NSDictionary *prod = [[Product alloc] objectToJSON:self.product];
         
         [self.api newProductViaProduct:prod Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-            self.uploadedImages=0;
             [self dismissViewControllerAnimated:YES completion:^{
                 NSLog(@"Producto subido con éxito");
             }];
@@ -120,25 +124,22 @@
             [self presentViewController:alert animated:YES completion:nil];
             
             NSLog(@"Error: %@", error);
-        }];*/
-    }
+        }];
+    }];
 }
 
--(void) photoUploadedWithError: (NSError *) error {
-    NSLog(@"ALGUNA IMAGEN HA TENIDO UN ERROR EN LA SUBIDA");
-}
-
--(void) uploadPhoto: (UIImageView *) imageView {
-    UIImage *img = imageView.image;
-    self.manager = [[ABSManager alloc] init];
+-(RACSignal *) uploadPhoto: (UIImageView *) imageView {
     
-    if (img) {
+    //UPLOAD IMAGE
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        UIImage *img = imageView.image;
+        self.manager = [[ABSManager alloc] init];
+        
         User *user = [self.userM currentUser];
         NSString *now = [NSDate stringWithISO8601FormatDate:[NSDate new]];
         
         NSString *blobName = [NSString stringWithFormat:@"%@-%ld-%@",[user userId], (long)imageView.tag, now];
         
-        //UPLOAD IMAGE
         [self.manager giveMeSaSURLBlobName:blobName
                              containerName:AZURE_CONTAINER
                           completionSaSURL:^(NSURL *sasURL) {
@@ -148,17 +149,18 @@
                                                         completionUploadTask:^(BOOL result, NSError *error) {
                                                             if (error) {
                                                                 //NSLog(@"Error uploading image: %@", error);
-                                                                [self photoUploadedWithError:error];
+                                                                [subscriber sendError:error];
                                                             } else {
                                                                 //NSLog(@"Success uploading image");
-                                                                [self photoUploaded];
+                                                                [subscriber sendCompleted];
                                                             }
                                                         }];
                               } else {
                                   NSLog(@"Error al obtener la SAS URL");
                               }
                           }];
-    }
+        return 0;
+    }];
 }
 
 - (IBAction)btAction:(id)sender {
