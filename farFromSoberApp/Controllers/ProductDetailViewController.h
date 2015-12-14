@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbPrice;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitleProduct;
 @property (weak, nonatomic) IBOutlet UITextView *lbDescriptionProduct;
+@property (weak, nonatomic) IBOutlet UILabel *lbLocation;
 @property (weak, nonatomic) IBOutlet IBOutlet MKMapView *mvMap;
 @property (weak, nonatomic) IBOutlet UIButton *btBuyProduct;
 -(instancetype) initWithProduct: (Product *) produt;

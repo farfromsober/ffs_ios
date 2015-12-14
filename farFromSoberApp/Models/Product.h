@@ -29,4 +29,6 @@
 // TODO: Array of images
 @property (copy, nonatomic) NSArray *images;      // array of NSURLs !!!!
 
+@property (copy, nonatomic) NSString *dateFormatted;
+
 @end

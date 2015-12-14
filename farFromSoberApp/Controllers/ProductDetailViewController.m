@@ -10,6 +10,7 @@
 
 #import "Product.h"
 #import "User.h"
+#import "AppStyle.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
@@ -36,8 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [AppStyle styleProductDetailViewController:self];
+    
     [self initializeData];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -51,7 +55,7 @@
     self.title = @"Product";
     
     [self.imgProduct sd_setImageWithURL:[self.product.images firstObject]
-                       placeholderImage:[UIImage imageNamed:@"photo_placeholder"]];
+                       placeholderImage:[UIImage imageNamed:@"photo_placeholder_frame"]];
     [self.imgProfile sd_setImageWithURL:self.product.seller.avatarURL
                        placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     
@@ -59,7 +63,7 @@
     self.imgProfile.layer.masksToBounds = YES;
     self.imgProfile.layer.borderWidth = 0;
     
-    self.lbDateProfile.text = [NSString stringWithFormat:@"%@",self.product.published];
+    self.lbDateProfile.text = self.product.dateFormatted;
     self.lbDescriptionProduct.text = self.product.detail;
     self.lbNameProfile.text = self.product.seller.username;
     
@@ -75,6 +79,17 @@
     self.lbState.layer.cornerRadius = 12;
     
     self.lbTitleProduct.text = self.product.name;
+    
+    // Ponemos la localización del producto y le añadimos un pin
+    MKCoordinateRegion region;
+    region.center = self.product.seller.location;
+    region.span.latitudeDelta = 0.001;
+    region.span.longitudeDelta = 0.001;
+    MKPointAnnotation *annotation = [MKPointAnnotation new];
+    [annotation setCoordinate:self.product.seller.location];
+    [annotation setTitle:self.product.seller.username];
+    [self.mvMap setRegion:region animated:YES];
+    [self.mvMap addAnnotation:annotation];
 }
 
 @end
