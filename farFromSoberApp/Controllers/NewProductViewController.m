@@ -39,6 +39,7 @@
 @property (nonatomic) NSInteger imageSelectedTag;
 @property (nonatomic, copy) NSMutableArray *images;
 @property (strong, nonatomic) UIPickerView *pkCategories;
+@property (nonatomic, copy) NSMutableArray *temporaryImageNsurls;
 
 @end
 
@@ -180,6 +181,13 @@
         NSString *now = [NSDate stringWithISO8601FormatDate:[NSDate new]];
         
         NSString *blobName = [NSString stringWithFormat:@"%@-%ld-%@",[user userId], (long)imageView.tag, now];
+        NSMutableString *imageUrl = [[NSMutableString alloc] initWithString:AZURE_CDN_URL];
+        [imageUrl appendString:AZURE_CONTAINER];
+        [imageUrl appendString:@"/"];
+        [imageUrl appendString:blobName];
+        NSURL *imageNSURL = [NSURL URLWithString:imageUrl];
+        NSLog(@"imageURL: %@", imageUrl);
+        [self.temporaryImageNsurls addObject:imageNSURL];
         
         [self.manager giveMeSaSURLBlobName:blobName
                              containerName:AZURE_CONTAINER
@@ -214,18 +222,27 @@
     self.product.category = self.productCategory;
     self.product.price = self.lbPrice.text;
     
+    self.product.images = [self.temporaryImageNsurls copy];
+    
     NSDictionary *prod = [[Product alloc] objectToJSON:self.product];
     
     [self.api newProductViaProduct:prod
                            Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-                               [self dismissViewControllerAnimated:YES completion:^{
-                                   NSLog(@"Producto subido con éxito");
-                               }];
+                               self.product.productId = [responseObject objectForKey:@"id"];
+                               NSLog(@"Producto subido con éxito");
+                               [self uploadProductImages];
                            } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
                                [self presentViewController:alert animated:YES completion:nil];
                                [self enableButtons:YES];
     }];
+}
+
+- (void) uploadProductImages {
+    //TODO: Subida de imáges a la api de imágenes.
+    NSLog(@"FALTA SUBIR IMÁGENES");
+    self.temporaryImageNsurls = nil;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Botón de cancelar. Dismiss de la vista y vuelta al listado de productos.
