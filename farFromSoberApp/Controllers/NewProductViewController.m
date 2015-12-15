@@ -24,7 +24,7 @@
 #import "AppStyle.h"
 #import "AppConstants.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-
+#import "MBProgressHUD.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface NewProductViewController ()
@@ -40,6 +40,8 @@
 @property (nonatomic, copy) NSMutableArray *images;
 @property (strong, nonatomic) UIPickerView *pkCategories;
 @property (nonatomic, copy) NSMutableArray *temporaryImageNsurls;
+
+@property (strong, nonatomic) MBProgressHUD *hud;
 
 @end
 
@@ -59,6 +61,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     self.userM = [UserManager sharedInstance];
     
@@ -93,10 +97,16 @@
     
     // Desactivamos botones y vistas...
     [self enableButtons:NO];
+    
     // Comprobamos que los campos (titulo, descripción, categoría y precio) contienen datos ...
     if ([self hasNeededInformation]) {
+        
         // ... Nos suscribimos a la señal del método que comprueba si hay fotos para subir ...
         [[self hasPhotosToUpload] subscribeNext:^(id userResponse) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.hud = [AppStyle getLoadingHUDWithView:self.view];
+            });
             // ... Si el usuario quiere continuar con la subida del producto (ya sea con imágenes o sin imágenes)
             if ([userResponse boolValue]) {
                 // Continuar con carga de imágenes creando un array de señales.
@@ -122,6 +132,9 @@
                     // Entraremos en esta parte si alguna de las señales de los métodos de subida de cada imagen ha dado error.
                     // Mostraremos un alertview preguntando al usuario si quiere subir el producto sin imágenes o cancelar la subida.
                     //NSLog(@"Error subiendo alguna imagen");
+                    
+                    [self disableLoadingHUD];
+                    
                     UIAlertController * alert=   [UIAlertController
                                                   alertControllerWithTitle:@"Error uploading images"
                                                   message:@"Want to upload the product without photos?"
@@ -160,6 +173,7 @@
     // ... En caso de que alguno de los campos no esté completo
     } else {
         // ... mostramos error y reactivamos botones y vistas
+        [self disableLoadingHUD];
         UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:@"All fields are required" andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
         [self presentViewController:alert animated:YES completion:nil];
         [self enableButtons:YES];
@@ -217,6 +231,10 @@
  Método de subida del objeto producto. En caso de error muestra un alertview, y en caso de éxito, cerramos la vista
  y volvemos al listado de producto */
 - (void)uploadProduct {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.hud = [AppStyle getLoadingHUDWithView:self.view];
+    });
+    
     self.product.name = self.lbTitle.text;
     self.product.detail = self.lbDescription.text;
     self.product.category = self.productCategory;
@@ -235,6 +253,7 @@
                                UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
                                [self presentViewController:alert animated:YES completion:nil];
                                [self enableButtons:YES];
+                               [self disableLoadingHUD];
     }];
 }
 
@@ -242,12 +261,20 @@
     //TODO: Subida de imáges a la api de imágenes.
     NSLog(@"FALTA SUBIR IMÁGENES");
     self.temporaryImageNsurls = nil;
+    [self disableLoadingHUD];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Botón de cancelar. Dismiss de la vista y vuelta al listado de productos.
 - (IBAction)btAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) disableLoadingHUD {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.hud hide:YES];
+        self.hud = nil;
+    });
 }
 
 #pragma mark - Keyboard hide and events

@@ -158,5 +158,20 @@
     [btn setTitleColor:[self si_orangishColor] forState:UIControlStateNormal];
 }
 
+#pragma mark - Loading HUD
+
++(MBProgressHUD *) getLoadingHUDWithView: (UIView *) view {
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.activityIndicatorColor = [UIColor blackColor];
+    hud.labelText = @"Uploading Product";
+    hud.labelColor = [UIColor blackColor];
+    hud.minShowTime = 0.75;
+    hud.color = [self mainColorDark];
+    
+    return hud;
+}
+
 
 @end

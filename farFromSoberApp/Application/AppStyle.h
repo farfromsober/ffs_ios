@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @class LoginViewController;
 @class ProductCollectionViewCell;
@@ -22,5 +23,7 @@
 + (void)styleLoginViewController:(LoginViewController *)vc;
 
 + (void)styleProductCell:(ProductCollectionViewCell *)cell;
+
++ (MBProgressHUD *) getLoadingHUDWithView: (UIView *) view;
 
 @end

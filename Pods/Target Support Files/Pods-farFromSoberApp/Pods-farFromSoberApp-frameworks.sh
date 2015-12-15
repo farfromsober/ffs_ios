@@ -85,11 +85,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-farFromSoberApp/AFNetworking.framework"
+  install_framework "Pods-farFromSoberApp/MBProgressHUD.framework"
   install_framework "Pods-farFromSoberApp/ReactiveCocoa.framework"
   install_framework "Pods-farFromSoberApp/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-farFromSoberApp/AFNetworking.framework"
+  install_framework "Pods-farFromSoberApp/MBProgressHUD.framework"
   install_framework "Pods-farFromSoberApp/ReactiveCocoa.framework"
   install_framework "Pods-farFromSoberApp/SDWebImage.framework"
 fi
