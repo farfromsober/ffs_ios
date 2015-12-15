@@ -87,47 +87,88 @@
 
 #pragma mark - Buttons Action
 
+// Botón de venta
 - (IBAction)btSellIt:(id)sender {
     
-    [self.btSellIt setEnabled:NO];
-    [self.btSellIt setUserInteractionEnabled:NO];
-    
-    NSMutableArray *requestSignals = [NSMutableArray array];
-    
-    for (int i=0; i<[self.images count]; i++) {
-        UIImageView *photoToUpload = [self getImageWithTag:[[self.images objectAtIndex:i] integerValue]];
-        RACSignal *jsonSignal = [[self uploadPhoto:photoToUpload] catch:^(NSError *error) {
-            NSLog(@"Error ocurred: %@", error);
-            return RACSignal.empty;
+    // Desactivamos botones y vistas...
+    [self enableButtons:NO];
+    // Comprobamos que los campos (titulo, descripción, categoría y precio) contienen datos ...
+    if ([self hasNeededInformation]) {
+        // ... Nos suscribimos a la señal del método que comprueba si hay fotos para subir ...
+        [[self hasPhotosToUpload] subscribeNext:^(id userResponse) {
+            // ... Si el usuario quiere continuar con la subida del producto (ya sea con imágenes o sin imágenes)
+            if ([userResponse boolValue]) {
+                // Continuar con carga de imágenes creando un array de señales.
+                NSMutableArray *requestSignals = [NSMutableArray array];
+                // Para cada una de las imágenes que el usuario ha guardado creamos una señal y la añadimos al array de señales.
+                for (int i=0; i<[self.images count]; i++) {
+                    UIImageView *photoToUpload = [self getImageWithTag:[[self.images objectAtIndex:i] integerValue]];
+                    // La señal se crea a través del método uploadPhoto, el cuál devuelve una señal.
+                    RACSignal *jsonSignal = [[self uploadPhoto:photoToUpload] catch:^(NSError *error) {
+                        // ... En caso de que el método subida de esta imagen de error entramos aquí, devolviendo una señal de error.
+                        return [RACSignal error:error];
+                    }];
+                    // .. Añadimos la señal de esta imagen al array de señales.
+                    [requestSignals addObject:jsonSignal];
+                }
+                
+                // Creamos una rac sequence a través del array de señales.
+                RACSignal *requestSignalsSignal = requestSignals.rac_sequence.signal;
+                RACSignal *results = [requestSignalsSignal flatten];
+                
+                // Finalmente, nos suscribimos al resultado de todas las señales del array mediante este método subscribeError:completed.
+                [results subscribeError:^(NSError *error) {
+                    // Entraremos en esta parte si alguna de las señales de los métodos de subida de cada imagen ha dado error.
+                    // Mostraremos un alertview preguntando al usuario si quiere subir el producto sin imágenes o cancelar la subida.
+                    //NSLog(@"Error subiendo alguna imagen");
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@"Error uploading images"
+                                                  message:@"Want to upload the product without photos?"
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* upload = [UIAlertAction
+                                             actionWithTitle:@"Yes"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action) {
+                                                 // ... en caso de aceptar, continuamos la subida del producto sin imágenes.
+                                                 [self uploadProduct];
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                             }];
+                    UIAlertAction* cancel = [UIAlertAction
+                                             actionWithTitle:@"Cancel"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action) {
+                                                 // .. en caso de cancelar, eliminamos el alertview y reactivamos botones y vistas.
+                                                 [self enableButtons:YES];
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                             }];
+                    
+                    [alert addAction:upload];
+                    [alert addAction:cancel];
+                    [self presentViewController:alert animated:YES completion:nil];
+                } completed:^{
+                    // En caso de completarse el array de señales de subidas de todas las imágenes con éxito, procedemos a la subida
+                    // del producto
+                    [self uploadProduct];
+                }];
+            } else {
+                // ... El usuario ha decidido cancelar la subida del producto sin imágenes.
+                [self enableButtons:YES];
+            }
         }];
-        [requestSignals addObject:jsonSignal];
+    // ... En caso de que alguno de los campos no esté completo
+    } else {
+        // ... mostramos error y reactivamos botones y vistas
+        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:@"All fields are required" andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+        [self presentViewController:alert animated:YES completion:nil];
+        [self enableButtons:YES];
     }
-    
-    RACSignal *requestSignalsSignal = requestSignals.rac_sequence.signal;
-    RACSignal *results = [requestSignalsSignal flatten];
-    
-    [results subscribeCompleted:^{
-        NSLog(@"SUBIDAS FINALIZADAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        self.product.name = self.lbTitle.text;
-        self.product.detail = self.lbDescription.text;
-        self.product.category = self.productCategory;
-        self.product.price = self.lbPrice.text;
-        
-        NSDictionary *prod = [[Product alloc] objectToJSON:self.product];
-        
-        [self.api newProductViaProduct:prod Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                NSLog(@"Producto subido con éxito");
-            }];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            NSLog(@"Error: %@", error);
-        }];
-    }];
 }
 
+/* 
+ Método que convierte la subida del blob de la imagen en una señal. En caso de error obteniendo el SAS URL o durante la subida,
+ devuelve el error. En caso de éxito, devuelve el completed
+ */
 -(RACSignal *) uploadPhoto: (UIImageView *) imageView {
     
     //UPLOAD IMAGE
@@ -148,21 +189,46 @@
                                                                      blobImg:img
                                                         completionUploadTask:^(BOOL result, NSError *error) {
                                                             if (error) {
-                                                                //NSLog(@"Error uploading image: %@", error);
                                                                 [subscriber sendError:error];
                                                             } else {
-                                                                //NSLog(@"Success uploading image");
                                                                 [subscriber sendCompleted];
                                                             }
                                                         }];
                               } else {
-                                  NSLog(@"Error al obtener la SAS URL");
+                                  //NSLog(@"Error al obtener la SAS URL");
+                                  [subscriber sendError:[NSError errorWithDomain:@"Azure SAS URL"
+                                                                            code:400
+                                                                        userInfo:nil]];
                               }
                           }];
         return 0;
     }];
 }
 
+/* 
+ Método de subida del objeto producto. En caso de error muestra un alertview, y en caso de éxito, cerramos la vista
+ y volvemos al listado de producto */
+- (void)uploadProduct {
+    self.product.name = self.lbTitle.text;
+    self.product.detail = self.lbDescription.text;
+    self.product.category = self.productCategory;
+    self.product.price = self.lbPrice.text;
+    
+    NSDictionary *prod = [[Product alloc] objectToJSON:self.product];
+    
+    [self.api newProductViaProduct:prod
+                           Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                               [self dismissViewControllerAnimated:YES completion:^{
+                                   NSLog(@"Producto subido con éxito");
+                               }];
+                           } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                               UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+                               [self presentViewController:alert animated:YES completion:nil];
+                               [self enableButtons:YES];
+    }];
+}
+
+// Botón de cancelar. Dismiss de la vista y vuelta al listado de productos.
 - (IBAction)btAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -214,12 +280,24 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField.tag == 2) {
+        // Bloqueamos la edición de la categoría. Solo se puede modificar mediante el picker.
         return NO;
+    } else if (textField.tag == 3) {
+        // Únicamente permitimos números en el campo de precio.
+        NSNumberFormatter * nf = [[NSNumberFormatter alloc] init];
+        [nf setNumberStyle:NSNumberFormatterNoStyle];
+        
+        NSString * newString = [NSString stringWithFormat:@"%@%@",textField.text,string];
+        NSNumber * number = [nf numberFromString:newString];
+        
+        if (!number)
+            return NO;
     }
     return YES;
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    // Controlamos que no se pueda escribir más de los carácteres permitidos en el campo description.
     if([text length] == 0) {
         if([textView.text length] != 0) {
             return YES;
@@ -231,6 +309,7 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
+    // Cada vez que modificamos el campo description, actualizamos el valor de la label que contiene los caracteres escritos.
     int textLength = (int)textView.text.length;
     self.lbDescriptionLength.text = [NSString stringWithFormat:@"%i/%i",textLength, [AppConstants maxPermitedChars]];
 }
@@ -261,20 +340,19 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
     NSData *imageData = UIImageJPEGRepresentation(img, compression);
     
-    while ([imageData length] > 75000 && compression > maxCompression)
-    {
+    while ([imageData length] > 75000 && compression > maxCompression) {
         compression -= 0.10;
         imageData = UIImageJPEGRepresentation(img, compression);
-        //NSLog(@"Compress : %lu",(unsigned long)imageData.length);
     }
     
+    // Obtenemos el imageView al que hemos presionado para obtener la foto y le almacenamos la imagen.
     UIImageView *actualPhoto = [self getImageWithTag:self.imageSelectedTag];
-    //actualPhoto.image = img;
     actualPhoto.image = [UIImage imageWithData:imageData];
     
-    // Añadimos el tag de la imagen al array de imágenes añadidas.
+    // Añadimos el tag de la imagen al array de tags de imageviews que contienen imágenes.
     [self.images addObject:@(actualPhoto.tag)];
     
+    // Obtenemos el siguiente imageView y lo mostramos.
     UIImageView *nextPhoto = [self getImageWithTag:self.imageSelectedTag+1];
     nextPhoto.hidden = NO;
 
@@ -285,6 +363,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 
 #pragma mark - UIImageView Utils
 
+// Método que escala una imagen al tamaño pasado por parámetro.
 - (UIImage *) scaleImage:(UIImage*)image toSize:(CGSize)newSize {
     //UIGraphicsBeginImageContext(newSize);
     // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
@@ -296,26 +375,23 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     return newImage;
 }
 
+// Método que devuelve el imageView con el tag pasado por parámetro
 -(UIImageView *) getImageWithTag:(NSInteger) tag {
     
     switch (tag) {
-        case 5:
-            return self.imgProduct1;
-            break;
-        case 6:
-            return self.imgProduct2;
-            break;
-        case 7:
-            return self.imgProduct3;
-            break;
-        default:
-            return self.imgProduct4;
-            break;
+        case 5: return self.imgProduct1; break;
+        case 6: return self.imgProduct2; break;
+        case 7: return self.imgProduct3; break;
+        default: return self.imgProduct4; break;
     }
 }
 
 #pragma mark - Photo methods
 
+/*
+ Método que comprueba si el imageView seleccionado ya contenía una foto o no. En caso de contenerla, le preguntamos
+ al usuario si quiere cambiarla o eliminarla. En caso de ser un imageView vacío continuamos con la captura de la imagen.
+ */
 -(void) checkRemoveImage: (UIImageView *) imageView {
     self.imageSelectedTag = imageView.tag;
     
@@ -350,11 +426,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     }
 }
 
+//Método que elimina la foto del imageView pasado por parámetro.
 -(void) removePhoto:(UIImageView *) imageView {
     
     NSUInteger actualImagesCount = [self.images count];
     int imageToRemoveIndex = (int)[self.images indexOfObject:@(imageView.tag)];
     
+    // Para todas las imágenes desde la seleccionada hasta la última
     for (int i = imageToRemoveIndex; i<actualImagesCount; i++) {
         //Intercambiamos la imagen con la del ImageView posterior
         NSInteger actualTag = [[self.images objectAtIndex:i] integerValue];
@@ -368,10 +446,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
             lastImageView.hidden = YES;
         }
     }
-    // Eliminamos el último tag del array de imágenes
+    // Eliminamos el último tag del array de tags de imágenes del usuario
     [self.images removeLastObject];
 }
 
+// Método que captura una imagen mediante UIImagePickerController para el imageView pasado por parámetro
 -(void) tapAddPhoto: (UIImageView *) imageView {
     
     // Creamos un UIImagePickerController
@@ -390,10 +469,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     picker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     // Lo muestro de forma modal
-    [self presentViewController:picker
-                       animated:YES
-                     completion:nil];
-    
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 #pragma mark - Picker View Delegate
@@ -411,8 +487,89 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    // Establecemos el product category y el nombre de la categoría en el textfield.
     self.productCategory = [self.categories objectAtIndex:row];
     self.lbCategory.text = [[self.categories objectAtIndex:row] name];
     [self.lbCategory resignFirstResponder];
 }
+
+#pragma mark - Utils
+
+- (BOOL) hasNeededInformation {
+    // Si alguno de los campos no está completo, devolvemos NO.
+    if ([self isTextFieldEmpty:self.lbTitle] || [self isTextViewEmpty:self.lbDescription]
+        || [self isTextFieldEmpty:self.lbCategory] || [self isTextFieldEmpty:self.lbPrice]) {
+        return NO;
+    }
+    return YES;
+}
+
+/*
+ Método que convierte en una señal el resultado de un uialertcontroller. En caso de que no existan imágenes del usuario
+ le preguntamos si quiere subir el producto sin imágenes (devolviendo YES) o cancelar la subida (devolviendo NO). En 
+ caso de existir imágnes, continuamos con la ejecución (devolviendo YES).
+ */
+- (RACSignal *) hasPhotosToUpload {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        if ([self.images count]==0) {
+            NSLog(@"Preguntamos si queremos subir el producto sin imágenes");
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Product without images"
+                                          message:@"Want to upload the product without photos?"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* upload = [UIAlertAction
+                                     actionWithTitle:@"Yes"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action) {
+                                         [subscriber sendNext:@(YES)];
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                     }];
+            UIAlertAction* cancel = [UIAlertAction
+                                     actionWithTitle:@"Cancel"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action) {
+                                         [subscriber sendNext:@(NO)];
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                     }];
+            
+            [alert addAction:upload];
+            [alert addAction:cancel];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            [subscriber sendNext:@(YES)];
+        }
+        return 0;
+    }];
+}
+
+// Método que activa o desactiva botones y vistas según el parámetro recibido.
+- (void) enableButtons:(BOOL) enable {
+    [self.btSellIt setEnabled:enable];
+    [self.btCancel setEnabled:enable];
+    [self.view setUserInteractionEnabled:enable];
+    if (!enable) {
+        [self.btSellIt setBackgroundColor:[UIColor lightGrayColor]];
+    } else {
+        [self.btSellIt setBackgroundColor:[AppStyle mainColorDark]];
+    }
+}
+
+// Método que comprueba si un textfield está vacío o no.
+- (BOOL)isTextFieldEmpty:(UITextField*)textField {
+    if (textField.text && textField.text.length > 0)
+        return NO;
+    else
+        return YES;
+}
+
+// Método que comprueba si un textView está vacío o no.
+- (BOOL) isTextViewEmpty:(UITextView*)textView {
+    if (textView.text && textView.text.length > 0)
+        return NO;
+    else
+        return YES;
+}
+
 @end
