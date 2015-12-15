@@ -40,6 +40,8 @@
 		07F365DD1C1460430029F8AD /* DRGKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */; };
 		07F365E01C1463DF0029F8AD /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F365DF1C1463DF0029F8AD /* AppStyle.m */; };
 		65CD8F227B51F74F69711BB4 /* libPods-farFromSoberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */; };
+		8E46E9951C20B7DA00B5E4D5 /* ProductImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E46E9931C20B7DA00B5E4D5 /* ProductImageVC.m */; };
+		8E46E9961C20B7DA00B5E4D5 /* ProductImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */; };
 		FB129C631C12EE940017721D /* NewProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C611C12EE940017721D /* NewProductViewController.m */; };
 		FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB129C621C12EE940017721D /* NewProductViewController.xib */; };
 		FB129C6F1C1375ED0017721D /* ABSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C6C1C1375ED0017721D /* ABSManager.m */; };
@@ -134,6 +136,9 @@
 		07F365DE1C1463DF0029F8AD /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
 		07F365DF1C1463DF0029F8AD /* AppStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStyle.m; sourceTree = "<group>"; };
 		8BBB70DB24C0D4D5005A4024 /* Pods-farFromSoberApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.release.xcconfig"; sourceTree = "<group>"; };
+		8E46E9921C20B7DA00B5E4D5 /* ProductImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductImageVC.h; sourceTree = "<group>"; };
+		8E46E9931C20B7DA00B5E4D5 /* ProductImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImageVC.m; sourceTree = "<group>"; };
+		8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductImageVC.xib; sourceTree = "<group>"; };
 		9C406005E53DBE4CD4510D9D /* libPods-farFromSoberApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-farFromSoberApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FB129C601C12EE940017721D /* NewProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProductViewController.h; sourceTree = "<group>"; };
@@ -508,6 +513,9 @@
 				FBE2BD171C0E524F0082090B /* ProductDetailViewController.h */,
 				FBE2BD181C0E524F0082090B /* ProductDetailViewController.m */,
 				FBE2BD191C0E524F0082090B /* ProductDetailViewController.xib */,
+				8E46E9921C20B7DA00B5E4D5 /* ProductImageVC.h */,
+				8E46E9931C20B7DA00B5E4D5 /* ProductImageVC.m */,
+				8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */,
 			);
 			name = "Product Detail";
 			sourceTree = "<group>";
@@ -595,6 +603,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E46E9961C20B7DA00B5E4D5 /* ProductImageVC.xib in Resources */,
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
 				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
 				FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */,
@@ -692,6 +701,7 @@
 				07564CF01BF8FC01002EDBB2 /* NSString+Validator.m in Sources */,
 				07BEAFA41BF6558400062D77 /* User.m in Sources */,
 				FB1E9EBD1C144845008B2B69 /* FilterTableViewCell.m in Sources */,
+				8E46E9951C20B7DA00B5E4D5 /* ProductImageVC.m in Sources */,
 				0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */,
 				07BE59811BFF9B3D00B4A3AA /* NSDate+Parser.m in Sources */,
 				072AF2041BF3C95400515EB6 /* MapVC.m in Sources */,

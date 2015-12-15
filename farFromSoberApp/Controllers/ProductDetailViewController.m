@@ -11,6 +11,7 @@
 #import "Product.h"
 #import "User.h"
 #import "AppStyle.h"
+#import "ProductImageVC.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
@@ -18,6 +19,9 @@
 @interface ProductDetailViewController ()
 
 @property (nonatomic, strong) Product *product;
+@property (nonatomic, strong) UIPageViewController *pageVC;
+@property (nonatomic) NSUInteger numPages;
+
 @end
 
 @implementation ProductDetailViewController
@@ -37,16 +41,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupPageViewController];
     [AppStyle styleProductDetailViewController:self];
     
     [self initializeData];
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 #pragma mark - Initialize Data
 
@@ -54,8 +56,6 @@
     
     self.title = @"Product";
     
-    [self.imgProduct sd_setImageWithURL:[self.product.images firstObject]
-                       placeholderImage:[UIImage imageNamed:@"photo_placeholder_frame"]];
     [self.imgProfile sd_setImageWithURL:self.product.seller.avatarURL
                        placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     
@@ -67,7 +67,7 @@
     self.lbDescriptionProduct.text = self.product.detail;
     self.lbNameProfile.text = self.product.seller.username;
     
-    NSString *photos = [self.product.images count] <= 0 ? [NSString stringWithFormat:@"%lu Photo",(unsigned long)[self.product.images count] ] : [NSString stringWithFormat:@"%lu Photos",(unsigned long)[self.product.images count]];
+    NSString *photos = [self.product.images count] == 1 ? @"1 Photo" : [NSString stringWithFormat:@"%lu Photos", [self.product.images count]];
     self.lbNumberPhotos.text = photos;
     self.lbNumberPhotos.layer.backgroundColor = [[UIColor colorWithRed:252/255.0f green:183/255.0f blue:151/255.0f alpha:1.0f] CGColor];
     self.lbNumberPhotos.layer.cornerRadius = 12;
@@ -91,5 +91,105 @@
     [self.mvMap setRegion:region animated:YES];
     [self.mvMap addAnnotation:annotation];
 }
+
+
+
+#pragma mark - UIPageViewController
+
+-(void) setupPageViewController {
+    
+    // preparamos el PageViewController
+    self.numPages = [self.product.images count] == 0 ? 1 : [self.product.images count];
+    self.pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                options:nil];
+    self.pageVC.dataSource = self;
+    [self.pageVC setViewControllers:@[[self viewControllerAtIndex:0]]
+                          direction:UIPageViewControllerNavigationDirectionForward
+                           animated:NO
+                         completion:nil];
+    self.pageVC.view.frame = self.imagesContainer.frame;
+    [self.imagesContainer addSubview:self.pageVC.view];
+    [self.imagesContainer bringSubviewToFront:self.lbNumberPhotos];
+    [self.imagesContainer bringSubviewToFront:self.lbState];
+    
+    // PageControl
+    self.pageControl = [[UIPageControl alloc] init];
+    self.pageControl.numberOfPages = self.numPages;
+    [self.pageControl setCurrentPage:0];
+    [self.imagesContainer addSubview:self.pageControl];
+    
+    // Si no tenemos fotos o solo tenemos una ocultamos el pagecontrol
+    if (self.numPages == 1) {
+        [self.pageControl setHidden:YES];
+    }
+    
+}
+
+
+
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+     viewControllerBeforeViewController:(UIViewController *)viewController{
+    
+    NSUInteger index = ((ProductImageVC *) viewController).pageIndex;
+    
+    if ((index == 0) || (index == NSNotFound)) {
+        return nil;
+    }
+    
+    index--;
+    [self.pageControl setCurrentPage:index];
+    
+    return [self viewControllerAtIndex:index];
+}
+
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+      viewControllerAfterViewController:(UIViewController *)viewController{
+    
+    NSUInteger index = ((ProductImageVC *) viewController).pageIndex;
+    
+    if (index == NSNotFound) {
+        return nil;
+    }
+    
+    index++;
+    [self.pageControl setCurrentPage:index];
+    
+    if (index == self.numPages) {
+        return nil;
+    }
+    return [self viewControllerAtIndex:index];
+}
+
+
+- (ProductImageVC *)viewControllerAtIndex:(NSUInteger)index{
+    
+    if (index >= self.numPages) {
+        return nil;
+    }
+    
+    ProductImageVC *pageVC;
+    if ([self.product.images count] == 0) {
+        pageVC = [[ProductImageVC alloc] initWithImageURL:nil
+                                                pageIndex:index];
+    } else {
+        pageVC = [[ProductImageVC alloc] initWithImageURL:self.product.images[index]
+                                                pageIndex:index];
+    }
+    return pageVC;
+    
+}
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    return self.numPages;
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    return 0;
+}
+
+
 
 @end

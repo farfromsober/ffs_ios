@@ -138,6 +138,14 @@
     
     vc.btBuyProduct.titleLabel.font = [AppStyle fontMediumWithSize:16];
     
+    NSUInteger width = 100;
+    NSUInteger height = 30;
+    vc.pageControl.frame = CGRectMake((vc.imagesContainer.frame.size.width/2)-(width/2),
+                                      vc.imagesContainer.frame.size.height-height,
+                                      width, height);
+    vc.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    vc.pageControl.currentPageIndicatorTintColor = [AppStyle si_orangishColor];
+    
 }
 
 
