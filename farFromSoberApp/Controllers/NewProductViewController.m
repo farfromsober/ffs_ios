@@ -104,11 +104,12 @@
         // ... Nos suscribimos a la señal del método que comprueba si hay fotos para subir ...
         [[self hasPhotosToUpload] subscribeNext:^(id userResponse) {
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.hud = [AppStyle getLoadingHUDWithView:self.view];
-            });
             // ... Si el usuario quiere continuar con la subida del producto (ya sea con imágenes o sin imágenes)
             if ([userResponse boolValue]) {
+                //dispatch_async(dispatch_get_main_queue(), ^{
+                    self.hud = [AppStyle getLoadingHUDWithView:self.view];
+                //});
+                
                 // Continuar con carga de imágenes creando un array de señales.
                 NSMutableArray *requestSignals = [NSMutableArray array];
                 // Para cada una de las imágenes que el usuario ha guardado creamos una señal y la añadimos al array de señales.
@@ -174,9 +175,10 @@
     } else {
         // ... mostramos error y reactivamos botones y vistas
         [self disableLoadingHUD];
+        [self enableButtons:YES];
         UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:@"All fields are required" andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
         [self presentViewController:alert animated:YES completion:nil];
-        [self enableButtons:YES];
+        
     }
 }
 
@@ -187,7 +189,7 @@
 -(RACSignal *) uploadPhoto: (UIImageView *) imageView {
     
     //UPLOAD IMAGE
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         UIImage *img = imageView.image;
         self.manager = [[ABSManager alloc] init];
         
@@ -224,16 +226,18 @@
                               }
                           }];
         return 0;
-    }];
+    }] deliverOnMainThread];
 }
 
 /* 
  Método de subida del objeto producto. En caso de error muestra un alertview, y en caso de éxito, cerramos la vista
  y volvemos al listado de producto */
 - (void)uploadProduct {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.hud = [AppStyle getLoadingHUDWithView:self.view];
-    });
+    if (!self.hud) {
+        //dispatch_async(dispatch_get_main_queue(), ^{
+            self.hud = [AppStyle getLoadingHUDWithView:self.view];
+        //});
+    }
     
     self.product.name = self.lbTitle.text;
     self.product.detail = self.lbDescription.text;
@@ -250,10 +254,10 @@
                                NSLog(@"Producto subido con éxito");
                                [self uploadProductImages];
                            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                               UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
-                               [self presentViewController:alert animated:YES completion:nil];
                                [self enableButtons:YES];
                                [self disableLoadingHUD];
+                               UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+                               [self presentViewController:alert animated:YES completion:nil];
     }];
 }
 
@@ -554,9 +558,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
  caso de existir imágnes, continuamos con la ejecución (devolviendo YES).
  */
 - (RACSignal *) hasPhotosToUpload {
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         if ([self.images count]==0) {
-            NSLog(@"Preguntamos si queremos subir el producto sin imágenes");
+            //NSLog(@"Preguntamos si queremos subir el producto sin imágenes");
             UIAlertController * alert=   [UIAlertController
                                           alertControllerWithTitle:@"Product without images"
                                           message:@"Want to upload the product without photos?"
@@ -585,7 +589,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
             [subscriber sendNext:@(YES)];
         }
         return 0;
-    }];
+    }] deliverOnMainThread];
 }
 
 // Método que activa o desactiva botones y vistas según el parámetro recibido.
