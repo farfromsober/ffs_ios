@@ -12,9 +12,10 @@
 
 @class Product;
 
-@interface ProductDetailViewController : BaseVC
+@interface ProductDetailViewController : BaseVC <UIPageViewControllerDataSource>
 
-@property (weak, nonatomic) IBOutlet UIImageView *imgProduct;
+@property (weak, nonatomic) IBOutlet UIView *imagesContainer;
+
 @property (weak, nonatomic) IBOutlet UILabel *lbNumberPhotos;
 @property (weak, nonatomic) IBOutlet UILabel *lbState;
 @property (weak, nonatomic) IBOutlet UIImageView *imgProfile;
@@ -23,8 +24,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbPrice;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitleProduct;
 @property (weak, nonatomic) IBOutlet UITextView *lbDescriptionProduct;
+@property (weak, nonatomic) IBOutlet UILabel *lbLocation;
 @property (weak, nonatomic) IBOutlet IBOutlet MKMapView *mvMap;
 @property (weak, nonatomic) IBOutlet UIButton *btBuyProduct;
+@property (nonatomic, strong) UIPageControl *pageControl;
 -(instancetype) initWithProduct: (Product *) produt;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "User.h"
 #import "NSString+Validator.h"
+#import "AppConstants.h"
 
 static NSString * const userKey = @"user";
 
@@ -80,6 +81,12 @@ static NSString * const avatarKey = @"avatar";
         user.city = dic[cityKey] ? dic[cityKey] : @"";
         user.state = dic[stateKey] ? dic[stateKey] : @"";
         user.sales = dic[salesKey] ? dic[salesKey] : @(0);
+        
+        if ([user.latitude compare:@""] == 0 || [user.longitude compare:@""] == 0){
+            user.location = [AppConstants defaultLocation];
+        }else{
+            user.location = CLLocationCoordinate2DMake([user.latitude floatValue], [user.longitude floatValue]);
+        }
 
         return user;
     }

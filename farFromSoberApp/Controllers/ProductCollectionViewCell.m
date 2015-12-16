@@ -44,7 +44,7 @@
 
 - (void)setImageWithURL:(NSURL *)url {
     [self.imgProduct sd_setImageWithURL:url
-                      placeholderImage:[UIImage imageNamed:@"photo_placeholder"]];
+                      placeholderImage:[UIImage imageNamed:@"photo_placeholder_frame"]];
 }
 
 @end

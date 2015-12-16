@@ -10,6 +10,7 @@
 
 #import "LoginViewController.h"
 #import "ProductCollectionViewCell.h"
+#import "ProductDetailViewController.h"
 
 
 
@@ -71,6 +72,10 @@
     return [UIFont fontWithName:@"HelveticaNeue-Thin" size:size];
 }
 
++ (UIFont *)fontMediumWithSize:(CGFloat)size {
+    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
+}
+
 #pragma mark - Global
 
 + (void)applyGlobalStyles {
@@ -119,13 +124,39 @@
     cell.layer.borderWidth = 3.0;
     cell.layer.masksToBounds = YES;
     
-    cell.imgProduct.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imgProduct.contentMode = UIViewContentModeScaleAspectFill;
     cell.imgProduct.backgroundColor = [AppStyle si_lightSalmonColor];
     cell.lbTitle.font = [AppStyle fontWithSize:11];
     cell.lbTitle.textColor = [AppStyle si_blackColor];
     cell.lbPrice.font = [AppStyle fontBoldWithSize:13];
     cell.lbPrice.textColor = [AppStyle si_blackColor];
 }
+
+
++ (void)styleProductDetailViewController:(ProductDetailViewController *)vc{
+
+    vc.lbPrice.font = [AppStyle fontWithSize:24];
+    vc.lbNameProfile.font = [AppStyle fontWithSize:14];
+    vc.lbDateProfile.font = [AppStyle fontWithSize:11];
+    vc.lbTitleProduct.font = [AppStyle fontBoldWithSize:13];
+    vc.lbDescriptionProduct.font = [AppStyle fontWithSize:12];
+    vc.lbState.font = [AppStyle fontWithSize:14];
+    vc.lbNumberPhotos.font = [AppStyle fontWithSize:14];
+    vc.lbLocation.font = [AppStyle fontWithSize:14];
+    
+    vc.btBuyProduct.titleLabel.font = [AppStyle fontMediumWithSize:16];
+    
+    NSUInteger width = 100;
+    NSUInteger height = 30;
+    vc.pageControl.frame = CGRectMake((vc.imagesContainer.frame.size.width/2)-(width/2),
+                                      vc.imagesContainer.frame.size.height-height,
+                                      width, height);
+    vc.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    vc.pageControl.currentPageIndicatorTintColor = [AppStyle si_orangishColor];
+    
+}
+
+
 
 
 #pragma mark - Shared

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JSONParser.h"
 #import "JSONCreator.h"
+@import CoreLocation;
 
 @interface User : NSObject <JSONParser, JSONCreator>
 
@@ -23,6 +24,7 @@
 @property (copy, nonatomic) NSString *state;
 @property (copy, nonatomic) NSString *latitude;
 @property (copy, nonatomic) NSString *longitude;
+@property (nonatomic) CLLocationCoordinate2D location;
 
 @property (strong, nonatomic) NSURL *avatarURL;
 

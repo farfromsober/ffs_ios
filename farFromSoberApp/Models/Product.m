@@ -25,6 +25,17 @@ static NSString * const imagesKey = @"images";
 
 @implementation Product
 
+#pragma mark - Properties
+-(NSString *)dateFormatted{
+    if (self.published) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        return [@"published " stringByAppendingString:[dateFormatter stringFromDate:self.published]];
+    }
+    return @"";
+}
+
+
 #pragma mark - Storing & retriving
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
@@ -65,9 +76,22 @@ static NSString * const imagesKey = @"images";
         product.name = dic[nameKey] ? dic[nameKey] : @"";
         product.detail = dic[detailKey] ? dic[detailKey] : @"";
         product.category = dic[categoryKey] ? [[ProductCategory alloc] initWithJSON:dic[categoryKey]] : nil;
-        product.published = dic[publishedKey] ? [NSDate parseISO8601Date:dic[publishedKey]] : nil;
-        product.price = dic[priceKey] ? dic[priceKey] : @"";
         product.seller = [[User alloc] initWithJSON:dic[sellerKey]];
+        
+        if (dic[priceKey]){
+            // le quitamos el .0 del final
+            product.price = [dic[priceKey] substringToIndex:[dic[priceKey] length]-2];
+        } else {
+            product.price = @"";
+        }
+        
+        if (dic[publishedKey]) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"];
+            product.published = [dateFormatter dateFromString:dic[publishedKey]];
+        } else {
+            product.published = nil;
+        }
         
         NSMutableArray *mArr = [[NSMutableArray alloc] init];
         if ([dic[imagesKey] isKindOfClass:[NSArray class]]) {
@@ -129,6 +153,9 @@ static NSString * const imagesKey = @"images";
     
     return YES;
 }
+
+
+
 
 #pragma mark - Overriden
 
