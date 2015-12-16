@@ -491,7 +491,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
             //Si es la última imagen, la ponemos el placeholder y ocultamos la posterior
             [actualImageView setImage: [UIImage imageNamed:@"new_product_photo_placeholder"]];
             UIImageView *lastImageView = [self getImageWithTag:actualTag+1];
-            lastImageView.hidden = YES;
+            if (actualImageView.tag != lastImageView.tag) {
+                lastImageView.hidden = YES;
+            }
         }
     }
     // Eliminamos el último tag del array de tags de imágenes del usuario

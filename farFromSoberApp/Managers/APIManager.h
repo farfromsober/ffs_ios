@@ -16,6 +16,9 @@
 
 + (id)sharedManager;
 
+- (void) setHeaderCredentials:(NSString *) username
+                     password:(NSString *) password;
+
 - (void)startReachabilityMonitor;
 - (void)stopReachabilityMonitor;
 

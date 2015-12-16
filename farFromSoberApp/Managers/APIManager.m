@@ -7,6 +7,7 @@
 //
 
 #import "APIManager.h"
+#import "UserManager.h"
 
 @interface APIManager ()
 
@@ -24,8 +25,6 @@
 @implementation APIManager
 
 static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
-static NSString *const requestUsername = @"agustin";
-static NSString *const requestPassword = @"123456";
 
 #pragma mark - accessors
 - (NSString *)appID  {
@@ -48,9 +47,14 @@ static NSString *const requestPassword = @"123456";
 - (AFJSONRequestSerializer *)jsonRequestSerializer  {
     if  (!_jsonRequestSerializer) {
         _jsonRequestSerializer = [AFJSONRequestSerializer serializer];
-        [_jsonRequestSerializer setAuthorizationHeaderFieldWithUsername:requestUsername password:requestPassword];
     }
     return _jsonRequestSerializer;
+}
+
+- (void) setHeaderCredentials:(NSString *) username
+                     password:(NSString *) password {
+    [_jsonRequestSerializer setAuthorizationHeaderFieldWithUsername:username
+                                                           password:password];
 }
 
 #pragma mark - interface methods
@@ -115,8 +119,6 @@ static NSString *const requestPassword = @"123456";
 - (NSURLSessionDataTask *)newProductViaProduct: (NSDictionary *) product
                                       Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    
-    //NSDictionary *parameters = @{@"name":product.name, @"description":product.detail, @"price":product.price ,@"seller":product.seller ,@"category":product.category};
     
     return [[self sessionManager] POST:@"/api/1.0/products/"
                            parameters:product
