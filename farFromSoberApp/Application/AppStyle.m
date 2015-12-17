@@ -216,12 +216,13 @@ static NSUInteger const navBarIconHeight = 25;
 
 #pragma mark - Loading HUD
 
-+(MBProgressHUD *) getLoadingHUDWithView: (UIView *) view {
++(MBProgressHUD *) getLoadingHUDWithView: (UIView *) view
+                                 message: (NSString *) message{
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.activityIndicatorColor = [UIColor blackColor];
-    hud.labelText = @"Uploading Product";
+    hud.labelText = message;
     hud.labelColor = [UIColor blackColor];
     hud.minShowTime = 0.75;
     hud.color = [self mainColorDark];

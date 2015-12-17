@@ -13,13 +13,20 @@
 #import "ProductDetailViewController.h"
 #import "NewProductViewController.h"
 #import "FilterProductsViewController.h"
+#import "MBProgressHUD.h"
+#import "AppStyle.h"
 
 #import "AlertUtil.h"
 
 @interface ProductListVC ()
+
 @property (nonatomic) NSMutableArray *products;
 @property (nonatomic) NSInteger indexCategory;
 @property (nonatomic) NSInteger indexDistance;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) MBProgressHUD *hud;
+
+
 @end
 
 @implementation ProductListVC
@@ -48,7 +55,16 @@
     tap.numberOfTapsRequired = 1;
     tap.delegate = self;
     [self.imgNewProduct addGestureRecognizer:tap];
-
+    
+    
+    // Inicializamos el refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(initializeData)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.cvProductsCollection addSubview:self.refreshControl];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +76,8 @@
     self.indexCategory = -1;
     self.indexDistance = -1;
     
+    self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
+    
     [self.api productsViaCategory:@"" andDistance:@"" andWord:@"" Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         
         self.products = [NSMutableArray new];
@@ -70,11 +88,18 @@
         }
         [self.cvProductsCollection reloadData];
         
+        [self.hud hide:YES];
+        self.hud = nil;
+        [self.refreshControl endRefreshing];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
         [self presentViewController:alert animated:YES completion:nil];
         
         NSLog(@"Error: %@", error);
+        [self.hud hide:YES];
+        self.hud = nil;
+        [self.refreshControl endRefreshing];
 
     }];
   

@@ -107,7 +107,7 @@
             // ... Si el usuario quiere continuar con la subida del producto (ya sea con imágenes o sin imágenes)
             if ([userResponse boolValue]) {
                 //dispatch_async(dispatch_get_main_queue(), ^{
-                    self.hud = [AppStyle getLoadingHUDWithView:self.view];
+                    self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Uploading product"];
                 //});
                 
                 // Continuar con carga de imágenes creando un array de señales.
@@ -235,7 +235,7 @@
 - (void)uploadProduct {
     if (!self.hud) {
         //dispatch_async(dispatch_get_main_queue(), ^{
-            self.hud = [AppStyle getLoadingHUDWithView:self.view];
+        self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Uploading Product"];
         //});
     }
     

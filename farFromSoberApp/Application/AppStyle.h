@@ -29,6 +29,7 @@
 
 + (void)styleProductCell:(ProductCollectionViewCell *)cell;
 
-+ (MBProgressHUD *) getLoadingHUDWithView: (UIView *) view;
++(MBProgressHUD *) getLoadingHUDWithView:(UIView *) view
+                                 message:(NSString *) message;
 
 @end
