@@ -12,6 +12,7 @@
 @class LoginViewController;
 @class ProductCollectionViewCell;
 @class ProductDetailViewController;
+@class FilterProductsViewController;
 
 @interface AppStyle : NSObject
 
@@ -21,9 +22,10 @@
 + (void)applyGlobalStyles;
 + (void)styleNavBar:(UINavigationBar *)navBar;
 
-+ (void)styleLoginViewController:(LoginViewController *)vc;
 
++ (void)styleLoginViewController:(LoginViewController *)vc;
 + (void)styleProductDetailViewController:(ProductDetailViewController *)vc;
++ (void)styleFilterProductsViewController:(FilterProductsViewController *)vc;
 
 + (void)styleProductCell:(ProductCollectionViewCell *)cell;
 

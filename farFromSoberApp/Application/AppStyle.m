@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "ProductCollectionViewCell.h"
 #import "ProductDetailViewController.h"
+#import "FilterProductsViewController.h"
 
 
 
@@ -153,6 +154,21 @@
                                       width, height);
     vc.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     vc.pageControl.currentPageIndicatorTintColor = [AppStyle si_orangishColor];
+    
+}
+
+
++ (void)styleFilterProductsViewController:(FilterProductsViewController *)vc{
+    
+    vc.lbFilter.font = [AppStyle fontBoldWithSize:17];
+    
+    vc.btCancel.titleLabel.font = [AppStyle fontWithSize:17];
+    vc.btSave.titleLabel.font = [AppStyle fontWithSize:17];
+    
+    vc.lbDistance.font = [AppStyle fontBoldWithSize:13];
+    vc.lbDistance.textColor = [AppStyle si_whiteColor];
+    vc.lbCategories.font = [AppStyle fontBoldWithSize:13];
+    vc.lbCategories.textColor = [AppStyle si_whiteColor];
     
 }
 

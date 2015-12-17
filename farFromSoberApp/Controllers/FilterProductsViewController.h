@@ -21,6 +21,12 @@
 @property (weak, nonatomic) IBOutlet UITableView *tvCategories;
 @property (weak, nonatomic) IBOutlet UITableView *tvDistance;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbFilter;
+@property (strong, nonatomic) UILabel *lbCategories;
+@property (strong, nonatomic) UILabel *lbDistance;
+@property (strong, nonatomic) UIView *categoriesHeaderView;
+@property (strong, nonatomic) UIView *distanceHeaderView;
+
 - (IBAction)btCancel:(id)sender;
 - (IBAction)btSave:(id)sender;
 

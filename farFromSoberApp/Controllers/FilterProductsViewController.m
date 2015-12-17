@@ -10,6 +10,7 @@
 
 #import "ProductCategory.h"
 #import "CategoryManager.h"
+#import "AppStyle.h"
 
 #import "FilterTableViewCell.h"
 
@@ -21,6 +22,9 @@
 @property (nonatomic, strong) NSIndexPath *indexDistanceSelected;
 
 @end
+
+static NSUInteger const headerHeight = 30;
+static NSUInteger const headerMargin = 23;
 
 @implementation FilterProductsViewController
 
@@ -52,6 +56,21 @@
     
     self.cateManager = [CategoryManager sharedInstance];
     self.categories = [self.cateManager loadCategories];
+    
+    // creamos las vistas de los headers
+    self.lbCategories = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin, 0, self.view.frame.size.width, headerHeight)];
+    self.lbDistance = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin, 0, self.view.frame.size.width, headerHeight)];
+    self.lbCategories.text = @"CATEGORIES";
+    self.lbDistance.text = @"DISTANCE";
+    
+    self.categoriesHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, headerHeight)];
+    self.distanceHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, headerHeight)];
+    
+    [self.categoriesHeaderView addSubview:self.lbCategories];
+    [self.distanceHeaderView addSubview:self.lbDistance];
+    
+    
+    [AppStyle styleFilterProductsViewController:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,17 +84,19 @@
     return 1;
 }
 
--(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (tableView == self.tvCategories) {
-        return @"CATEGORIES";
-    } else {
-        return @"DISTANCE";
+
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    if (tableView == self.tvCategories){
+        return self.categoriesHeaderView;
     }
+    return self.distanceHeaderView;
+    
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 25;
-}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.tvCategories) {
@@ -84,6 +105,8 @@
         return 1;
     }
 }
+
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
