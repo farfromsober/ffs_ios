@@ -14,6 +14,9 @@
 #import "FilterProductsViewController.h"
 
 
+static NSUInteger const navBarIconWidth = 27;
+static NSUInteger const navBarIconHeight = 25;
+
 
 @implementation AppStyle
 
@@ -89,6 +92,12 @@
     navBar.barTintColor = [AppStyle si_orangishColor];
     navBar.translucent = NO;
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(navBar.frame.size.width/2 - navBarIconWidth/2,
+                                                                               navBar.frame.size.height/2 - navBarIconHeight/2,
+                                                                               navBarIconWidth, navBarIconHeight)];
+    iconImageView.image = [UIImage imageNamed:@"navBarLogo"];
+    [navBar addSubview:iconImageView];
 }
 
 #pragma mark - LoginViewController

@@ -54,8 +54,6 @@
 
 -(void) initializeData {
     
-    self.title = @"Product";
-    
     [self.imgProfile sd_setImageWithURL:self.product.seller.avatarURL
                        placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     
