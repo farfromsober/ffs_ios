@@ -16,5 +16,6 @@
 + (float) defaultLongitude;
 + (CLLocationCoordinate2D) defaultLocation;
 + (int) maxPermitedChars;
++ (NSString *) authHeaderKey;
 
 @end

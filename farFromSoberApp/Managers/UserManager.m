@@ -78,6 +78,8 @@
 - (BOOL)resetUser {
 
     if ([[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:nil]) {
+        // Eliminamos el auth header del nsuserdefaults.
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[AppConstants authHeaderKey]];
         return YES;
     };
     

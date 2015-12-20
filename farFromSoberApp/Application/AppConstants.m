@@ -31,4 +31,8 @@
     return 140;
 }
 
++ (NSString *) authHeaderKey {
+    return @"authHeader";
+}
+
 @end

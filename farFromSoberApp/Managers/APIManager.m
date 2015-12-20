@@ -8,6 +8,7 @@
 
 #import "APIManager.h"
 #import "UserManager.h"
+#import "AppConstants.h"
 
 @interface APIManager ()
 
@@ -55,6 +56,10 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
                      password:(NSString *) password {
     [_jsonRequestSerializer setAuthorizationHeaderFieldWithUsername:username
                                                            password:password];
+    // Almacenamos el auth header en el nsuserdefaults.
+    NSString * authHeaderValue = [_jsonRequestSerializer valueForHTTPHeaderField:@"Authorization"];
+    [[NSUserDefaults standardUserDefaults] setObject:authHeaderValue forKey:[AppConstants authHeaderKey]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - interface methods
@@ -67,6 +72,12 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
         shared.sessionManager.responseSerializer = [shared jsonResponseSerializer];
         shared.sessionManager.requestSerializer = [shared jsonRequestSerializer];
         shared.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+        // Si el usuario ya está logeado recuperamos el auth header del nsuserdefaults.
+        if ([[UserManager sharedInstance] currentUser]) {
+            NSString *authHeaderValue = [[NSUserDefaults standardUserDefaults]
+                                stringForKey:[AppConstants authHeaderKey]];
+            [shared.sessionManager.requestSerializer setValue:authHeaderValue forHTTPHeaderField:@"Authorization"];
+        }
     });
     
     return shared;
@@ -128,5 +139,18 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
                                   failure(task, error);
                               }];
 }
+
+#pragma mark - Utils
+
+- (NSString *) filePath {
+    static NSString* filePath = nil;
+    if (!filePath) {
+        filePath =
+        [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+         stringByAppendingPathComponent:[AppConstants userStoragePath]];
+    }
+    return filePath;
+}
+
 
 @end
