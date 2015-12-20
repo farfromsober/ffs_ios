@@ -140,6 +140,25 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
                               }];
 }
 
+- (NSURLSessionDataTask *)newImages:(NSArray *) images
+                         ViaProductId:(NSString *) productId
+                            Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:productId forKey:@"productId"];
+    [parameters setObject:images forKey:@"urls"];
+    
+    
+    return [[self sessionManager] POST:@"/api/1.0/images/"
+                            parameters:parameters
+                               success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                                   success(task, responseObject);
+                               } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                   failure(task, error);
+                               }];
+}
+
 #pragma mark - Utils
 
 - (NSString *) filePath {

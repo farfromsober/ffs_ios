@@ -40,6 +40,7 @@
 @property (nonatomic, copy) NSMutableArray *images;
 @property (strong, nonatomic) UIPickerView *pkCategories;
 @property (nonatomic, copy) NSMutableArray *temporaryImageNsurls;
+@property (nonatomic, copy) NSMutableArray *temporaryImageUrls;
 
 @property (strong, nonatomic) MBProgressHUD *hud;
 
@@ -54,6 +55,8 @@
     if (self) {
         _product = product;
         _images = [[NSMutableArray alloc] init];
+        _temporaryImageNsurls = [[NSMutableArray alloc] init];
+        _temporaryImageUrls = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -196,13 +199,10 @@
         User *user = [self.userM currentUser];
         NSString *now = [NSDate stringWithISO8601FormatDate:[NSDate new]];
         
-        NSString *blobName = [NSString stringWithFormat:@"%@-%ld-%@",[user userId], (long)imageView.tag, now];
-        NSMutableString *imageUrl = [[NSMutableString alloc] initWithString:AZURE_CDN_URL];
-        [imageUrl appendString:AZURE_CONTAINER];
-        [imageUrl appendString:@"/"];
-        [imageUrl appendString:blobName];
+        NSString *blobName = [NSString stringWithFormat:@"%@-%ld-%@",[user userId], (long)imageView.tag-4, now];
+        NSString *imageUrl = [ABSManager getCDNURLStringForblobName:blobName];
+        [self.temporaryImageUrls addObject:imageUrl];
         NSURL *imageNSURL = [NSURL URLWithString:imageUrl];
-        NSLog(@"imageURL: %@", imageUrl);
         [self.temporaryImageNsurls addObject:imageNSURL];
         
         [self.manager giveMeSaSURLBlobName:blobName
@@ -251,7 +251,7 @@
     [self.api newProductViaProduct:prod
                            Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                                self.product.productId = [responseObject objectForKey:@"id"];
-                               NSLog(@"Producto subido con éxito");
+                               //NSLog(@"Producto subido con éxito");
                                [self uploadProductImages];
                            } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                [self enableButtons:YES];
@@ -262,11 +262,21 @@
 }
 
 - (void) uploadProductImages {
-    //TODO: Subida de imáges a la api de imágenes.
-    NSLog(@"FALTA SUBIR IMÁGENES");
-    self.temporaryImageNsurls = nil;
-    [self disableLoadingHUD];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.api newImages:self.temporaryImageUrls
+           ViaProductId:self.product.productId
+                Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                    self.temporaryImageNsurls = nil;
+                    self.temporaryImageUrls = nil;
+                    [self disableLoadingHUD];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    [self enableButtons:YES];
+                    [self disableLoadingHUD];
+                    UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }];
+    
+    
 }
 
 // Botón de cancelar. Dismiss de la vista y vuelta al listado de productos.

@@ -37,4 +37,8 @@
 - (NSURLSessionDataTask *)newProductViaProduct: (NSDictionary *) product
                                        Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)newImages:(NSArray *) images
+                       ViaProductId:(NSString *) productId
+                            Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end
