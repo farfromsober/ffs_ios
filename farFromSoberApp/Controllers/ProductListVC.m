@@ -18,7 +18,7 @@
 
 #import "AlertUtil.h"
 
-@interface ProductListVC ()
+@interface ProductListVC () <UISearchResultsUpdating>
 
 @property (nonatomic) NSMutableArray *products;
 @property (nonatomic) NSInteger indexCategory;
@@ -26,6 +26,7 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MBProgressHUD *hud;
 
+@property (nonatomic, strong) UISearchController *searchController;
 
 @end
 
@@ -35,6 +36,8 @@
     [super viewDidLoad];
     
     //NavigationBar
+    //[AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
+    [AppStyle addSearchBarToNavBar:self.navigationController.navigationBar];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"]
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
@@ -43,6 +46,7 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(filterProducts)];
+    
     
     [self initializeData];
     
@@ -65,6 +69,17 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.cvProductsCollection addSubview:self.refreshControl];
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    //[AppStyle hideLogo:NO ToNavBar:self.navigationController.navigationBar];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //[AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,6 +118,11 @@
 
     }];
   
+}
+
+#pragma mark - UISearchResultsUpdating
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
 }
 
 #pragma mark - UICollectionViewDelegate

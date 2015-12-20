@@ -21,6 +21,9 @@
 
 + (void)applyGlobalStyles;
 + (void)styleNavBar:(UINavigationBar *)navBar;
++ (void)hideLogo:(BOOL)hide ToNavBar:(UINavigationBar *) navBar;
++ (void)addSearchBarToNavBar:(UINavigationBar *) navBar;
++ (void)removeSearchBarFromNavBar:(UINavigationBar *) navBar;
 
 
 + (void)styleLoginViewController:(LoginViewController *)vc;

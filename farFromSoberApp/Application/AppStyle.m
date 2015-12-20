@@ -97,7 +97,26 @@ static NSUInteger const navBarIconHeight = 25;
                                                                                navBar.frame.size.height/2 - navBarIconHeight/2,
                                                                                navBarIconWidth, navBarIconHeight)];
     iconImageView.image = [UIImage imageNamed:@"navBarLogo"];
+    iconImageView.tag = 99;
     [navBar addSubview:iconImageView];
+}
+
++ (void)hideLogo:(BOOL)hide ToNavBar:(UINavigationBar *) navBar {
+    UIView *logo = [navBar viewWithTag:99];
+    logo.hidden = hide;
+}
+
++ (void)addSearchBarToNavBar:(UINavigationBar *) navBar {
+    UISearchBar *searchBar = [UISearchBar new];
+    [searchBar sizeToFit];
+    searchBar.backgroundColor = [AppStyle mainColorDark];
+    searchBar.barTintColor = [AppStyle mainColorDark];
+    navBar.topItem.titleView = searchBar;
+}
+
++ (void)removeSearchBarFromNavBar:(UINavigationBar *) navBar {
+    
+    
 }
 
 #pragma mark - LoginViewController
