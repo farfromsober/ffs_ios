@@ -74,12 +74,12 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    //[AppStyle hideLogo:NO ToNavBar:self.navigationController.navigationBar];
+    [AppStyle hideLogo:NO ToNavBar:self.navigationController.navigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //[AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
+    [AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
 }
 
 - (void)didReceiveMemoryWarning {

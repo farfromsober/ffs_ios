@@ -62,8 +62,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     self.userM = [UserManager sharedInstance];
     
     self.cateManager = [CategoryManager sharedInstance];

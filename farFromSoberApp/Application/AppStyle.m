@@ -7,7 +7,7 @@
 //
 
 #import "AppStyle.h"
-
+#import "AppConstants.h"
 #import "LoginViewController.h"
 #import "ProductCollectionViewCell.h"
 #import "ProductDetailViewController.h"
@@ -93,16 +93,19 @@ static NSUInteger const navBarIconHeight = 25;
     navBar.translucent = NO;
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(navBar.frame.size.width/2 - navBarIconWidth/2,
-                                                                               navBar.frame.size.height/2 - navBarIconHeight/2,
-                                                                               navBarIconWidth, navBarIconHeight)];
-    iconImageView.image = [UIImage imageNamed:@"navBarLogo"];
-    iconImageView.tag = 99;
-    [navBar addSubview:iconImageView];
+    if (![navBar viewWithTag:[AppConstants searchBarTag]]) {
+        UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(navBar.frame.size.width/2 - navBarIconWidth/2,
+                                                                                   navBar.frame.size.height/2 - navBarIconHeight/2,
+                                                                                   navBarIconWidth, navBarIconHeight)];
+        iconImageView.image = [UIImage imageNamed:@"navBarLogo"];
+        iconImageView.tag = [AppConstants searchBarTag];
+        [navBar addSubview:iconImageView];
+    }
+    
 }
 
 + (void)hideLogo:(BOOL)hide ToNavBar:(UINavigationBar *) navBar {
-    UIView *logo = [navBar viewWithTag:99];
+    UIView *logo = [navBar viewWithTag:[AppConstants searchBarTag]];
     logo.hidden = hide;
 }
 

@@ -35,4 +35,8 @@
     return @"authHeader";
 }
 
++ (NSInteger) searchBarTag {
+    return 99;
+}
+
 @end
