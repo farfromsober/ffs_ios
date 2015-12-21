@@ -265,10 +265,8 @@
     [self.api newImages:self.temporaryImageUrls
            ViaProductId:self.product.productId
                 Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-                    self.temporaryImageNsurls = nil;
-                    self.temporaryImageUrls = nil;
                     [self disableLoadingHUD];
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self showSuccesMessage];
                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
                     [self enableButtons:YES];
                     [self disableLoadingHUD];
@@ -277,6 +275,26 @@
                 }];
     
     
+}
+
+- (void) showSuccesMessage {
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Create product"
+                                  message:@"Product successfully created"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* success = [UIAlertAction
+                             actionWithTitle:@"Ok"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 self.temporaryImageNsurls = nil;
+                                 self.temporaryImageUrls = nil;
+                                 [self disableLoadingHUD];
+                                 [self dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    
+    [alert addAction:success];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 // Botón de cancelar. Dismiss de la vista y vuelta al listado de productos.
