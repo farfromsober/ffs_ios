@@ -17,5 +17,6 @@
 + (CLLocationCoordinate2D) defaultLocation;
 + (int) maxPermitedChars;
 + (NSString *) authHeaderKey;
++ (NSInteger) searchBarTag;
 
 @end

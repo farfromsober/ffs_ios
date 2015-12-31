@@ -18,7 +18,7 @@
 
 #import "AlertUtil.h"
 
-@interface ProductListVC ()
+@interface ProductListVC () <UISearchBarDelegate>
 
 @property (nonatomic) NSMutableArray *products;
 @property (nonatomic) NSInteger indexCategory;
@@ -26,6 +26,11 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MBProgressHUD *hud;
 
+@property (nonatomic, strong) UISearchController *searchController;
+
+@property (strong, nonatomic) UISearchBar *searchBar;
+@property (nonatomic) BOOL searchBarShouldBeginEditing;
+@property (nonatomic) BOOL anySearchMade;
 
 @end
 
@@ -35,6 +40,8 @@
     [super viewDidLoad];
     
     //NavigationBar
+    //[AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
+    [AppStyle addSearchBarToNavBar:self.navigationController.navigationBar];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"]
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
@@ -43,6 +50,12 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(filterProducts)];
+    
+    // Declaramos delegado de la searchBar
+    self.searchBar = (UISearchBar *)self.navigationController.navigationBar.topItem.titleView;
+    self.searchBar.delegate = self;
+    self.searchBarShouldBeginEditing = YES;
+    self.anySearchMade = NO;
     
     [self initializeData];
     
@@ -56,7 +69,6 @@
     tap.delegate = self;
     [self.imgNewProduct addGestureRecognizer:tap];
     
-    
     // Inicializamos el refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.tintColor = [UIColor whiteColor];
@@ -65,6 +77,17 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.cvProductsCollection addSubview:self.refreshControl];
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [AppStyle hideLogo:NO ToNavBar:self.navigationController.navigationBar];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,9 +99,22 @@
     self.indexCategory = -1;
     self.indexDistance = -1;
     
+    [self getProductsWithCategory:@"" Distance:@"" AndWord:@""];
+}
+
+- (void) resetData {
+    if (self.anySearchMade) {
+        self.anySearchMade = NO;
+        [self initializeData];
+    }
+}
+
+- (void) getProductsWithCategory: (NSString *) category
+                        Distance: (NSString *) distance
+                         AndWord: (NSString *) word {
     self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
     
-    [self.api productsViaCategory:@"" andDistance:@"" andWord:@"" Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self.api productsViaCategory:category andDistance:distance andWord:word Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         
         self.products = [NSMutableArray new];
         
@@ -100,9 +136,35 @@
         [self.hud hide:YES];
         self.hud = nil;
         [self.refreshControl endRefreshing];
-
     }];
-  
+}
+
+#pragma mark - UISearchBarDelegate
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if([searchText  isEqual: @""]) {
+        // user tapped the 'clear' button
+        self.searchBarShouldBeginEditing = NO;
+        [searchBar resignFirstResponder];
+    }
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    BOOL boolToReturn = self.searchBarShouldBeginEditing;
+    self.searchBarShouldBeginEditing = YES;
+    if (!boolToReturn) {
+        [self resetData];
+    }
+    return boolToReturn;
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"%@",searchBar.text);
+    [searchBar resignFirstResponder];
+    self.anySearchMade = YES;
+    NSString *searchWord = [[searchBar.text componentsSeparatedByString:@" "] objectAtIndex:0];
+    
+    [self getProductsWithCategory:@"" Distance:@"" AndWord:searchWord];
 }
 
 #pragma mark - UICollectionViewDelegate
