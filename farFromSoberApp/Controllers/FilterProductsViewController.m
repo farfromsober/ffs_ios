@@ -182,8 +182,7 @@ static NSUInteger const headerMargin = 23;
     
     if([self.myDelegate respondsToSelector:@selector(filterProductsViewControllerDismissed:indexDistance:)])
     {
-        //Sumamos 1 ya que en la api el index comienza en 1
-        NSString *indexC = self.indexCategorySelected ? [NSString stringWithFormat:@"%ld",self.indexCategorySelected.row + 1] : @"";
+        NSString *indexC = self.indexCategorySelected ? [NSString stringWithFormat:@"%ld",self.indexCategorySelected.row] : @"";
         NSString *indexD = self.indexDistanceSelected ? [NSString stringWithFormat:@"%ld",self.indexDistanceSelected.row + 1] : @"";
         [self.myDelegate filterProductsViewControllerDismissed:indexC indexDistance:indexD];
     }

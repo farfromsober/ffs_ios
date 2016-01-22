@@ -27,26 +27,36 @@
     
     NSMutableArray *categories = [NSMutableArray new];
     
-    ProductCategory *cDeportes = [[ProductCategory alloc] init];
-    cDeportes.index = 1;
-    cDeportes.name = @"Deportes";
+    ProductCategory *cMac = [[ProductCategory alloc] init];
+    cMac.index = 0;
+    cMac.name = @"Mac";
     
-    ProductCategory *cTecno = [[ProductCategory alloc] init];
-    cTecno.index = 2;
-    cTecno.name = @"Tecnología";
+    ProductCategory *ciPad = [[ProductCategory alloc] init];
+    ciPad.index = 1;
+    ciPad.name = @"iPad";
     
-    ProductCategory *cMotor = [[ProductCategory alloc] init];
-    cMotor.index = 3;
-    cMotor.name = @"Motor";
+    ProductCategory *ciPhone = [[ProductCategory alloc] init];
+    ciPhone.index = 2;
+    ciPhone.name = @"iPhone";
     
-    ProductCategory *cGeneral = [[ProductCategory alloc] init];
-    cGeneral.index = 4;
-    cGeneral.name = @"General";
+    ProductCategory *cWatch = [[ProductCategory alloc] init];
+    cWatch.index = 3;
+    cWatch.name = @"Watch";
     
-    [categories addObject:cDeportes];
-    [categories addObject:cTecno];
-    [categories addObject:cMotor];
-    [categories addObject:cGeneral];
+    ProductCategory *cTV = [[ProductCategory alloc] init];
+    cTV.index = 4;
+    cTV.name = @"TV";
+    
+    ProductCategory *cMusic = [[ProductCategory alloc] init];
+    cMusic.index = 5;
+    cMusic.name = @"Music";
+    
+    [categories addObject:cMac];
+    [categories addObject:ciPad];
+    [categories addObject:ciPhone];
+    [categories addObject:cWatch];
+    [categories addObject:cTV];
+    [categories addObject:cMusic];
     
     return categories;
 }
