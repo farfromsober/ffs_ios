@@ -118,7 +118,7 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
     
     NSDictionary *parameters = @{@"category":category, @"distance":distance, @"name":word};
     
-    return [[self sessionManager] GET:@"/api/1.0/products/"
+    return [[self sessionManager] GET:@"/api/1.0/products/?selling=2"
                             parameters:parameters
                                success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                                    success(task, responseObject);
