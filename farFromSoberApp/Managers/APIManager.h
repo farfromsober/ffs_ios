@@ -34,6 +34,12 @@
                                       andWord:(NSString *) word
                                       Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)productsForUser:(NSString *)username
+                                  selling:(BOOL )selling
+                                  Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)productsBoughtSuccess:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)newProductViaProduct: (NSDictionary *) product
                                        Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
@@ -41,4 +47,8 @@
                        ViaProductId:(NSString *) productId
                             Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+//user
+- (NSURLSessionDataTask *)userDataById:(int)userId
+                               Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end

@@ -192,7 +192,7 @@
 
 
 - (IBAction)goToUser:(id)sender {
-    UserDetailVC *userDetailVC = [[UserDetailVC alloc] init];
+    UserDetailVC *userDetailVC = [[UserDetailVC alloc] initWithUser:self.product.seller];
     [self.navigationController pushViewController:userDetailVC animated:YES];
 }
 @end

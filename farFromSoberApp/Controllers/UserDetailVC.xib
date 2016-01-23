@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserDetailVC">
             <connections>
+                <outlet property="cvProductsCollection" destination="EEO-PE-Rbj" id="YzT-bQ-HZc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +14,25 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="EEO-PE-Rbj">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <color key="backgroundColor" red="0.98937636610000002" green="0.87379169459999995" blue="0.81683111190000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PdR-Zf-tBv">
+                        <size key="itemSize" width="135" height="170"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="EEO-PE-Rbj" secondAttribute="trailing" id="Lg2-D6-mDO"/>
+                <constraint firstItem="EEO-PE-Rbj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NqM-cM-K7u"/>
+                <constraint firstAttribute="bottom" secondItem="EEO-PE-Rbj" secondAttribute="bottom" id="tz1-s0-LCg"/>
+                <constraint firstItem="EEO-PE-Rbj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="v5O-0z-RPd"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>
