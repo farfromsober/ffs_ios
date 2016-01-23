@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSString *appID;
 @property (nonatomic, strong) NSString *appKey;
 
+@property (nonatomic, copy) NSArray *distances;
+
 @end
 
 @implementation APIManager
@@ -78,6 +80,10 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
                                 stringForKey:[AppConstants authHeaderKey]];
             [shared.sessionManager.requestSerializer setValue:authHeaderValue forHTTPHeaderField:@"Authorization"];
         }
+        
+        // FIXME
+        shared.distances = @[@100, @50, @10, @5, @1];
+        
     });
     
     return shared;
@@ -116,7 +122,14 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
                                 Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     
-    NSDictionary *parameters = @{@"category":category, @"distance":distance, @"name":word};
+    NSDictionary *parameters;
+    if ([distance compare:@""] != 0) {
+        distance = self.distances[[distance integerValue]];
+        parameters = @{@"category":category, @"name":word, @"distance":distance,
+                       @"longitude":[[UserManager sharedInstance] currentUser].longitude, @"latitude":[[UserManager sharedInstance] currentUser].latitude};
+    }else{
+        parameters = @{@"category":category, @"name":word};
+    }
     
     return [[self sessionManager] GET:@"/api/1.0/products/?selling=2"
                             parameters:parameters

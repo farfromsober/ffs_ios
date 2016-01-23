@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) CategoryManager *cateManager;
 @property (nonatomic, copy) NSArray *categories;
+@property (nonatomic, copy) NSArray *distances;
 @property (nonatomic, strong) NSIndexPath *indexCategorySelected;
 @property (nonatomic, strong) NSIndexPath *indexDistanceSelected;
 
@@ -56,6 +57,9 @@ static NSUInteger const headerMargin = 23;
     
     self.cateManager = [CategoryManager sharedInstance];
     self.categories = [self.cateManager loadCategories];
+    
+    // FIXME
+    self.distances = @[@100, @50, @10, @5, @1];
     
     // creamos las vistas de los headers
     self.lbCategories = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin, 0, self.view.frame.size.width, headerHeight)];
@@ -102,7 +106,7 @@ static NSUInteger const headerMargin = 23;
     if (tableView == self.tvCategories) {
         return [self.categories count];
     } else {
-        return 1;
+        return [self.distances count];
     }
 }
 
@@ -125,12 +129,13 @@ static NSUInteger const headerMargin = 23;
         
         
     } else {
-        cell.lbName.text = @"Test";
-        /*if (cellData.index == self.indexDistance) {
-            cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
+        
+        cell.lbName.text = [NSString stringWithFormat:@"%@ km", [self.distances objectAtIndex:indexPath.row]];
+        if (self.indexDistanceSelected && indexPath.row == self.indexDistanceSelected.row) {
+            cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
         }else{
             cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
-        }*/
+        }
     }
     
     return cell;
@@ -157,13 +162,20 @@ static NSUInteger const headerMargin = 23;
         
         
     } else {
+        
         if (self.indexDistanceSelected && self.indexDistanceSelected.row >= 0) {
             FilterTableViewCell *cellSelected = [tableView cellForRowAtIndexPath:self.indexDistanceSelected];
             cellSelected.imgCheck.image = [UIImage imageNamed:@"checkOff"];
             
         }
-        self.indexDistanceSelected = indexPath;
-        cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
+        if (self.indexDistanceSelected && self.indexDistanceSelected.row == indexPath.row) {
+            self.indexDistanceSelected = nil;
+            cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
+        } else {
+            self.indexDistanceSelected = indexPath;
+            cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
+        }
+        
     }
     
     
@@ -183,7 +195,7 @@ static NSUInteger const headerMargin = 23;
     if([self.myDelegate respondsToSelector:@selector(filterProductsViewControllerDismissed:indexDistance:)])
     {
         NSString *indexC = self.indexCategorySelected ? [NSString stringWithFormat:@"%ld",self.indexCategorySelected.row] : @"";
-        NSString *indexD = self.indexDistanceSelected ? [NSString stringWithFormat:@"%ld",self.indexDistanceSelected.row + 1] : @"";
+        NSString *indexD = self.indexDistanceSelected ? [NSString stringWithFormat:@"%ld",self.indexDistanceSelected.row] : @"";
         [self.myDelegate filterProductsViewControllerDismissed:indexC indexDistance:indexD];
     }
     [self dismissViewControllerAnimated:YES completion:^{

@@ -218,8 +218,8 @@
 
 -(void) filterProducts {
     
-    NSInteger indexC = self.indexCategory > -1 ? self.indexCategory : -1;
-    NSInteger indexD = self.indexDistance > -1 ? self.indexDistance : -1;
+    NSInteger indexC = self.indexCategory ? self.indexCategory : -1;
+    NSInteger indexD = self.indexDistance ? self.indexDistance : -1;
     
     FilterProductsViewController *filVC = [[FilterProductsViewController alloc] initWithIndexCategorySelected:indexC andIndexDistance:indexD];
     filVC.myDelegate = self;
@@ -231,8 +231,8 @@
 #pragma mark - FilterViewController delegate
 -(void)filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance{
     
-    self.indexCategory = [indexCategory integerValue] - 1;
-    self.indexDistance = [indexDistance integerValue] - 1;
+    self.indexCategory = [indexCategory integerValue];
+    self.indexDistance = [indexDistance integerValue];
     
     [self.api productsViaCategory:indexCategory andDistance:indexDistance andWord:@"" Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         
