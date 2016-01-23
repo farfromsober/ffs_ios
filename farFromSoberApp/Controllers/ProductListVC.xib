@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -19,7 +19,6 @@
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HIJ-K2-vJk">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                    <animations/>
                     <color key="backgroundColor" red="0.98937636613845825" green="0.87379169464111328" blue="0.81683111190795898" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gPJ-4J-fZY">
                         <size key="itemSize" width="135" height="170"/>
@@ -30,7 +29,6 @@
                 </collectionView>
                 <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="New Button" translatesAutoresizingMaskIntoConstraints="NO" id="bJe-7g-pQb">
                     <rect key="frame" x="339" y="585" width="70" height="70"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="1sp-pP-SyE"/>
                         <constraint firstAttribute="height" constant="70" id="PBG-64-JlZ"/>
@@ -38,7 +36,6 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="HIJ-K2-vJk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6EF-da-Zyd"/>

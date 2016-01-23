@@ -27,7 +27,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbLocation;
 @property (weak, nonatomic) IBOutlet IBOutlet MKMapView *mvMap;
 @property (weak, nonatomic) IBOutlet UIButton *btBuyProduct;
+
 @property (nonatomic, strong) UIPageControl *pageControl;
--(instancetype) initWithProduct: (Product *) produt;
+
+- (instancetype) initWithProduct: (Product *) produt;
+- (IBAction)goToUser:(id)sender;
 
 @end

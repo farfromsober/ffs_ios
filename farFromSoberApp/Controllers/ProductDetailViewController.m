@@ -12,6 +12,7 @@
 #import "User.h"
 #import "AppStyle.h"
 #import "ProductImageVC.h"
+#import "UserDetailVC.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
@@ -190,4 +191,8 @@
 
 
 
+- (IBAction)goToUser:(id)sender {
+    UserDetailVC *userDetailVC = [[UserDetailVC alloc] init];
+    [self.navigationController pushViewController:userDetailVC animated:YES];
+}
 @end
