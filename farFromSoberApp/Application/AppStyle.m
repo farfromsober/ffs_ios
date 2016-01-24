@@ -216,7 +216,10 @@ static NSUInteger const navBarIconHeight = 25;
     vc.lbSalesNbr.font =  [AppStyle fontWithSize:12];
     vc.buttonsControl.backgroundColor = [AppStyle si_lightPeachColor];
     vc.buttonsControl.tintColor = [AppStyle si_orangishColor];
-    
+    vc.viewProducts.backgroundColor = [AppStyle si_lightPeachColor];
+    vc.scrollViewProducts.backgroundColor= [AppStyle si_lightPeachColor];
+    vc.cvProductsCollection.backgroundColor= [AppStyle si_lightPeachColor];
+
     
 
     

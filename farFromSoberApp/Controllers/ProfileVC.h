@@ -9,10 +9,11 @@
 #import "BaseVC.h"
 #import <UIKit/UIKit.h>
 
-@interface ProfileVC : BaseVC
+@interface ProfileVC : BaseVC <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic) NSMutableArray *purchasedProducts;
-@property (nonatomic) NSMutableArray *soldProducts;
+
+@property (nonatomic) NSMutableArray *productList;
+
 
 @property (weak,nonatomic) IBOutlet UILabel *lbName;
 @property (weak,nonatomic) IBOutlet UILabel *lbLocation;
@@ -23,6 +24,10 @@
 @property (weak,nonatomic) IBOutlet UISegmentedControl *buttonsControl;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgAvatar;
+@property (weak, nonatomic) IBOutlet UICollectionView *cvProductsCollection;
+@property (weak, nonatomic) IBOutlet UIView *viewProducts;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewProducts;
+
 
 - (IBAction)logout:(id)sender;
 
