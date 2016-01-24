@@ -8,7 +8,6 @@
 
 #import "UserDetailVC.h"
 #import "ProductCollectionViewCell.h"
-#import "UserDataCollectionViewCell.h"
 #import "ProductDetailViewController.h"
 #import "Product.h"
 #import "MBProgressHUD.h"
@@ -21,6 +20,9 @@
 @property (nonatomic) NSMutableArray *products;
 @property (nonatomic) User *user;
 @property (strong, nonatomic) MBProgressHUD *hud;
+@property (assign, nonatomic) UserDataProductsListType selectedType;
+
+
 
 @end
 
@@ -30,6 +32,7 @@
     self = [super init];
     if (self) {
         _user = user;
+        self.selectedType = 0;
     }
     
     return self;
@@ -37,13 +40,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getProductsType];
     self.cvProductsCollection.delegate = self;
     self.cvProductsCollection.dataSource = self;
     [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
     [self.cvProductsCollection registerClass:[UserDataCollectionViewCell class] forCellWithReuseIdentifier:@"userCell"];
     [self.cvProductsCollection registerNib:[UINib nibWithNibName:@"UserDataCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"userCell"];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,46 +55,74 @@
 
 - (void) getProductsType {
     self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
-    
-    [self.api productsForUser:self.user.username selling:NO
-                      Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-                          self.products = [NSMutableArray new];
-                          
-                          for (NSDictionary *productDic in responseObject) {
-                              Product *product = [[Product alloc] initWithJSON:productDic];
-                              [self.products addObject:product];
-                          }
-                          [self.cvProductsCollection reloadData];
-                          
-                          [self.hud hide:YES];
-                          self.hud = nil;
-                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                          
-                      }];
+    if (self.selectedType == 0 || self.selectedType == 1) {
+        [self.api productsForUser:self.user.username selling:self.selectedType == UserDataProductsListTypeSelling
+                          Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                              self.products = [NSMutableArray new];
+                              
+                              for (NSDictionary *productDic in responseObject) {
+                                  Product *product = [[Product alloc] initWithJSON:productDic];
+                                  [self.products addObject:product];
+                              }
+                              [self.cvProductsCollection reloadData];
+                              
+                              [self.hud hide:YES];
+                              self.hud = nil;
+                          } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                              
+                          }];
+    } else {
+        [self.api productsBoughtSuccess:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+            self.products = [NSMutableArray new];
+            
+            for (NSDictionary *productDic in responseObject) {
+                Product *product = [[Product alloc] initWithJSON:productDic];
+                [self.products addObject:product];
+            }
+            [self.cvProductsCollection reloadData];
+            
+            [self.hud hide:YES];
+            self.hud = nil;
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            
+        }];
+
+    }
+}
+
+- (void)setSelectedType:(UserDataProductsListType)selectedType {
+    _selectedType = selectedType;
+    [self getProductsType];
 }
 
 
 #pragma mark - UICollectionViewDelegate
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return 2;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.products count] + 1;
+    if (section == 0)
+        return 1;
+    else
+        return self.products.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"productCell";
     static NSString *cellIdentifierHeader = @"userCell";
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         UserDataCollectionViewCell *cell = (UserDataCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifierHeader forIndexPath:indexPath];
+        cell.user = self.user;
+        [cell.segmentedControl setSelectedSegmentIndex:self.selectedType];
+        cell.delegate = self;
         return cell;
-    }else{
+    } else {
         ProductCollectionViewCell *cell = (ProductCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         
-        Product *cellData = [self.products objectAtIndex:indexPath.row-1];
+        Product *cellData = [self.products objectAtIndex:indexPath.row];
         
         cell.lbPrice.text = [NSString stringWithFormat:@"%@€",[cellData price]];
         cell.lbTitle.text = [cellData name];
@@ -104,8 +133,8 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row > 0) {
-        Product *product = [self.products objectAtIndex:indexPath.row-1];
+    if (indexPath.section > 0) {
+        Product *product = [self.products objectAtIndex:indexPath.row];
         
         ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product];
         [self.navigationController pushViewController:pdVC animated:YES];
@@ -116,14 +145,26 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        CGFloat cellWidth = self.view.bounds.size.width-20-20;
-        CGFloat cellHeigth = 200;
+    if (indexPath.section == 0) {
+        CGFloat cellWidth = self.view.bounds.size.width;
+        CGFloat cellHeigth = 170;
         return CGSizeMake(cellWidth, cellHeigth);
     } else {
         CGFloat cellWidth = (self.view.bounds.size.width-20-20-15)/2;
         return CGSizeMake(cellWidth, cellWidth*1.33);
     }
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    if (section == 0)
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    else
+        return UIEdgeInsetsMake(20, 20, 20, 20);
+}
+
+#pragma mark - UserDataCollectionViewCellDelegate
+- (void)userDataCollectionViewCellSelectedOption:(UserDataProductsListType)type {
+    self.selectedType = type;
 }
 
 
