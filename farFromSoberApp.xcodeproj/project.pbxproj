@@ -42,6 +42,10 @@
 		3A290C6D9135887442CB715A /* Pods_farFromSoberApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */; };
 		8E46E9951C20B7DA00B5E4D5 /* ProductImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E46E9931C20B7DA00B5E4D5 /* ProductImageVC.m */; };
 		8E46E9961C20B7DA00B5E4D5 /* ProductImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */; };
+		B81BA8131C54114E00BD551B /* UserDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */; };
+		B81BA8141C54114E00BD551B /* UserDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */; };
+		B8C7E49D1C5384E100A4A96B /* UserDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C7E49B1C5384E100A4A96B /* UserDetailVC.m */; };
+		B8C7E49E1C5384E100A4A96B /* UserDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8C7E49C1C5384E100A4A96B /* UserDetailVC.xib */; };
 		FB129C631C12EE940017721D /* NewProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C611C12EE940017721D /* NewProductViewController.m */; };
 		FB129C641C12EE940017721D /* NewProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB129C621C12EE940017721D /* NewProductViewController.xib */; };
 		FB129C6F1C1375ED0017721D /* ABSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C6C1C1375ED0017721D /* ABSManager.m */; };
@@ -140,6 +144,12 @@
 		8E46E9931C20B7DA00B5E4D5 /* ProductImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImageVC.m; sourceTree = "<group>"; };
 		8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductImageVC.xib; sourceTree = "<group>"; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B81BA8101C54114E00BD551B /* UserDataCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataCollectionViewCell.h; sourceTree = "<group>"; };
+		B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDataCollectionViewCell.m; sourceTree = "<group>"; };
+		B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		B8C7E49A1C5384E100A4A96B /* UserDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailVC.h; sourceTree = "<group>"; };
+		B8C7E49B1C5384E100A4A96B /* UserDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailVC.m; sourceTree = "<group>"; };
+		B8C7E49C1C5384E100A4A96B /* UserDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailVC.xib; sourceTree = "<group>"; };
 		F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_farFromSoberApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB129C601C12EE940017721D /* NewProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProductViewController.h; sourceTree = "<group>"; };
 		FB129C611C12EE940017721D /* NewProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProductViewController.m; sourceTree = "<group>"; };
@@ -365,6 +375,7 @@
 		07BEAF9B1BF64F0E00062D77 /* TabController */ = {
 			isa = PBXGroup;
 			children = (
+				B8C7E4941C53849700A4A96B /* User */,
 				072AF1FC1BF3C88900515EB6 /* BaseVC.h */,
 				072AF1FD1BF3C88900515EB6 /* BaseVC.m */,
 				07BEAF9C1BF64F1700062D77 /* Products */,
@@ -453,6 +464,27 @@
 				F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B81BA80A1C54106D00BD551B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B81BA8101C54114E00BD551B /* UserDataCollectionViewCell.h */,
+				B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */,
+				B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		B8C7E4941C53849700A4A96B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B81BA80A1C54106D00BD551B /* Cell */,
+				B8C7E49A1C5384E100A4A96B /* UserDetailVC.h */,
+				B8C7E49B1C5384E100A4A96B /* UserDetailVC.m */,
+				B8C7E49C1C5384E100A4A96B /* UserDetailVC.xib */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		FB129C5F1C12EE620017721D /* New Product */ = {
@@ -606,9 +638,11 @@
 				8E46E9961C20B7DA00B5E4D5 /* ProductImageVC.xib in Resources */,
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
 				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
+				B81BA8141C54114E00BD551B /* UserDataCollectionViewCell.xib in Resources */,
 				FB241ACC1C0B1EBD000AC1B6 /* ProductCollectionViewCell.xib in Resources */,
 				FB1E9EBE1C144845008B2B69 /* FilterTableViewCell.xib in Resources */,
 				FB1E9EB81C1444FC008B2B69 /* FilterProductsViewController.xib in Resources */,
+				B8C7E49E1C5384E100A4A96B /* UserDetailVC.xib in Resources */,
 				FB241AD41C0B764A000AC1B6 /* ProductListVC.xib in Resources */,
 				FBE2BD1B1C0E524F0082090B /* ProductDetailViewController.xib in Resources */,
 				07E08C731C14ED24001DD8E1 /* Assets.xcassets in Resources */,
@@ -690,8 +724,10 @@
 				FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
+				B81BA8131C54114E00BD551B /* UserDataCollectionViewCell.m in Sources */,
 				07F365E01C1463DF0029F8AD /* AppStyle.m in Sources */,
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,
+				B8C7E49D1C5384E100A4A96B /* UserDetailVC.m in Sources */,
 				075D53261C0082B90043D91C /* AppConstants.m in Sources */,
 				075D53291C00879C0043D91C /* APIManager.m in Sources */,
 				FBA2BA0E1C08CBF5000C36EE /* AlertUtil.m in Sources */,

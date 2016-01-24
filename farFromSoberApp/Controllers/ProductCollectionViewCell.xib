@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -17,14 +17,12 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9zT-Cb-KAk">
                                 <rect key="frame" x="2" y="2" width="156" height="157"/>
-                                <animations/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzF-d5-42s">
                                 <rect key="frame" x="2" y="159" width="156" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3G-VT-ZKc">
                                         <rect key="frame" x="98" y="7" width="50" height="15"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="h8Y-EZ-euC"/>
                                             <constraint firstAttribute="width" constant="50" id="wEb-sg-OPT"/>
@@ -35,7 +33,6 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEV-PI-oNK">
                                         <rect key="frame" x="8" y="7" width="82" height="15"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="1Cq-pK-uRy"/>
                                         </constraints>
@@ -44,7 +41,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="O3G-VT-ZKc" firstAttribute="leading" secondItem="uEV-PI-oNK" secondAttribute="trailing" constant="8" id="1NL-ZC-poj"/>
@@ -56,7 +52,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9zT-Cb-KAk" secondAttribute="trailing" constant="2" id="0Q0-4B-vuO"/>
                             <constraint firstItem="9zT-Cb-KAk" firstAttribute="top" secondItem="atK-Uv-8U2" secondAttribute="top" constant="2" id="2nS-yL-g1c"/>
@@ -68,10 +63,8 @@
                         </constraints>
                     </view>
                 </subviews>
-                <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <animations/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="atK-Uv-8U2" secondAttribute="trailing" id="3TM-go-Chd"/>
                 <constraint firstAttribute="bottom" secondItem="atK-Uv-8U2" secondAttribute="bottom" id="Jcf-qU-Rpd"/>
