@@ -127,6 +127,33 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
                                }];
 }
 
+- (NSURLSessionDataTask *)productsForUser:(NSString *)username
+                                  selling:(BOOL )selling
+                                  Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    
+    NSDictionary *parameters = @{@"seller":username, @"seller":selling?@"2":@"3"};
+    
+    return [[self sessionManager] GET:@"/api/1.0/products/"
+                           parameters:parameters
+                              success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                                  success(task, responseObject);
+                              } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                  failure(task, error);
+                              }];
+}
+
+- (NSURLSessionDataTask *)productsBoughtSuccess:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    
+    return [[self sessionManager] GET:@"/api/1.0/products-bought/"
+                           parameters:nil
+                              success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                                  success(task, responseObject);
+                              } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                  failure(task, error);
+                              }];
+}
 - (NSURLSessionDataTask *)newProductViaProduct: (NSDictionary *) product
                                       Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {

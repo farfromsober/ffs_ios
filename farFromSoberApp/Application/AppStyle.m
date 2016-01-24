@@ -12,6 +12,7 @@
 #import "ProductCollectionViewCell.h"
 #import "ProductDetailViewController.h"
 #import "FilterProductsViewController.h"
+#import "ProfileVC.h"
 
 
 static NSUInteger const navBarIconWidth = 27;
@@ -201,8 +202,25 @@ static NSUInteger const navBarIconHeight = 25;
     vc.lbCategories.font = [AppStyle fontBoldWithSize:13];
     vc.lbCategories.textColor = [AppStyle si_whiteColor];
     
+    
 }
 
++ (void)styleProfileViewController:(ProfileVC *)vc{
+    
+    vc.lbName.font = [AppStyle fontWithSize:14];
+    vc.lbName.textColor = [AppStyle si_orangishColor];
+    vc.lbLocation.font = [AppStyle fontWithSize:12];
+    vc.lbPurchases.font =  [AppStyle fontWithSize:12];
+    vc.lbPurchasesNbr.font =  [AppStyle fontWithSize:12];
+    vc.lbSales.font =  [AppStyle fontWithSize:12];
+    vc.lbSalesNbr.font =  [AppStyle fontWithSize:12];
+    vc.buttonsControl.backgroundColor = [AppStyle si_lightPeachColor];
+    vc.buttonsControl.tintColor = [AppStyle si_orangishColor];
+    
+    
+
+    
+}
 
 
 

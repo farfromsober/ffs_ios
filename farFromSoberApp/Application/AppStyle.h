@@ -13,6 +13,7 @@
 @class ProductCollectionViewCell;
 @class ProductDetailViewController;
 @class FilterProductsViewController;
+@class ProfileVC;
 
 @interface AppStyle : NSObject
 
@@ -29,6 +30,7 @@
 + (void)styleLoginViewController:(LoginViewController *)vc;
 + (void)styleProductDetailViewController:(ProductDetailViewController *)vc;
 + (void)styleFilterProductsViewController:(FilterProductsViewController *)vc;
++ (void)styleProfileViewController:(ProfileVC *)vc;
 
 + (void)styleProductCell:(ProductCollectionViewCell *)cell;
 

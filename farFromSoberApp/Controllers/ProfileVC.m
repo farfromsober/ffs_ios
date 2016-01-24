@@ -10,8 +10,15 @@
 
 #import "UserManager.h"
 #import "AppNavigation.h"
+#import "MBProgressHUD.h"
+#import "AppStyle.h"
+#import "Product.h"
+#import "AlertUtil.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ProfileVC ()
+
+@property (strong, nonatomic) MBProgressHUD *hud;
 
 @end
 
@@ -19,17 +26,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [AppStyle styleProfileViewController:self];
+    [self initializeData];
     
-    // add logout button for TESTING
-    UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [logoutButton setTitle:@"Log out" forState:UIControlStateNormal];
-    [logoutButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
     
-    logoutButton.frame = CGRectMake(0, 0, 120, 40);
-    logoutButton.center = self.view.center;
     
-    [self.view addSubview:logoutButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +45,59 @@
         [AppNavigation onLogoutFromViewController:self];
     }
 }
+
+-(void) initializeData {
+    
+    UserManager *manager = [UserManager sharedInstance];
+    User *user = [manager currentUser];
+    
+    [self getProductsWithUser];
+    
+    self.lbName.text = [NSString stringWithFormat:@"%@|%@|%@",[user firstName],@" ",[user lastName]];
+    
+    self.lbLocation.text = [user city];
+    self.lbSalesNbr.text = [[user sales] stringValue];
+
+    NSUInteger purchases = [self.purchasedProducts count];
+    
+    self.lbPurchasesNbr.text = [NSString stringWithFormat:@"%@",  @(purchases)];
+    
+    [self.imgAvatar sd_setImageWithURL:[user avatarURL] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+    
+}
+
+- (void) getProductsWithUser {
+    self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
+    UserManager *manager = [UserManager sharedInstance];
+    User *user = [manager currentUser];
+    
+    
+    
+    [self.api productsForUser: user.username selling: 2 Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        
+        self.soldProducts = [NSMutableArray new];
+        
+        for (NSDictionary *productDic in responseObject) {
+            Product *product = [[Product alloc] initWithJSON:productDic];
+            [self.soldProducts addObject:product];
+        }
+        
+        
+        [self.hud hide:YES];
+        self.hud = nil;
+   //     [self.refreshControl endRefreshing];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        NSLog(@"Error: %@", error);
+        [self.hud hide:YES];
+        self.hud = nil;
+        //[self.refreshControl endRefreshing];
+    }];
+}
+
 
 
 @end
