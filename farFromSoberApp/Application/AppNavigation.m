@@ -33,9 +33,7 @@
     UINavigationController *productsNVC = [UINavigationController withRoot:[ProductListVC new]];
     UINavigationController *mapNVC = [UINavigationController withRoot:[MapVC new]];
     UINavigationController *nofiticationsNVC = [UINavigationController withRoot:[NotificationListVC new]];
-    
-    UserDetailVC *userDetailVC = [[UserDetailVC alloc] initWithUser:[[UserManager sharedInstance] currentUser]];
-    UINavigationController *profileNVC = [UINavigationController withRoot:userDetailVC];
+    UINavigationController *profileNVC = [UINavigationController withRoot:[[UserDetailVC alloc] initWithUser:[[UserManager sharedInstance] currentUser]]];
     
     // Create an ORDERED array of VCs.
      NSArray *vcs = @[productsNVC, mapNVC, nofiticationsNVC, profileNVC];

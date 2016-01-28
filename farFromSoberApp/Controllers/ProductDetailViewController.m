@@ -17,14 +17,12 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "UserManager.h"
-#import "ProductListVC.h"
 
 @interface ProductDetailViewController ()
 
 @property (nonatomic, strong) Product *product;
 @property (nonatomic, strong) UIPageViewController *pageVC;
 @property (nonatomic) NSUInteger numPages;
-@property (weak, nonatomic) ProductListVC *productList;
 
 
 @end
@@ -33,12 +31,11 @@
 
 #pragma mark - Init
 
--(instancetype) initWithProduct:(Product *)product productList:(id)productListVC{
+-(instancetype) initWithProduct:(Product *)product{
     
     self = [super init];
     if (self) {
         _product = product;
-        _productList = productListVC;
     }
     
     return self;
@@ -207,7 +204,7 @@
 - (IBAction)buyProduct:(id)sender {
     MBProgressHUD *hud = [AppStyle getLoadingHUDWithView:self.view message:@"Comprando"];
     [self.api buyProductWithId:self.product.productId Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-        [[self.productList products] removeObject:self.product];
+        [self.delegate productDetailProductBougth:self.product];
         [hud hide:YES afterDelay:1];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

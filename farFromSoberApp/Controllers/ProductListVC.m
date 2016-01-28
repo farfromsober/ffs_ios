@@ -10,7 +10,6 @@
 #import "Product.h"
 
 #import "ProductCollectionViewCell.h"
-#import "ProductDetailViewController.h"
 #import "NewProductViewController.h"
 #import "FilterProductsViewController.h"
 #import "MBProgressHUD.h"
@@ -96,7 +95,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
-    [self.cvProductsCollection reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -206,7 +204,8 @@
     
     Product *product = [self.products objectAtIndex:indexPath.row];
     
-    ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product productList:self];
+    ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct:product];
+    pdVC.delegate = self;
     [self.navigationController pushViewController:pdVC animated:YES];
 }
 
@@ -282,6 +281,12 @@
     
     [[UserManager sharedInstance] currentUser].latitude = self.latitude;
     [[UserManager sharedInstance] currentUser].longitude = self.longitude;
+}
+
+#pragma mark - ProductDetailDelegate
+- (void)productDetailProductBougth:(Product *)product {
+    [self.products removeObject:product];
+    [self.cvProductsCollection reloadData];
 }
 
 @end
