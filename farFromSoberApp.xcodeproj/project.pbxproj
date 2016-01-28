@@ -43,6 +43,7 @@
 		8E46E9961C20B7DA00B5E4D5 /* ProductImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */; };
 		B81BA8131C54114E00BD551B /* UserDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */; };
 		B81BA8141C54114E00BD551B /* UserDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */; };
+		B88120A11C59977D008AD59E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88120A01C59977D008AD59E /* CoreLocation.framework */; };
 		B8C7E49D1C5384E100A4A96B /* UserDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C7E49B1C5384E100A4A96B /* UserDetailVC.m */; };
 		B8C7E49E1C5384E100A4A96B /* UserDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8C7E49C1C5384E100A4A96B /* UserDetailVC.xib */; };
 		FB129C631C12EE940017721D /* NewProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C611C12EE940017721D /* NewProductViewController.m */; };
@@ -144,6 +145,7 @@
 		B81BA8101C54114E00BD551B /* UserDataCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataCollectionViewCell.h; sourceTree = "<group>"; };
 		B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDataCollectionViewCell.m; sourceTree = "<group>"; };
 		B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		B88120A01C59977D008AD59E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B8C7E49A1C5384E100A4A96B /* UserDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailVC.h; sourceTree = "<group>"; };
 		B8C7E49B1C5384E100A4A96B /* UserDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailVC.m; sourceTree = "<group>"; };
 		B8C7E49C1C5384E100A4A96B /* UserDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailVC.xib; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B88120A11C59977D008AD59E /* CoreLocation.framework in Frameworks */,
 				FBE2BD1D1C0E66370082090B /* MapKit.framework in Frameworks */,
 				FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */,
 				FB129C701C1375ED0017721D /* WindowsAzureMobileServices.framework in Frameworks */,
@@ -446,6 +449,7 @@
 		B1D813B4A64754D299881408 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B88120A01C59977D008AD59E /* CoreLocation.framework */,
 				FBE2BD1C1C0E66370082090B /* MapKit.framework */,
 				FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */,
 				F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */,

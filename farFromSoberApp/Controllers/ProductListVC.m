@@ -15,7 +15,6 @@
 #import "FilterProductsViewController.h"
 #import "MBProgressHUD.h"
 #import "AppStyle.h"
-
 #import "AlertUtil.h"
 
 @interface ProductListVC () <UISearchBarDelegate>
@@ -24,12 +23,13 @@
 @property (nonatomic) NSInteger indexDistance;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MBProgressHUD *hud;
-
 @property (nonatomic, strong) UISearchController *searchController;
-
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (nonatomic) BOOL searchBarShouldBeginEditing;
 @property (nonatomic) BOOL anySearchMade;
+@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) NSString *latitude;
+@property (nonatomic) NSString *longitude;
 
 @end
 
@@ -75,6 +75,15 @@
                             action:@selector(initializeData)
                   forControlEvents:UIControlEventValueChanged];
     [self.cvProductsCollection addSubview:self.refreshControl];
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [self.locationManager startUpdatingLocation];
+    [self.locationManager requestWhenInUseAuthorization];
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
+
     
 }
 
@@ -262,6 +271,14 @@
     [self presentViewController:npVC animated:YES completion:^{
         
     }];
+}
+
+#pragma mark - Location
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
+    self.longitude = [NSString stringWithFormat:@"%f", (float)newLocation.coordinate.longitude];
+    self.latitude = [NSString stringWithFormat:@"%f", (float)newLocation.coordinate.latitude];
 }
 
 @end
