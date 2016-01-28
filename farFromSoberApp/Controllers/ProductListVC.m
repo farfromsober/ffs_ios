@@ -20,7 +20,6 @@
 
 @interface ProductListVC () <UISearchBarDelegate>
 
-@property (nonatomic) NSMutableArray *products;
 @property (nonatomic) NSInteger indexCategory;
 @property (nonatomic) NSInteger indexDistance;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -88,6 +87,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
+    [self.cvProductsCollection reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -197,7 +197,7 @@
     
     Product *product = [self.products objectAtIndex:indexPath.row];
     
-    ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product];
+    ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product productList:self];
     [self.navigationController pushViewController:pdVC animated:YES];
 }
 
@@ -218,8 +218,8 @@
 
 -(void) filterProducts {
     
-    NSInteger indexC = self.indexCategory ? self.indexCategory : -1;
-    NSInteger indexD = self.indexDistance ? self.indexDistance : -1;
+    NSInteger indexC = self.indexCategory >= 0 ? self.indexCategory : -1;
+    NSInteger indexD = self.indexDistance >= 0 ? self.indexDistance : -1;
     
     FilterProductsViewController *filVC = [[FilterProductsViewController alloc] initWithIndexCategorySelected:indexC andIndexDistance:indexD];
     filVC.myDelegate = self;
@@ -229,7 +229,7 @@
 }
 
 #pragma mark - FilterViewController delegate
--(void)filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance{
+- (void)filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance{
     
     self.indexCategory = [indexCategory integerValue];
     self.indexDistance = [indexDistance integerValue];
@@ -254,7 +254,7 @@
 }
 
 #pragma mark - Tap New Product
--(void) tapNewProduct:(UIGestureRecognizer *)gestureRecognizer {
+- (void)tapNewProduct:(UIGestureRecognizer *)gestureRecognizer {
     
     Product *product = [[Product alloc] init];
     

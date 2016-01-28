@@ -16,12 +16,16 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "UserManager.h"
+#import "ProductListVC.h"
 
 @interface ProductDetailViewController ()
 
 @property (nonatomic, strong) Product *product;
 @property (nonatomic, strong) UIPageViewController *pageVC;
 @property (nonatomic) NSUInteger numPages;
+@property (weak, nonatomic) ProductListVC *productList;
+
 
 @end
 
@@ -29,11 +33,12 @@
 
 #pragma mark - Init
 
--(instancetype) initWithProduct: (Product *) produt {
+-(instancetype) initWithProduct:(Product *)product productList:(id)productListVC{
     
     self = [super init];
     if (self) {
-        _product = produt;
+        _product = product;
+        _productList = productListVC;
     }
     
     return self;
@@ -89,6 +94,9 @@
     [annotation setTitle:self.product.seller.username];
     [self.mvMap setRegion:region animated:YES];
     [self.mvMap addAnnotation:annotation];
+    if (self.product.seller.userId ==  [[UserManager sharedInstance] currentUser].userId) {
+        self.btBuyProduct.hidden = YES;
+    }
 }
 
 
@@ -195,4 +203,18 @@
     UserDetailVC *userDetailVC = [[UserDetailVC alloc] initWithUser:self.product.seller];
     [self.navigationController pushViewController:userDetailVC animated:YES];
 }
+
+- (IBAction)buyProduct:(id)sender {
+    MBProgressHUD *hud = [AppStyle getLoadingHUDWithView:self.view message:@"Comprando"];
+    [self.api buyProductWithId:self.product.productId Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        [[self.productList products] removeObject:self.product];
+        [hud hide:YES afterDelay:1];
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        MBProgressHUD *hud = [AppStyle getLoadingHUDWithView:self.view message:@"Ha ocurrido un error al realizar la compra"];
+        [hud hide:YES afterDelay:2];
+    }];
+}
+
+
 @end

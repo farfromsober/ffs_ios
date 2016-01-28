@@ -14,7 +14,6 @@
 		072AF2041BF3C95400515EB6 /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2031BF3C95400515EB6 /* MapVC.m */; };
 		072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2061BF3C9AA00515EB6 /* NewItemVC.m */; };
 		072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2091BF3C9C600515EB6 /* NotificationListVC.m */; };
-		072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF20C1BF3CA1E00515EB6 /* ProfileVC.m */; };
 		07331D2D1BFD256300FDC83F /* UserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D2C1BFD256300FDC83F /* UserTest.m */; };
 		07331D351BFD301A00FDC83F /* ProductTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D341BFD301A00FDC83F /* ProductTest.m */; };
 		07331D371BFD303400FDC83F /* ProductCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D361BFD303400FDC83F /* ProductCategoryTest.m */; };
@@ -96,8 +95,6 @@
 		072AF2061BF3C9AA00515EB6 /* NewItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewItemVC.m; sourceTree = "<group>"; };
 		072AF2081BF3C9C600515EB6 /* NotificationListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationListVC.h; sourceTree = "<group>"; };
 		072AF2091BF3C9C600515EB6 /* NotificationListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationListVC.m; sourceTree = "<group>"; };
-		072AF20B1BF3CA1E00515EB6 /* ProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileVC.h; sourceTree = "<group>"; };
-		072AF20C1BF3CA1E00515EB6 /* ProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileVC.m; sourceTree = "<group>"; };
 		07331D2C1BFD256300FDC83F /* UserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserTest.m; path = Models/UserTest.m; sourceTree = "<group>"; };
 		07331D341BFD301A00FDC83F /* ProductTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductTest.m; path = Models/ProductTest.m; sourceTree = "<group>"; };
 		07331D361BFD303400FDC83F /* ProductCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCategoryTest.m; path = Models/ProductCategoryTest.m; sourceTree = "<group>"; };
@@ -375,14 +372,13 @@
 		07BEAF9B1BF64F0E00062D77 /* TabController */ = {
 			isa = PBXGroup;
 			children = (
-				B8C7E4941C53849700A4A96B /* User */,
 				072AF1FC1BF3C88900515EB6 /* BaseVC.h */,
 				072AF1FD1BF3C88900515EB6 /* BaseVC.m */,
+				B8C7E4941C53849700A4A96B /* User */,
 				07BEAF9C1BF64F1700062D77 /* Products */,
 				07BEAF9D1BF64F1E00062D77 /* Map */,
 				07BEAF9E1BF64F2300062D77 /* New */,
 				07BEAF9F1BF64F2F00062D77 /* Notification */,
-				07BEAFA01BF64F3600062D77 /* Profile */,
 			);
 			name = TabController;
 			sourceTree = "<group>";
@@ -426,15 +422,6 @@
 				072AF2091BF3C9C600515EB6 /* NotificationListVC.m */,
 			);
 			name = Notification;
-			sourceTree = "<group>";
-		};
-		07BEAFA01BF64F3600062D77 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				072AF20B1BF3CA1E00515EB6 /* ProfileVC.h */,
-				072AF20C1BF3CA1E00515EB6 /* ProfileVC.m */,
-			);
-			name = Profile;
 			sourceTree = "<group>";
 		};
 		07BEAFA11BF64F7900062D77 /* Login/Register */ = {
@@ -713,7 +700,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
-				072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */,
 				075D53231C00819F0043D91C /* UserManager.m in Sources */,
 				FBE2BD1A1C0E524F0082090B /* ProductDetailViewController.m in Sources */,
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,

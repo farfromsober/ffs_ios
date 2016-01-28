@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong) UIPageControl *pageControl;
 
-- (instancetype) initWithProduct: (Product *) produt;
+- (instancetype) initWithProduct:(Product *)product productList:(id )productList;
 - (IBAction)goToUser:(id)sender;
 
 @end

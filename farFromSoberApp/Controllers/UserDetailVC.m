@@ -12,7 +12,8 @@
 #import "Product.h"
 #import "MBProgressHUD.h"
 #import "AppStyle.h"
-
+#import "AppNavigation.h"
+#import "UserManager.h"
 #import "User.h"
 
 
@@ -38,8 +39,13 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.cvProductsCollection reloadData];
+}
+
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];  
     self.cvProductsCollection.delegate = self;
     self.cvProductsCollection.dataSource = self;
     [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
@@ -136,7 +142,7 @@
     if (indexPath.section > 0) {
         Product *product = [self.products objectAtIndex:indexPath.row];
         
-        ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product];
+        ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product productList:self];
         [self.navigationController pushViewController:pdVC animated:YES];
     }
 }
@@ -167,6 +173,12 @@
     self.selectedType = type;
 }
 
+- (void)userDataCollectionViewCellSelectedLogout {
+    UserManager *manager = [UserManager sharedInstance];
+    if ([manager resetUser]) {
+        [AppNavigation onLogoutFromViewController:self];
+    }
+}
 
 
 @end
