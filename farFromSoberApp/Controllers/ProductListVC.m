@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "AppStyle.h"
 #import "AlertUtil.h"
+#import "UserManager.h"
 
 @interface ProductListVC () <UISearchBarDelegate>
 
@@ -78,8 +79,7 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    [self.locationManager startUpdatingLocation];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     [self.locationManager requestWhenInUseAuthorization];
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingLocation];
@@ -279,6 +279,9 @@
            fromLocation:(CLLocation *)oldLocation {
     self.longitude = [NSString stringWithFormat:@"%f", (float)newLocation.coordinate.longitude];
     self.latitude = [NSString stringWithFormat:@"%f", (float)newLocation.coordinate.latitude];
+    
+    [[UserManager sharedInstance] currentUser].latitude = self.latitude;
+    [[UserManager sharedInstance] currentUser].longitude = self.longitude;
 }
 
 @end
