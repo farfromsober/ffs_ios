@@ -8,11 +8,11 @@
 
 #import "UserDetailVC.h"
 #import "ProductCollectionViewCell.h"
-#import "ProductDetailViewController.h"
 #import "Product.h"
 #import "MBProgressHUD.h"
 #import "AppStyle.h"
-
+#import "AppNavigation.h"
+#import "UserManager.h"
 #import "User.h"
 
 
@@ -39,13 +39,19 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];  
     self.cvProductsCollection.delegate = self;
     self.cvProductsCollection.dataSource = self;
     [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
     [self.cvProductsCollection registerClass:[UserDataCollectionViewCell class] forCellWithReuseIdentifier:@"userCell"];
     [self.cvProductsCollection registerNib:[UINib nibWithNibName:@"UserDataCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"userCell"];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [AppStyle styleNavBar:self.navigationController.navigationBar];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -136,7 +142,8 @@
     if (indexPath.section > 0) {
         Product *product = [self.products objectAtIndex:indexPath.row];
         
-        ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product];
+        ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct:product];
+        pdVC.delegate = self;
         [self.navigationController pushViewController:pdVC animated:YES];
     }
 }
@@ -167,6 +174,18 @@
     self.selectedType = type;
 }
 
+- (void)userDataCollectionViewCellSelectedLogout {
+    UserManager *manager = [UserManager sharedInstance];
+    if ([manager resetUser]) {
+        [AppNavigation onLogoutFromViewController:self];
+    }
+}
+
+#pragma mark - ProductDetailDelegate
+- (void)productDetailProductBougth:(Product *)product {
+    [self.products removeObject:product];
+    [self.cvProductsCollection reloadData];
+}
 
 
 @end

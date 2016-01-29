@@ -13,9 +13,10 @@
 #import "MapVC.h"
 #import "NewItemVC.h"
 #import "NotificationListVC.h"
-#import "ProfileVC.h"
 #import "LoginViewController.h"
 #import "UINavigationController+Initializer.h"
+#import "UserDetailVC.h"
+#import "UserManager.h"
 
 #import "UIImage+ImageWithColor.h"
 
@@ -31,12 +32,11 @@
     // Why? Because we are going to use 'push' navigation inside each tab.
     UINavigationController *productsNVC = [UINavigationController withRoot:[ProductListVC new]];
     UINavigationController *mapNVC = [UINavigationController withRoot:[MapVC new]];
-    //UINavigationController *newNVC = [UINavigationController withRoot:[NewItemVC new]];
     UINavigationController *nofiticationsNVC = [UINavigationController withRoot:[NotificationListVC new]];
-    UINavigationController *profileNVC = [UINavigationController withRoot:[ProfileVC new]];
+    UINavigationController *profileNVC = [UINavigationController withRoot:[[UserDetailVC alloc] initWithUser:[[UserManager sharedInstance] currentUser]]];
     
     // Create an ORDERED array of VCs.
-    NSArray *vcs = @[productsNVC, mapNVC, nofiticationsNVC, profileNVC];
+     NSArray *vcs = @[productsNVC, mapNVC, nofiticationsNVC, profileNVC];
     
     // Create tabBarController
     UITabBarController *tabController = [[UITabBarController alloc] init];

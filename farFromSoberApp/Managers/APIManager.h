@@ -51,4 +51,8 @@
 - (NSURLSessionDataTask *)userDataById:(int)userId
                                Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+//transaction
+- (NSURLSessionDataTask *)buyProductWithId:(NSString *)productId
+                                   Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end

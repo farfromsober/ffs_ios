@@ -10,27 +10,26 @@
 #import "Product.h"
 
 #import "ProductCollectionViewCell.h"
-#import "ProductDetailViewController.h"
 #import "NewProductViewController.h"
 #import "FilterProductsViewController.h"
 #import "MBProgressHUD.h"
 #import "AppStyle.h"
-
 #import "AlertUtil.h"
+#import "UserManager.h"
 
 @interface ProductListVC () <UISearchBarDelegate>
 
-@property (nonatomic) NSMutableArray *products;
 @property (nonatomic) NSInteger indexCategory;
 @property (nonatomic) NSInteger indexDistance;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MBProgressHUD *hud;
-
 @property (nonatomic, strong) UISearchController *searchController;
-
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (nonatomic) BOOL searchBarShouldBeginEditing;
 @property (nonatomic) BOOL anySearchMade;
+@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) NSString *latitude;
+@property (nonatomic) NSString *longitude;
 
 @end
 
@@ -76,6 +75,14 @@
                             action:@selector(initializeData)
                   forControlEvents:UIControlEventValueChanged];
     [self.cvProductsCollection addSubview:self.refreshControl];
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    [self.locationManager requestWhenInUseAuthorization];
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
+
     
 }
 
@@ -197,7 +204,8 @@
     
     Product *product = [self.products objectAtIndex:indexPath.row];
     
-    ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct: product];
+    ProductDetailViewController *pdVC = [[ProductDetailViewController alloc] initWithProduct:product];
+    pdVC.delegate = self;
     [self.navigationController pushViewController:pdVC animated:YES];
 }
 
@@ -218,8 +226,8 @@
 
 -(void) filterProducts {
     
-    NSInteger indexC = self.indexCategory ? self.indexCategory : -1;
-    NSInteger indexD = self.indexDistance ? self.indexDistance : -1;
+    NSInteger indexC = self.indexCategory >= 0 ? self.indexCategory : -1;
+    NSInteger indexD = self.indexDistance >= 0 ? self.indexDistance : -1;
     
     FilterProductsViewController *filVC = [[FilterProductsViewController alloc] initWithIndexCategorySelected:indexC andIndexDistance:indexD];
     filVC.myDelegate = self;
@@ -229,7 +237,7 @@
 }
 
 #pragma mark - FilterViewController delegate
--(void)filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance{
+- (void)filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance{
     
     self.indexCategory = [indexCategory integerValue];
     self.indexDistance = [indexDistance integerValue];
@@ -254,7 +262,7 @@
 }
 
 #pragma mark - Tap New Product
--(void) tapNewProduct:(UIGestureRecognizer *)gestureRecognizer {
+- (void)tapNewProduct:(UIGestureRecognizer *)gestureRecognizer {
     
     Product *product = [[Product alloc] init];
     
@@ -262,6 +270,23 @@
     [self presentViewController:npVC animated:YES completion:^{
         
     }];
+}
+
+#pragma mark - Location
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
+    self.longitude = [NSString stringWithFormat:@"%f", (float)newLocation.coordinate.longitude];
+    self.latitude = [NSString stringWithFormat:@"%f", (float)newLocation.coordinate.latitude];
+    
+    [[UserManager sharedInstance] currentUser].latitude = self.latitude;
+    [[UserManager sharedInstance] currentUser].longitude = self.longitude;
+}
+
+#pragma mark - ProductDetailDelegate
+- (void)productDetailProductBougth:(Product *)product {
+    [self.products removeObject:product];
+    [self.cvProductsCollection reloadData];
 }
 
 @end

@@ -214,6 +214,27 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
                               }];
 }
 
+#pragma mark - Buy products
+
+- (NSURLSessionDataTask *)buyProductWithId:(NSString *)productId
+                            Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:productId forKey:@"productId"];
+    NSString *userId = [NSString stringWithFormat:@"%@", [[UserManager sharedInstance] currentUser].userId];
+    [parameters setObject:userId forKey:@"buyerId"];
+    
+    
+    return [[self sessionManager] POST:@"/api/1.0/transactions/"
+                            parameters:parameters
+                               success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                                   success(task, responseObject);
+                               } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                   failure(task, error);
+                               }];
+}
+
 #pragma mark - Utils
 
 - (NSString *) filePath {

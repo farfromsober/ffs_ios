@@ -12,6 +12,12 @@
 
 @class Product;
 
+@protocol ProductDetailDelegate <NSObject>
+
+- (void)productDetailProductBougth:(Product *)product;
+
+@end
+
 @interface ProductDetailViewController : BaseVC <UIPageViewControllerDataSource>
 
 @property (weak, nonatomic) IBOutlet UIView *imagesContainer;
@@ -27,10 +33,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbLocation;
 @property (weak, nonatomic) IBOutlet IBOutlet MKMapView *mvMap;
 @property (weak, nonatomic) IBOutlet UIButton *btBuyProduct;
+@property (weak) id<ProductDetailDelegate> delegate;
+
 
 @property (nonatomic, strong) UIPageControl *pageControl;
 
-- (instancetype) initWithProduct: (Product *) produt;
+- (instancetype)initWithProduct:(Product *)product;
 - (IBAction)goToUser:(id)sender;
 
 @end

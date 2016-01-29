@@ -19,6 +19,7 @@ typedef enum {
 @protocol UserDataCollectionViewCellDelegate <NSObject>
 
 - (void)userDataCollectionViewCellSelectedOption:(UserDataProductsListType)type;
+- (void)userDataCollectionViewCellSelectedLogout;
 
 @end
 
@@ -30,6 +31,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UILabel *salesLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) id<UserDataCollectionViewCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @property (strong, nonatomic) User *user;
 

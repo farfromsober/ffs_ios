@@ -15,7 +15,6 @@
 		072AF2041BF3C95400515EB6 /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2031BF3C95400515EB6 /* MapVC.m */; };
 		072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2061BF3C9AA00515EB6 /* NewItemVC.m */; };
 		072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2091BF3C9C600515EB6 /* NotificationListVC.m */; };
-		072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF20C1BF3CA1E00515EB6 /* ProfileVC.m */; };
 		07331D2D1BFD256300FDC83F /* UserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D2C1BFD256300FDC83F /* UserTest.m */; };
 		07331D351BFD301A00FDC83F /* ProductTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D341BFD301A00FDC83F /* ProductTest.m */; };
 		07331D371BFD303400FDC83F /* ProductCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 07331D361BFD303400FDC83F /* ProductCategoryTest.m */; };
@@ -45,6 +44,7 @@
 		8E46E9961C20B7DA00B5E4D5 /* ProductImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */; };
 		B81BA8131C54114E00BD551B /* UserDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */; };
 		B81BA8141C54114E00BD551B /* UserDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */; };
+		B88120A11C59977D008AD59E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88120A01C59977D008AD59E /* CoreLocation.framework */; };
 		B8C7E49D1C5384E100A4A96B /* UserDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C7E49B1C5384E100A4A96B /* UserDetailVC.m */; };
 		B8C7E49E1C5384E100A4A96B /* UserDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8C7E49C1C5384E100A4A96B /* UserDetailVC.xib */; };
 		FB129C631C12EE940017721D /* NewProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB129C611C12EE940017721D /* NewProductViewController.m */; };
@@ -99,8 +99,6 @@
 		072AF2061BF3C9AA00515EB6 /* NewItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewItemVC.m; sourceTree = "<group>"; };
 		072AF2081BF3C9C600515EB6 /* NotificationListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationListVC.h; sourceTree = "<group>"; };
 		072AF2091BF3C9C600515EB6 /* NotificationListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationListVC.m; sourceTree = "<group>"; };
-		072AF20B1BF3CA1E00515EB6 /* ProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileVC.h; sourceTree = "<group>"; };
-		072AF20C1BF3CA1E00515EB6 /* ProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileVC.m; sourceTree = "<group>"; };
 		07331D2C1BFD256300FDC83F /* UserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserTest.m; path = Models/UserTest.m; sourceTree = "<group>"; };
 		07331D341BFD301A00FDC83F /* ProductTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductTest.m; path = Models/ProductTest.m; sourceTree = "<group>"; };
 		07331D361BFD303400FDC83F /* ProductCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCategoryTest.m; path = Models/ProductCategoryTest.m; sourceTree = "<group>"; };
@@ -150,6 +148,7 @@
 		B81BA8101C54114E00BD551B /* UserDataCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataCollectionViewCell.h; sourceTree = "<group>"; };
 		B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDataCollectionViewCell.m; sourceTree = "<group>"; };
 		B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		B88120A01C59977D008AD59E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B8C7E49A1C5384E100A4A96B /* UserDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailVC.h; sourceTree = "<group>"; };
 		B8C7E49B1C5384E100A4A96B /* UserDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailVC.m; sourceTree = "<group>"; };
 		B8C7E49C1C5384E100A4A96B /* UserDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailVC.xib; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B88120A11C59977D008AD59E /* CoreLocation.framework in Frameworks */,
 				FBE2BD1D1C0E66370082090B /* MapKit.framework in Frameworks */,
 				FB1E87D41C0D0A55005F8CA8 /* ImageIO.framework in Frameworks */,
 				FB129C701C1375ED0017721D /* WindowsAzureMobileServices.framework in Frameworks */,
@@ -380,14 +380,13 @@
 		07BEAF9B1BF64F0E00062D77 /* TabController */ = {
 			isa = PBXGroup;
 			children = (
-				B8C7E4941C53849700A4A96B /* User */,
 				072AF1FC1BF3C88900515EB6 /* BaseVC.h */,
 				072AF1FD1BF3C88900515EB6 /* BaseVC.m */,
+				B8C7E4941C53849700A4A96B /* User */,
 				07BEAF9C1BF64F1700062D77 /* Products */,
 				07BEAF9D1BF64F1E00062D77 /* Map */,
 				07BEAF9E1BF64F2300062D77 /* New */,
 				07BEAF9F1BF64F2F00062D77 /* Notification */,
-				07BEAFA01BF64F3600062D77 /* Profile */,
 			);
 			name = TabController;
 			sourceTree = "<group>";
@@ -433,15 +432,6 @@
 			name = Notification;
 			sourceTree = "<group>";
 		};
-		07BEAFA01BF64F3600062D77 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				072AF20B1BF3CA1E00515EB6 /* ProfileVC.h */,
-				072AF20C1BF3CA1E00515EB6 /* ProfileVC.m */,
-			);
-			name = Profile;
-			sourceTree = "<group>";
-		};
 		07BEAFA11BF64F7900062D77 /* Login/Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +454,7 @@
 		B1D813B4A64754D299881408 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B88120A01C59977D008AD59E /* CoreLocation.framework */,
 				FBE2BD1C1C0E66370082090B /* MapKit.framework */,
 				FB1E87D31C0D0A55005F8CA8 /* ImageIO.framework */,
 				F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */,
@@ -719,7 +710,6 @@
 			files = (
 				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
 				070D11D61C58331100445332 /* NSDictionary+Secure.m in Sources */,
-				072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */,
 				075D53231C00819F0043D91C /* UserManager.m in Sources */,
 				FBE2BD1A1C0E524F0082090B /* ProductDetailViewController.m in Sources */,
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,

@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UserManager.h"
 
+
 @implementation UserDataCollectionViewCell 
 
 - (void)awakeFromNib {
@@ -35,6 +36,9 @@
         [self.segmentedControl insertSegmentWithTitle:@"Vendidos" atIndex:1 animated:NO];
         if (user.userId ==  [[UserManager sharedInstance] currentUser].userId) {
             [self.segmentedControl insertSegmentWithTitle:@"Comprados" atIndex:2 animated:NO];
+            self.logoutButton.hidden = NO;
+        } else {
+            self.logoutButton.hidden = YES;
         }
     }
 }
@@ -57,6 +61,10 @@
             break;
     }
     [self.delegate userDataCollectionViewCellSelectedOption:type];
+}
+
+- (IBAction)logoutTouchUpInside:(id)sender {
+    [self.delegate userDataCollectionViewCellSelectedLogout];
 }
 
 @end

@@ -8,11 +8,13 @@
 #import "BaseVC.h"
 #import <UIKit/UIKit.h>
 #import "UserDataCollectionViewCell.h"
+#import "ProductDetailViewController.h"
+
 
 
 @class User;
 
-@interface UserDetailVC : BaseVC<UICollectionViewDelegate, UICollectionViewDataSource, UserDataCollectionViewCellDelegate>
+@interface UserDetailVC : BaseVC<UICollectionViewDelegate, UICollectionViewDataSource, UserDataCollectionViewCellDelegate, ProductDetailDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *cvProductsCollection;
 
 - (instancetype)initWithUser:(User *)user;

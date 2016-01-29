@@ -19,9 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.api = [APIManager sharedManager];
-    
     [AppStyle styleNavBar:self.navigationController.navigationBar];
 }
 

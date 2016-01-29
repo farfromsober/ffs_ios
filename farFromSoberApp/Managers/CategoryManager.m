@@ -31,13 +31,14 @@
     cMac.index = 0;
     cMac.name = @"Mac";
     
-    ProductCategory *ciPad = [[ProductCategory alloc] init];
-    ciPad.index = 1;
-    ciPad.name = @"iPad";
+
+    ProductCategory *cIPad = [[ProductCategory alloc] init];
+    cIPad.index = 1;
+    cIPad.name = @"iPad";
     
-    ProductCategory *ciPhone = [[ProductCategory alloc] init];
-    ciPhone.index = 2;
-    ciPhone.name = @"iPhone";
+    ProductCategory *cIphone = [[ProductCategory alloc] init];
+    cIphone.index = 2;
+    cIphone.name = @"iPhone";
     
     ProductCategory *cWatch = [[ProductCategory alloc] init];
     cWatch.index = 3;
@@ -52,8 +53,8 @@
     cMusic.name = @"Music";
     
     [categories addObject:cMac];
-    [categories addObject:ciPad];
-    [categories addObject:ciPhone];
+    [categories addObject:cIPad];
+    [categories addObject:cIphone];
     [categories addObject:cWatch];
     [categories addObject:cTV];
     [categories addObject:cMusic];

@@ -8,9 +8,13 @@
 
 #import "BaseVC.h"
 #import "FilterProductsViewController.h"
+#import "ProductDetailViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface ProductListVC : BaseVC <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate, FilterProductsViewControllerDelegate>
 
+@interface ProductListVC : BaseVC <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate, FilterProductsViewControllerDelegate, CLLocationManagerDelegate, ProductDetailDelegate>
+
+@property (nonatomic) NSMutableArray *products;
 @property (weak, nonatomic) IBOutlet UICollectionView *cvProductsCollection;
 @property (weak, nonatomic) IBOutlet UIImageView *imgNewProduct;
 @end
