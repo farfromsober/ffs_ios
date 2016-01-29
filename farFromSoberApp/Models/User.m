@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "NSDictionary+Secure.h"
 #import "NSString+Validator.h"
 #import "AppConstants.h"
 
@@ -64,12 +65,12 @@ static NSString * const avatarKey = @"avatar";
 #pragma mark - JSONParser
 
 - (id<JSONParser>)initWithJSON:(NSDictionary *)dic {
-    // Doble comprobación, dos condones mejor que uno...
+    // Doble comprobación...
     if (dic && [[self class] hasNeededInformation:dic]) {
         User *user = [[User alloc] init];
         
         NSDictionary *userDic = dic[userKey];
-        user.userId = userDic[idKey] ? userDic[idKey] : @(0);
+        user.userId = dic[idKey] ? dic[idKey] : @(0);
         user.firstName = userDic[firstNameKey] ? userDic[firstNameKey] : @"";
         user.lastName = userDic[lastNameKey] ? userDic[lastNameKey] : @"";
         user.email = userDic[emailKey] ? userDic[emailKey] : @"";
@@ -84,7 +85,7 @@ static NSString * const avatarKey = @"avatar";
         
         if ([user.latitude compare:@""] == 0 || [user.longitude compare:@""] == 0){
             user.location = [AppConstants defaultLocation];
-        }else{
+        } else {
             user.location = CLLocationCoordinate2DMake([user.latitude floatValue], [user.longitude floatValue]);
         }
 
@@ -102,10 +103,11 @@ static NSString * const avatarKey = @"avatar";
         NSMutableDictionary *mDic = [NSMutableDictionary new];
         mDic[salesKey] = user.sales ? user.sales : @(0);
         mDic[idKey] = user.userId ? user.userId : @"";
-        mDic[firstNameKey] = user.firstName ? user.firstName : @"";
-        mDic[lastNameKey] = user.lastName ? user.lastName : @"";
-        mDic[emailKey] = user.email ? user.email : @"";
-        mDic[usernameKey] = user.username ? user.username : @"";
+        mDic[userKey] = [NSMutableDictionary new];
+        mDic[userKey][firstNameKey] = user.firstName ? user.firstName : @"";
+        mDic[userKey][lastNameKey] = user.lastName ? user.lastName : @"";
+        mDic[userKey][emailKey] = user.email ? user.email : @"";
+        mDic[userKey][usernameKey] = user.username ? user.username : @"";
         mDic[cityKey] = user.city ? user.city : @"";
         mDic[stateKey] = user.state ? user.state : @"";
         mDic[latitudeKey] = user.latitude ? user.latitude : @"";
@@ -126,7 +128,7 @@ static NSString * const avatarKey = @"avatar";
     
     if (!userDic) {
         return NO;
-    } else if (!userDic[idKey]) {
+    } else if (!dic[idKey]) {
          return NO;
      } else if ([NSString isEmpty:userDic[emailKey]]) {
          return NO;

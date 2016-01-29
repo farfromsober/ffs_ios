@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4421BF2963C00A3330A /* AppDelegate.m */; };
 		0701B4541BF2963C00A3330A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4441BF2963C00A3330A /* main.m */; };
+		070D11D61C58331100445332 /* NSDictionary+Secure.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D11D51C58331100445332 /* NSDictionary+Secure.m */; };
 		072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF1FD1BF3C88900515EB6 /* BaseVC.m */; };
 		072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2001BF3C92200515EB6 /* ProductListVC.m */; };
 		072AF2041BF3C95400515EB6 /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2031BF3C95400515EB6 /* MapVC.m */; };
@@ -86,6 +87,8 @@
 		0701B4431BF2963C00A3330A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0701B4441BF2963C00A3330A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0701B44C1BF2963C00A3330A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		070D11D41C58331100445332 /* NSDictionary+Secure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Secure.h"; sourceTree = "<group>"; };
+		070D11D51C58331100445332 /* NSDictionary+Secure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Secure.m"; sourceTree = "<group>"; };
 		072AF1FC1BF3C88900515EB6 /* BaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseVC.h; sourceTree = "<group>"; };
 		072AF1FD1BF3C88900515EB6 /* BaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVC.m; sourceTree = "<group>"; };
 		072AF1FF1BF3C92200515EB6 /* ProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListVC.h; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 				07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */,
 				FBA2BA0C1C08CBF5000C36EE /* AlertUtil.h */,
 				FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */,
+				070D11D41C58331100445332 /* NSDictionary+Secure.h */,
+				070D11D51C58331100445332 /* NSDictionary+Secure.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -713,6 +718,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
+				070D11D61C58331100445332 /* NSDictionary+Secure.m in Sources */,
 				072AF20D1BF3CA1E00515EB6 /* ProfileVC.m in Sources */,
 				075D53231C00819F0043D91C /* UserManager.m in Sources */,
 				FBE2BD1A1C0E524F0082090B /* ProductDetailViewController.m in Sources */,

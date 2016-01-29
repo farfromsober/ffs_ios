@@ -34,7 +34,7 @@
 }
 
 - (void)testProductInitializedWithDictionaryWithNoIDShouldBeNil  {
-    Product *product = [[Product alloc] initWithJSON:@{@"_id":@""}];
+    Product *product = [[Product alloc] initWithJSON:@{@"id":@""}];
     XCTAssertNil(product, @"If JSON dictionary has no id, 'product' object should be nil");
 }
 

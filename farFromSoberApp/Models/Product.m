@@ -78,16 +78,12 @@ static NSString * const imagesKey = @"images";
         product.category = dic[categoryKey] ? [[ProductCategory alloc] initWithJSON:dic[categoryKey]] : nil;
         product.seller = [[User alloc] initWithJSON:dic[sellerKey]];
         
-        if (dic[priceKey]){
-            // le quitamos el .0 del final
-            product.price = [dic[priceKey] substringToIndex:[dic[priceKey] length]-2];
-        } else {
-            product.price = @"";
-        }
+        product.price = dic[priceKey] ? dic[priceKey] : @"";
+
         
         if (dic[publishedKey]) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             product.published = [dateFormatter dateFromString:dic[publishedKey]];
         } else {
             product.published = nil;
@@ -119,7 +115,7 @@ static NSString * const imagesKey = @"images";
         mDic[nameKey] = product.name;
         mDic[detailKey] = product.detail;
         mDic[categoryKey] = [[ProductCategory alloc] objectToJSON:product.category];
-        mDic[publishedKey] = [NSDate stringWithISO8601FormatDate:product.published];
+        mDic[publishedKey] = [NSDate stringWithSimpleFormatDate:product.published];
         mDic[priceKey] = product.price;
         mDic[sellerKey] = [[User alloc] objectToJSON:product.seller];
         
@@ -153,9 +149,6 @@ static NSString * const imagesKey = @"images";
     
     return YES;
 }
-
-
-
 
 #pragma mark - Overriden
 

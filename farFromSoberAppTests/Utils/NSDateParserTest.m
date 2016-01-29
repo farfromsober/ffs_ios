@@ -26,18 +26,22 @@
 }
 
 // NOTE: the +dateWithString: method does not maintain sub-second precision.
-//- (void)testNSDateToStringAndBackToNSDateShouldProduceTheSameDate  {
-//    NSDate *now = [NSDate date];
-//    NSString *nowString = [NSDate stringWithISO8601FormatDate:now];
-//    NSDate *nowStringDate = [NSDate parseISO8601Date:nowString];
-//    XCTAssertTrue([now isEqualToDate:nowStringDate], @"Date shouldn't change after date->string->date conversion");
-//    XCTAssertTrue([now timeIntervalSinceDate:nowStringDate] == 0, @"Date shouldn't change after date->string->date conversion");
-//}
+- (void)testNSDateToStringAndBackToNSDateShouldProduceTheSameDate  {
+    NSDateFormatter *df = [[NSDateFormatter alloc]init];
+    df.locale = [NSLocale currentLocale];
+    df.timeZone = [NSTimeZone systemTimeZone];
+    df.dateFormat = @"yyyy-MM-dd";
+    NSDate *now = [df dateFromString:@"2016-01-29"];
+    NSString *nowString = [NSDate stringWithSimpleFormatDate:now];
+    NSDate *nowStringDate = [NSDate parseSimpleDate:nowString];
+    XCTAssertTrue([now isEqualToDate:nowStringDate], @"Date shouldn't change after date->string->date conversion");
+    XCTAssertTrue([now timeIntervalSinceDate:nowStringDate] == 0, @"Date shouldn't change after date->string->date conversion");
+}
 
 - (void)testStringToNSDateAndBackToNSStringShouldProduceTheSameString  {
-    NSString *now = [NSDate stringWithISO8601FormatDate:[NSDate date]];
-    NSDate *nowDate = [NSDate parseISO8601Date:now];
-    NSString *nowDateString = [NSDate stringWithISO8601FormatDate:nowDate];
+    NSString *now = @"2016-01-29"; // [NSDate stringWithSimpleFormatDate:[NSDate date]];
+    NSDate *nowDate = [NSDate parseSimpleDate:now];
+    NSString *nowDateString = [NSDate stringWithSimpleFormatDate:nowDate];
     XCTAssertTrue([now isEqualToString:nowDateString], @"Date shouldn't change after date->string->date conversion");
 }
 

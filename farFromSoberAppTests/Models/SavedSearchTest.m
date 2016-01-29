@@ -44,7 +44,7 @@
 }
 
 - (void)testUserInitializedWithIdAndUserShouldBeCreated  {
-    NSDictionary *dic = @{@"_id":@"12345",
+    NSDictionary *dic = @{@"id":@"12345",
                           @"user":[FakeModelObjects fakeJSONUser]
                           };
     SavedSearch *search = [[SavedSearch alloc] initWithJSON:dic];
