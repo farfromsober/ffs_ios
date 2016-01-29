@@ -3,12 +3,13 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductListVC">
             <connections>
-                <outlet property="cvProductsCollection" destination="HIJ-K2-vJk" id="Qhz-yK-b79"/>
-                <outlet property="imgNewProduct" destination="bJe-7g-pQb" id="WgF-az-zRC"/>
+                <outlet property="addProductButton" destination="fZ6-0N-jqt" id="2jO-zV-iMD"/>
+                <outlet property="productsCollectionView" destination="HIJ-K2-vJk" id="aUe-zM-5DF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ZT3-HE-p4c"/>
             </connections>
         </placeholder>
@@ -27,22 +28,26 @@
                         <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="New Button" translatesAutoresizingMaskIntoConstraints="NO" id="bJe-7g-pQb">
-                    <rect key="frame" x="339" y="585" width="70" height="70"/>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZ6-0N-jqt">
+                    <rect key="frame" x="344" y="598" width="70" height="70"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="70" id="1sp-pP-SyE"/>
-                        <constraint firstAttribute="height" constant="70" id="PBG-64-JlZ"/>
-                        <constraint firstAttribute="width" secondItem="bJe-7g-pQb" secondAttribute="height" multiplier="1:1" id="iBi-3a-0C5"/>
+                        <constraint firstAttribute="width" secondItem="fZ6-0N-jqt" secondAttribute="height" multiplier="1:1" id="AJM-50-r4g"/>
+                        <constraint firstAttribute="width" constant="70" id="KEk-EO-Vk1"/>
+                        <constraint firstAttribute="height" constant="70" id="YAj-Sk-Ty0"/>
                     </constraints>
-                </imageView>
+                    <state key="normal" image="New Button"/>
+                    <connections>
+                        <action selector="newProductButtonPressed:" destination="-1" eventType="touchUpInside" id="mls-Dl-ti8"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="HIJ-K2-vJk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6EF-da-Zyd"/>
                 <constraint firstItem="HIJ-K2-vJk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="A9Y-4G-fs0"/>
-                <constraint firstAttribute="trailing" secondItem="bJe-7g-pQb" secondAttribute="trailing" constant="5" id="FMq-Z1-heo"/>
                 <constraint firstAttribute="trailing" secondItem="HIJ-K2-vJk" secondAttribute="trailing" id="Z0G-u4-FCd"/>
-                <constraint firstAttribute="bottom" secondItem="bJe-7g-pQb" secondAttribute="bottom" constant="81" id="pW5-3x-xTg"/>
+                <constraint firstAttribute="bottomMargin" secondItem="fZ6-0N-jqt" secondAttribute="bottom" constant="60" id="aEQ-wP-4Ox"/>
+                <constraint firstAttribute="trailing" secondItem="fZ6-0N-jqt" secondAttribute="trailing" id="aXh-dW-MGt"/>
                 <constraint firstAttribute="bottom" secondItem="HIJ-K2-vJk" secondAttribute="bottom" id="qBS-xH-IN2"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

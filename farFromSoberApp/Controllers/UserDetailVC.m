@@ -40,11 +40,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];  
-    self.cvProductsCollection.delegate = self;
-    self.cvProductsCollection.dataSource = self;
-    [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
-    [self.cvProductsCollection registerClass:[UserDataCollectionViewCell class] forCellWithReuseIdentifier:@"userCell"];
-    [self.cvProductsCollection registerNib:[UINib nibWithNibName:@"UserDataCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"userCell"];
+    self.productsCollectionView.delegate = self;
+    self.productsCollectionView.dataSource = self;
+    [self.productsCollectionView registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
+    [self.productsCollectionView registerClass:[UserDataCollectionViewCell class] forCellWithReuseIdentifier:@"userCell"];
+    [self.productsCollectionView registerNib:[UINib nibWithNibName:@"UserDataCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"userCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -70,7 +70,7 @@
                                   Product *product = [[Product alloc] initWithJSON:productDic];
                                   [self.products addObject:product];
                               }
-                              [self.cvProductsCollection reloadData];
+                              [self.productsCollectionView reloadData];
                               
                               [self.hud hide:YES];
                               self.hud = nil;
@@ -85,7 +85,7 @@
                 Product *product = [[Product alloc] initWithJSON:productDic];
                 [self.products addObject:product];
             }
-            [self.cvProductsCollection reloadData];
+            [self.productsCollectionView reloadData];
             
             [self.hud hide:YES];
             self.hud = nil;
@@ -184,7 +184,7 @@
 #pragma mark - ProductDetailDelegate
 - (void)productDetailProductBougth:(Product *)product {
     [self.products removeObject:product];
-    [self.cvProductsCollection reloadData];
+    [self.productsCollectionView reloadData];
 }
 
 

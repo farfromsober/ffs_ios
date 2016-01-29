@@ -8,25 +8,25 @@
 
 #import "ProductListVC.h"
 #import "Product.h"
-
 #import "ProductCollectionViewCell.h"
+
 #import "NewProductViewController.h"
 #import "FilterProductsViewController.h"
-#import "MBProgressHUD.h"
-#import "AppStyle.h"
-#import "AlertUtil.h"
+
 #import "UserManager.h"
 
-@interface ProductListVC () <UISearchBarDelegate>
+@interface ProductListVC () <UISearchBarDelegate,UICollectionViewDelegate, UICollectionViewDataSource, FilterProductsViewControllerDelegate, CLLocationManagerDelegate, ProductDetailDelegate>
+
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) MBProgressHUD *hud;
+@property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) UISearchBar *searchBar;
 
 @property (nonatomic) NSInteger indexCategory;
 @property (nonatomic) NSInteger indexDistance;
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) MBProgressHUD *hud;
-@property (nonatomic, strong) UISearchController *searchController;
-@property (strong, nonatomic) UISearchBar *searchBar;
 @property (nonatomic) BOOL searchBarShouldBeginEditing;
 @property (nonatomic) BOOL anySearchMade;
+
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) NSString *latitude;
 @property (nonatomic) NSString *longitude;
@@ -39,7 +39,6 @@
     [super viewDidLoad];
     
     //NavigationBar
-    //[AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
     [AppStyle addSearchBarToNavBar:self.navigationController.navigationBar];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"]
                                                                              style:UIBarButtonItemStylePlain
@@ -58,15 +57,9 @@
     
     [self initializeData];
     
-    self.cvProductsCollection.delegate = self;
-    self.cvProductsCollection.dataSource = self;
-    [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapNewProduct:)];
-    tap.cancelsTouchesInView = YES;
-    tap.numberOfTapsRequired = 1;
-    tap.delegate = self;
-    [self.imgNewProduct addGestureRecognizer:tap];
+    self.productsCollectionView.delegate = self;
+    self.productsCollectionView.dataSource = self;
+    [self.productsCollectionView registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
     
     // Inicializamos el refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -74,7 +67,7 @@
     [self.refreshControl addTarget:self
                             action:@selector(initializeData)
                   forControlEvents:UIControlEventValueChanged];
-    [self.cvProductsCollection addSubview:self.refreshControl];
+    [self.productsCollectionView addSubview:self.refreshControl];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -82,8 +75,6 @@
     [self.locationManager requestWhenInUseAuthorization];
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingLocation];
-
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -97,31 +88,29 @@
     [AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void) initializeData {
+- (void)initializeData {
     self.indexCategory = -1;
     self.indexDistance = -1;
     
     [self getProductsWithCategory:@"" Distance:@"" AndWord:@""];
 }
 
-- (void) resetData {
+- (void)resetData {
     if (self.anySearchMade) {
         self.anySearchMade = NO;
         [self initializeData];
     }
 }
 
-- (void) getProductsWithCategory: (NSString *) category
-                        Distance: (NSString *) distance
-                         AndWord: (NSString *) word {
+- (void)getProductsWithCategory:(NSString *)category
+                        Distance:(NSString *)distance
+                         AndWord:(NSString *)word {
     self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
     
-    [self.api productsViaCategory:category andDistance:distance andWord:word Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self.api productsViaCategory:category
+                      andDistance:distance
+                          andWord:word
+    Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         
         self.products = [NSMutableArray new];
         
@@ -129,14 +118,14 @@
             Product *product = [[Product alloc] initWithJSON:productDic];
             [self.products addObject:product];
         }
-        [self.cvProductsCollection reloadData];
+        [self.productsCollectionView reloadData];
         
         [self.hud hide:YES];
         self.hud = nil;
         [self.refreshControl endRefreshing];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+        UIAlertController * alert = [self errorAlert:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
         [self presentViewController:alert animated:YES completion:nil];
         
         NSLog(@"Error: %@", error);
@@ -148,7 +137,7 @@
 
 #pragma mark - UISearchBarDelegate
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if([searchText  isEqual: @""]) {
         // user tapped the 'clear' button
         self.searchBarShouldBeginEditing = NO;
@@ -165,7 +154,7 @@
     return boolToReturn;
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"%@",searchBar.text);
     [searchBar resignFirstResponder];
     self.anySearchMade = YES;
@@ -176,15 +165,15 @@
 
 #pragma mark - UICollectionViewDelegate
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.products count];
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"productCell";
     
@@ -200,7 +189,7 @@
     return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     Product *product = [self.products objectAtIndex:indexPath.row];
     
@@ -220,11 +209,9 @@
 
 #pragma mark - Navigation buttons action
 
--(void) favoriteProducts {
-    
-}
+- (void)favoriteProducts { }
 
--(void) filterProducts {
+- (void)filterProducts {
     
     NSInteger indexC = self.indexCategory >= 0 ? self.indexCategory : -1;
     NSInteger indexD = self.indexDistance >= 0 ? self.indexDistance : -1;
@@ -250,10 +237,10 @@
             Product *product = [[Product alloc] initWithJSON:productDic];
             [self.products addObject:product];
         }
-        [self.cvProductsCollection reloadData];
+        [self.productsCollectionView reloadData];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        UIAlertController * alert = [[AlertUtil alloc] alertwithTitle:@"Error" andMessage:[error.userInfo valueForKey:@"NSLocalizedDescription"] andYesButtonTitle:@"" andNoButtonTitle:@"Cerrar"];
+        UIAlertController * alert = [self errorAlert:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
         [self presentViewController:alert animated:YES completion:nil];
         
         NSLog(@"Error: %@", error);
@@ -262,14 +249,9 @@
 }
 
 #pragma mark - Tap New Product
-- (void)tapNewProduct:(UIGestureRecognizer *)gestureRecognizer {
-    
-    Product *product = [[Product alloc] init];
-    
-    NewProductViewController *npVC = [[NewProductViewController alloc] initWithProduct:product];
-    [self presentViewController:npVC animated:YES completion:^{
-        
-    }];
+- (IBAction)newProductButtonPressed:(UIButton *)sender {
+    NewProductViewController *npVC = [[NewProductViewController alloc] initWithProduct:[Product new]];
+    [self presentViewController:npVC animated:YES completion:nil];
 }
 
 #pragma mark - Location
@@ -286,7 +268,7 @@
 #pragma mark - ProductDetailDelegate
 - (void)productDetailProductBougth:(Product *)product {
     [self.products removeObject:product];
-    [self.cvProductsCollection reloadData];
+    [self.productsCollectionView reloadData];
 }
 
 @end
