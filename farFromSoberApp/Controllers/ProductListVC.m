@@ -14,8 +14,9 @@
 #import "FilterProductsViewController.h"
 
 #import "UserManager.h"
+#import "LocationManager.h"
 
-@interface ProductListVC () <UISearchBarDelegate,UICollectionViewDelegate, UICollectionViewDataSource, FilterProductsViewControllerDelegate, CLLocationManagerDelegate, ProductDetailDelegate>
+@interface ProductListVC () <UISearchBarDelegate,UICollectionViewDelegate, UICollectionViewDataSource, FilterProductsViewControllerDelegate, ProductDetailDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MBProgressHUD *hud;
@@ -27,13 +28,13 @@
 @property (nonatomic) BOOL searchBarShouldBeginEditing;
 @property (nonatomic) BOOL anySearchMade;
 
-@property (nonatomic) CLLocationManager *locationManager;
-@property (nonatomic) NSString *latitude;
-@property (nonatomic) NSString *longitude;
+@property (strong, nonatomic) LocationManager *locationManager;
 
 @end
 
 @implementation ProductListVC
+
+#pragma mark - View events
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,11 +44,11 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"]
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
-                                                                            action:@selector(favoriteProducts)];
+                                                                            action:@selector(favoriteProducts:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Filter"]
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
-                                                                             action:@selector(filterProducts)];
+                                                                             action:@selector(filterProducts:)];
     
     // Declaramos delegado de la searchBar
     self.searchBar = (UISearchBar *)self.navigationController.navigationBar.topItem.titleView;
@@ -69,23 +70,28 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.productsCollectionView addSubview:self.refreshControl];
     
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    [self.locationManager requestWhenInUseAuthorization];
-    self.locationManager.delegate = self;
-    [self.locationManager startUpdatingLocation];
+    // Tracking position
+    self.locationManager = [[LocationManager alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
     [AppStyle hideLogo:NO ToNavBar:self.navigationController.navigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.locationManager startTrackingPosition];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.locationManager stopTrackingPosition];
 }
 
 - (void)initializeData {
@@ -207,11 +213,11 @@
     return CGSizeMake(cellWidth, cellWidth*1.33);
 }
 
-#pragma mark - Navigation buttons action
+#pragma mark - IBActions
 
-- (void)favoriteProducts { }
+- (IBAction)favoriteProducts:(id)sender { }
 
-- (void)filterProducts {
+- (IBAction)filterProducts:(id)sender {
     
     NSInteger indexC = self.indexCategory >= 0 ? self.indexCategory : -1;
     NSInteger indexD = self.indexDistance >= 0 ? self.indexDistance : -1;
@@ -223,13 +229,22 @@
     }];
 }
 
-#pragma mark - FilterViewController delegate
-- (void)filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance{
+- (IBAction)newProductButtonPressed:(UIButton *)sender {
+    NewProductViewController *npVC = [[NewProductViewController alloc] initWithProduct:[Product new]];
+    [self presentViewController:npVC animated:YES completion:nil];
+}
+
+#pragma mark - FilterViewControllerDelegate
+
+- (void)filterProductsViewControllerDismissed:(NSString *)indexCategory indexDistance:(NSString *)indexDistance {
     
     self.indexCategory = [indexCategory integerValue];
     self.indexDistance = [indexDistance integerValue];
     
-    [self.api productsViaCategory:indexCategory andDistance:indexDistance andWord:@"" Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self.api productsViaCategory:indexCategory
+                      andDistance:indexDistance
+                          andWord:@""
+    Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         
         self.products = [NSMutableArray new];
         
@@ -242,30 +257,11 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertController * alert = [self errorAlert:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
         [self presentViewController:alert animated:YES completion:nil];
-        
-        NSLog(@"Error: %@", error);
-        
     }];
 }
 
-#pragma mark - Tap New Product
-- (IBAction)newProductButtonPressed:(UIButton *)sender {
-    NewProductViewController *npVC = [[NewProductViewController alloc] initWithProduct:[Product new]];
-    [self presentViewController:npVC animated:YES completion:nil];
-}
-
-#pragma mark - Location
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {
-    self.longitude = [NSString stringWithFormat:@"%f", (float)newLocation.coordinate.longitude];
-    self.latitude = [NSString stringWithFormat:@"%f", (float)newLocation.coordinate.latitude];
-    
-    [[UserManager sharedInstance] currentUser].latitude = self.latitude;
-    [[UserManager sharedInstance] currentUser].longitude = self.longitude;
-}
-
 #pragma mark - ProductDetailDelegate
+
 - (void)productDetailProductBougth:(Product *)product {
     [self.products removeObject:product];
     [self.productsCollectionView reloadData];

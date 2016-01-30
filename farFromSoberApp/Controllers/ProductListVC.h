@@ -9,7 +9,6 @@
 #import "BaseVC.h"
 #import "FilterProductsViewController.h"
 #import "ProductDetailViewController.h"
-#import <CoreLocation/CoreLocation.h>
 
 
 @interface ProductListVC : BaseVC 

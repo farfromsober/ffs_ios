@@ -125,9 +125,13 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
     NSDictionary *parameters;
     if ([distance compare:@""] != 0) {
         distance = self.distances[[distance integerValue]];
-        parameters = @{@"category":category, @"name":word, @"distance":distance,
-                       @"longitude":[[UserManager sharedInstance] currentUser].longitude, @"latitude":[[UserManager sharedInstance] currentUser].latitude};
-    }else{
+        parameters = @{@"category":category,
+                       @"name":word,
+                       @"distance":distance,
+                       @"longitude":[[UserManager sharedInstance] currentUser].longitude,
+                       @"latitude":[[UserManager sharedInstance] currentUser].latitude
+                      };
+    } else {
         parameters = @{@"category":category, @"name":word};
     }
     
