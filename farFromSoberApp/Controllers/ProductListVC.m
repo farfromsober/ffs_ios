@@ -225,8 +225,8 @@
 
 - (IBAction)filterProducts:(id)sender {
     
-    NSInteger indexC = self.indexCategory >= 0 ? self.indexCategory : -1;
-    NSInteger indexD = self.indexDistance >= 0 ? self.indexDistance : -1;
+    NSInteger indexC = (self.indexCategory >= 0 && self.indexCategory) ? self.indexCategory : -1;
+    NSInteger indexD = (self.indexDistance >= 0 && self.indexDistance) ? self.indexDistance : -1;
     
     FilterProductsViewController *filVC = [[FilterProductsViewController alloc] initWithIndexCategorySelected:indexC
                                                                                              andIndexDistance:indexD];
