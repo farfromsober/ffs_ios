@@ -67,7 +67,7 @@
 
 - (IBAction)btLogin:(id)sender {
     
-    [self.api logInViaEmail:self.txtUser.text andPassword:self.txtPass.text Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject){
+    [self.api logInViaEmail:self.txtUser.text andPassword:self.txtPass.text success:^(NSURLSessionDataTask *task, NSDictionary *responseObject){
         
         // Creamos el header con las credenciales del usuario una vez se ha logeado con éxito.
         [[APIManager sharedManager] setHeaderCredentials:self.txtUser.text

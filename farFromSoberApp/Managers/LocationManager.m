@@ -35,11 +35,13 @@
 #pragma mark - Public
 
 - (void)startTrackingPosition {
+    NSLog(@"Start tracking GPS position");
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
 }
 
 - (void)stopTrackingPosition {
+    NSLog(@"Stop tracking GPS position");
     [self.locationManager stopUpdatingLocation];
 }
 

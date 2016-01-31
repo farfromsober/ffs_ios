@@ -16,7 +16,8 @@
 #import "UserManager.h"
 #import "LocationManager.h"
 
-@interface ProductListVC () <UISearchBarDelegate,UICollectionViewDelegate, UICollectionViewDataSource, FilterProductsViewControllerDelegate, ProductDetailDelegate>
+@interface ProductListVC () <UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource,
+                             FilterProductsViewControllerDelegate, ProductDetailDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MBProgressHUD *hud;
@@ -39,39 +40,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //NavigationBar
-    [AppStyle addSearchBarToNavBar:self.navigationController.navigationBar];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"]
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(favoriteProducts:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Filter"]
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(filterProducts:)];
+    // Tracker init
+    self.locationManager = [[LocationManager alloc] init];
     
-    // Declaramos delegado de la searchBar
-    self.searchBar = (UISearchBar *)self.navigationController.navigationBar.topItem.titleView;
-    self.searchBar.delegate = self;
-    self.searchBarShouldBeginEditing = YES;
-    self.anySearchMade = NO;
+    [self setupNavigationBar];
+    [self setupProductCollectionView];
+    [self setupRefreshController];
     
     [self initializeData];
-    
-    self.productsCollectionView.delegate = self;
-    self.productsCollectionView.dataSource = self;
-    [self.productsCollectionView registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
-    
-    // Inicializamos el refresh control
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    [self.refreshControl addTarget:self
-                            action:@selector(initializeData)
-                  forControlEvents:UIControlEventValueChanged];
-    [self.productsCollectionView addSubview:self.refreshControl];
-    
-    // Tracking position
-    self.locationManager = [[LocationManager alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -94,11 +70,47 @@
     [self.locationManager stopTrackingPosition];
 }
 
+#pragma mark - Setup View
+
+- (void)setupProductCollectionView {
+    self.productsCollectionView.delegate = self;
+    self.productsCollectionView.dataSource = self;
+    [self.productsCollectionView registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
+}
+
+- (void)setupNavigationBar {
+    [AppStyle addProductListNavigationItems:self.navigationItem];
+    self.navigationItem.leftBarButtonItem.target = self;
+    self.navigationItem.leftBarButtonItem.action = @selector(favoriteProducts:);
+    self.navigationItem.rightBarButtonItem.target = self;
+    self.navigationItem.rightBarButtonItem.action = @selector(filterProducts:);
+    
+    [self addSearchBar];
+}
+
+- (void)addSearchBar {
+    self.searchBar = [AppStyle addSearchBarToNavBar:self.navigationController.navigationBar];
+    self.searchBar.delegate = self;
+    self.searchBarShouldBeginEditing = YES;
+    self.anySearchMade = NO;
+}
+
+- (void)setupRefreshController {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(initializeData)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.productsCollectionView addSubview:self.refreshControl];
+}
+
+#pragma mark - Data
+
 - (void)initializeData {
     self.indexCategory = -1;
     self.indexDistance = -1;
     
-    [self getProductsWithCategory:@"" Distance:@"" AndWord:@""];
+    [self getProductsWithCategory:@"" distance:@"" andKeyword:@""];
 }
 
 - (void)resetData {
@@ -109,14 +121,14 @@
 }
 
 - (void)getProductsWithCategory:(NSString *)category
-                        Distance:(NSString *)distance
-                         AndWord:(NSString *)word {
+                        distance:(NSString *)distance
+                         andKeyword:(NSString *)word {
     self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
     
-    [self.api productsViaCategory:category
-                      andDistance:distance
-                          andWord:word
-    Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self.api fetchProductsWithCategory:category
+                               distance:distance
+                             andKeyword:word
+    success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
         
         self.products = [NSMutableArray new];
         
@@ -125,20 +137,19 @@
             [self.products addObject:product];
         }
         [self.productsCollectionView reloadData];
-        
-        [self.hud hide:YES];
-        self.hud = nil;
-        [self.refreshControl endRefreshing];
+        [self hideHud];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertController * alert = [self errorAlert:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
         [self presentViewController:alert animated:YES completion:nil];
-        
-        NSLog(@"Error: %@", error);
-        [self.hud hide:YES];
-        self.hud = nil;
-        [self.refreshControl endRefreshing];
+        [self hideHud];
     }];
+}
+
+- (void)hideHud {
+    [self.hud hide:YES];
+    self.hud = nil;
+    [self.refreshControl endRefreshing];
 }
 
 #pragma mark - UISearchBarDelegate
@@ -166,7 +177,7 @@
     self.anySearchMade = YES;
     NSString *searchWord = [[searchBar.text componentsSeparatedByString:@" "] objectAtIndex:0];
     
-    [self getProductsWithCategory:@"" Distance:@"" AndWord:searchWord];
+    [self getProductsWithCategory:@"" distance:@"" andKeyword:searchWord];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -182,15 +193,10 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"productCell";
-    
-    ProductCollectionViewCell *cell = (ProductCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    ProductCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     Product *cellData = [self.products objectAtIndex:indexPath.row];
-    
-    cell.lbPrice.text = [NSString stringWithFormat:@"%@€",[cellData price]];
-    cell.lbTitle.text = [cellData name];
-    
-    [cell setImageWithURL:[[cellData images] firstObject]];
+    [cell setupCell:cellData];
     
     return cell;
 }
@@ -222,7 +228,8 @@
     NSInteger indexC = self.indexCategory >= 0 ? self.indexCategory : -1;
     NSInteger indexD = self.indexDistance >= 0 ? self.indexDistance : -1;
     
-    FilterProductsViewController *filVC = [[FilterProductsViewController alloc] initWithIndexCategorySelected:indexC andIndexDistance:indexD];
+    FilterProductsViewController *filVC = [[FilterProductsViewController alloc] initWithIndexCategorySelected:indexC
+                                                                                             andIndexDistance:indexD];
     filVC.myDelegate = self;
     [self presentViewController:filVC animated:YES completion:^{
         
@@ -241,23 +248,7 @@
     self.indexCategory = [indexCategory integerValue];
     self.indexDistance = [indexDistance integerValue];
     
-    [self.api productsViaCategory:indexCategory
-                      andDistance:indexDistance
-                          andWord:@""
-    Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-        
-        self.products = [NSMutableArray new];
-        
-        for (NSDictionary *productDic in responseObject) {
-            Product *product = [[Product alloc] initWithJSON:productDic];
-            [self.products addObject:product];
-        }
-        [self.productsCollectionView reloadData];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        UIAlertController * alert = [self errorAlert:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
-        [self presentViewController:alert animated:YES completion:nil];
-    }];
+    [self getProductsWithCategory:indexCategory distance:indexDistance andKeyword:@""];
 }
 
 #pragma mark - ProductDetailDelegate

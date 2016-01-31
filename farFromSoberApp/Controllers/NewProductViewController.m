@@ -276,7 +276,7 @@
 }
 
 - (void) showSuccesMessage {
-    UIAlertController * alert=   [UIAlertController
+    UIAlertController * alert =   [UIAlertController
                                   alertControllerWithTitle:@"Create product"
                                   message:@"Product successfully created"
                                   preferredStyle:UIAlertControllerStyleAlert];

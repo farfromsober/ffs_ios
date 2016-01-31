@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -29,11 +28,10 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZ6-0N-jqt">
-                    <rect key="frame" x="344" y="598" width="70" height="70"/>
+                    <rect key="frame" x="344" y="592" width="70" height="76"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="fZ6-0N-jqt" secondAttribute="height" multiplier="1:1" id="AJM-50-r4g"/>
                         <constraint firstAttribute="width" constant="70" id="KEk-EO-Vk1"/>
-                        <constraint firstAttribute="height" constant="70" id="YAj-Sk-Ty0"/>
+                        <constraint firstAttribute="height" constant="76" id="YAj-Sk-Ty0"/>
                     </constraints>
                     <state key="normal" image="New Button"/>
                     <connections>

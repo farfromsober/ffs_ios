@@ -63,7 +63,7 @@
     self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
     if (self.selectedType == 0 || self.selectedType == 1) {
         [self.api productsForUser:self.user.username selling:self.selectedType == UserDataProductsListTypeSelling
-                          Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                          Success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
                               self.products = [NSMutableArray new];
                               
                               for (NSDictionary *productDic in responseObject) {
@@ -120,20 +120,16 @@
     static NSString *cellIdentifier = @"productCell";
     static NSString *cellIdentifierHeader = @"userCell";
     if (indexPath.section == 0) {
-        UserDataCollectionViewCell *cell = (UserDataCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifierHeader forIndexPath:indexPath];
+        UserDataCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifierHeader forIndexPath:indexPath];
         cell.user = self.user;
         [cell.segmentedControl setSelectedSegmentIndex:self.selectedType];
         cell.delegate = self;
         return cell;
     } else {
-        ProductCollectionViewCell *cell = (ProductCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-        
+        ProductCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         Product *cellData = [self.products objectAtIndex:indexPath.row];
         
-        cell.lbPrice.text = [NSString stringWithFormat:@"%@€",[cellData price]];
-        cell.lbTitle.text = [cellData name];
-        
-        [cell setImageWithURL:[[cellData images] firstObject]];
+        [cell setupCell:cellData];
         return cell;
     }
 }

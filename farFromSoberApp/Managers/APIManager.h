@@ -25,26 +25,26 @@
 // login *****
 - (NSURLSessionDataTask *)logInViaEmail:(NSString *)userEmail
                             andPassword:(NSString *)userPassword
-                                Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 // products 
-- (NSURLSessionDataTask *)productsViaCategory:(NSString *)category
-                                  andDistance:(NSString *)distance
-                                      andWord:(NSString *) word
-                                      Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+- (NSURLSessionDataTask *)fetchProductsWithCategory:(NSString *)category
+                                  distance:(NSString *)distance
+                                      andKeyword:(NSString *) word
+                                      success:(void (^)(NSURLSessionDataTask *task, NSArray *responseObject))success
                                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)productsForUser:(NSString *)username
                                   selling:(BOOL )selling
-                                  Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                  Success:(void (^)(NSURLSessionDataTask *task, NSArray *responseObject))success
                                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)productsBoughtSuccess:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)newProductViaProduct: (NSDictionary *) product
                                        Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-- (NSURLSessionDataTask *)newImages:(NSArray *) images
-                       ViaProductId:(NSString *) productId
+- (NSURLSessionDataTask *)newImages:(NSArray *)images
+                       ViaProductId:(NSString *)productId
                             Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 //user
