@@ -31,6 +31,8 @@
 
 @property (strong, nonatomic) LocationManager *locationManager;
 
+@property (strong, nonatomic) UIView *tapDetectorView;
+
 @end
 
 @implementation ProductListVC
@@ -53,11 +55,13 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [AppStyle hideLogo:NO ToNavBar:self.navigationController.navigationBar];
+    [self unregisterForNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [AppStyle hideLogo:YES ToNavBar:self.navigationController.navigationBar];
+    [self registerForNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -68,6 +72,49 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.locationManager stopTrackingPosition];
+}
+
+#pragma mark - NSNotification
+
+- (void)dealloc {
+    [self unregisterForNotifications];
+}
+
+- (void)registerForNotifications {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (void)unregisterForNotifications {
+    // Clear out _all_ observations that this object was making
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+    NSDictionary *keyboardInfo = [notification userInfo];
+    NSValue *keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+    
+    CGRect rect = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-keyboardFrameBeginRect.size.height);
+    self.tapDetectorView = [[UIView alloc] initWithFrame:rect];
+    self.tapDetectorView.backgroundColor = [UIColor clearColor];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.tapDetectorView addGestureRecognizer:tap];
+    
+    [self.view addSubview:self.tapDetectorView];
+}
+
+- (void)hideKeyboard {
+    [self.searchBar resignFirstResponder];
+    [self.view endEditing:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    [self.tapDetectorView removeFromSuperview];
+    self.tapDetectorView = nil;
 }
 
 #pragma mark - Setup View
@@ -193,7 +240,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"productCell";
-    ProductCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    ProductCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier
+                                                                                forIndexPath:indexPath];
     
     Product *cellData = [self.products objectAtIndex:indexPath.row];
     [cell setupCell:cellData];
@@ -231,9 +279,7 @@
     FilterProductsViewController *filVC = [[FilterProductsViewController alloc] initWithIndexCategorySelected:indexC
                                                                                              andIndexDistance:indexD];
     filVC.myDelegate = self;
-    [self presentViewController:filVC animated:YES completion:^{
-        
-    }];
+    [self presentViewController:filVC animated:YES completion:nil];
 }
 
 - (IBAction)newProductButtonPressed:(UIButton *)sender {
