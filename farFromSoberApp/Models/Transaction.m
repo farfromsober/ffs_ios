@@ -12,7 +12,7 @@
 
 #import "NSDate+Parser.h"
 
-static NSString * const idKey = @"_id";
+static NSString * const idKey = @"id";
 static NSString * const productKey = @"product";
 static NSString * const buyerKey = @"buyer";
 static NSString * const dateKey = @"date";
@@ -27,7 +27,7 @@ static NSString * const dateKey = @"date";
         transaction.transactionId = dic[idKey] ? dic[idKey] : 0;
         transaction.product = [[Product alloc] initWithJSON:dic[productKey]];
         transaction.buyer = [[User alloc] initWithJSON:dic[buyerKey]];
-        transaction.date = dic[dateKey] ? [NSDate parseISO8601Date:dic[dateKey]] : nil;
+        transaction.date = dic[dateKey] ? [NSDate parseSimpleDate:dic[dateKey]] : nil;
         
         return transaction;
     }
@@ -43,7 +43,7 @@ static NSString * const dateKey = @"date";
         mDic[idKey] = transaction.transactionId;
         mDic[productKey] = [[Product alloc] objectToJSON:transaction.product];
         mDic[buyerKey] = [[User alloc] objectToJSON:transaction.buyer];
-        mDic[dateKey] = [NSDate stringWithISO8601FormatDate:transaction.date];
+        mDic[dateKey] = [NSDate stringWithSimpleFormatDate:transaction.date];
         
         return [mDic copy];
     }

@@ -20,44 +20,34 @@
 #pragma mark - User
 
 + (NSDictionary *)fakeJSONUser {
-    return @{@"id": @(123456),
-             @"user": @{
-                 @"id": @(123456),
-                 @"password": @"pbkdf2_sha256$20000$XwPGBxasqiZ5$ARHLY+JUFgyVLi61+vWcHDj+zkN/KYZ6SssPYjYGE2g=",
-                 @"last_login": @"2015-12-06T10:42:46.450688Z",
-                 @"is_superuser": @(NO),
-                 @"username": @"dregatos",
-                 @"first_name": @"David",
-                 @"last_name": @"Regatos",
-                 @"email": @"david.regatos@gmail.com",
-                 @"is_staff": @(NO),
-                 @"is_active": @(YES),
-                 @"date_joined": @"2015-12-02T19:42:26Z",
-                 @"groups": @[],
-                 @"user_permissions": @[]
-             },
+    return @{@"id": @(6),
+             @"user": @{ @"username": @"dregatos",
+                         @"first_name": @"David",
+                         @"last_name": @"Regatos",
+                         @"email": @"david.regatos@gmail.com"
+                        },
              @"avatar": @"http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png",
-             @"latitude": @"40.375762",
+             @"latitude": @"41.4179636",
              @"longitude": @"-3.599271",
-             @"city": @"Madrid",
-             @"state": @"Madrid",
-             @"sales": @(11),
-             };
+             @"city": @"Barcelona",
+             @"state": @"Spain",
+             @"sales": @(1)
+            };
 }
 
 + (User *)fakeUserObject {
     User *user = [[User alloc] init];
     user.avatarURL = [NSURL URLWithString:@"http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png"];
-    user.userId = @(123456);
+    user.userId = @(6);
     user.firstName = @"David";
     user.lastName = @"Regatos";
     user.username = @"dregatos";
     user.email = @"david.regatos@gmail.com";
-    user.latitude = @"40.375762";
+    user.latitude = @"41.4179636";
     user.longitude = @"-3.599271";
-    user.city = @"Madrid";
-    user.state = @"Madrid";
-    user.sales = @(11);
+    user.city = @"Barcelona";
+    user.state = @"Spain";
+    user.sales = @(1);
     
     return user;
 }
@@ -78,17 +68,16 @@
 #pragma mark - Utils
 
 + (NSDictionary *)fakeJSONProduct {
-    
     return @{
              @"id": @"5649b6eae9a246eed43f0174",
+             @"category": [self fakeJSONCategory],
+             @"seller": [self fakeJSONUser],
+             @"price": @"387.96",
+             @"images": [self fakeImageStrings],
              @"name": @"tempor in laboris",
              @"description": @"mollit nisi nisi ea exercitation deserunt anim et cupidatat fugiat ullamco fugiat amet",
              @"published_date": [self fakePublishedString],
              @"selling": @(true),
-             @"price": @"387.96",
-             @"seller": [self fakeJSONUser],
-             @"category": [self fakeJSONCategory],
-             @"images": [self fakeImageStrings]
              };
 }
 
@@ -117,11 +106,11 @@
 }
 
 + (NSDate *)fakePublishedDate {
-    return [NSDate parseISO8601Date:[self fakePublishedString]];
+    return [NSDate parseSimpleDate:[self fakePublishedString]];
 }
 
 + (NSString *)fakePublishedString {
-    return @"2015-11-02T15:16:29+0100";
+    return @"2016-01-24";
 }
 
 + (SavedSearch *)fakeSavedSearchObject {
@@ -145,7 +134,7 @@
 
 + (Transaction *)fakeTransactionObject {
     Transaction *transaction = [[Transaction alloc] init];
-    transaction.transactionId = @"5649c11c3fc81426a5b17fbc";
+    transaction.transactionId = @"56";
     transaction.product = [self fakeProductObject];
     transaction.buyer = [self fakeUserObject];
     transaction.date = [self fakePublishedDate];
@@ -155,7 +144,7 @@
 
 + (NSDictionary *)fakeJSONTransaction {
     return @{
-             @"id": @"5649c11c3fc81426a5b17fbc",
+             @"id": @"56",
              @"product": [self fakeJSONProduct],
              @"buyer":[self fakeJSONUser],
              @"date": [self fakePublishedString]

@@ -40,11 +40,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];  
-    self.cvProductsCollection.delegate = self;
-    self.cvProductsCollection.dataSource = self;
-    [self.cvProductsCollection registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
-    [self.cvProductsCollection registerClass:[UserDataCollectionViewCell class] forCellWithReuseIdentifier:@"userCell"];
-    [self.cvProductsCollection registerNib:[UINib nibWithNibName:@"UserDataCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"userCell"];
+    self.productsCollectionView.delegate = self;
+    self.productsCollectionView.dataSource = self;
+    [self.productsCollectionView registerClass:[ProductCollectionViewCell class] forCellWithReuseIdentifier:@"productCell"];
+    [self.productsCollectionView registerClass:[UserDataCollectionViewCell class] forCellWithReuseIdentifier:@"userCell"];
+    [self.productsCollectionView registerNib:[UINib nibWithNibName:@"UserDataCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"userCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,14 +63,14 @@
     self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
     if (self.selectedType == 0 || self.selectedType == 1) {
         [self.api productsForUser:self.user.username selling:self.selectedType == UserDataProductsListTypeSelling
-                          Success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                          Success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
                               self.products = [NSMutableArray new];
                               
                               for (NSDictionary *productDic in responseObject) {
                                   Product *product = [[Product alloc] initWithJSON:productDic];
                                   [self.products addObject:product];
                               }
-                              [self.cvProductsCollection reloadData];
+                              [self.productsCollectionView reloadData];
                               
                               [self.hud hide:YES];
                               self.hud = nil;
@@ -85,7 +85,7 @@
                 Product *product = [[Product alloc] initWithJSON:productDic];
                 [self.products addObject:product];
             }
-            [self.cvProductsCollection reloadData];
+            [self.productsCollectionView reloadData];
             
             [self.hud hide:YES];
             self.hud = nil;
@@ -120,20 +120,16 @@
     static NSString *cellIdentifier = @"productCell";
     static NSString *cellIdentifierHeader = @"userCell";
     if (indexPath.section == 0) {
-        UserDataCollectionViewCell *cell = (UserDataCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifierHeader forIndexPath:indexPath];
+        UserDataCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifierHeader forIndexPath:indexPath];
         cell.user = self.user;
         [cell.segmentedControl setSelectedSegmentIndex:self.selectedType];
         cell.delegate = self;
         return cell;
     } else {
-        ProductCollectionViewCell *cell = (ProductCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-        
+        ProductCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         Product *cellData = [self.products objectAtIndex:indexPath.row];
         
-        cell.lbPrice.text = [NSString stringWithFormat:@"%@€",[cellData price]];
-        cell.lbTitle.text = [cellData name];
-        
-        [cell setImageWithURL:[[cellData images] firstObject]];
+        [cell setupCell:cellData];
         return cell;
     }
 }
@@ -184,7 +180,7 @@
 #pragma mark - ProductDetailDelegate
 - (void)productDetailProductBougth:(Product *)product {
     [self.products removeObject:product];
-    [self.cvProductsCollection reloadData];
+    [self.productsCollectionView reloadData];
 }
 
 

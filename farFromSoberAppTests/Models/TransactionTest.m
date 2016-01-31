@@ -34,7 +34,7 @@
 }
 
 - (void)testTransactionInitializedWithDictionaryWithNoIDShouldBeNil  {
-    Transaction *transaction = [[Transaction alloc] initWithJSON:@{@"_id":@""}];
+    Transaction *transaction = [[Transaction alloc] initWithJSON:@{@"id":@""}];
     XCTAssertNil(transaction, @"If JSON dictionary has no id, 'Transaction' object should be nil");
 }
 
@@ -49,7 +49,7 @@
 }
 
 - (void)testTransactionInitializedWithIdAndUserShouldBeCreated  {
-    NSDictionary *dic = @{@"_id":@"12345",
+    NSDictionary *dic = @{@"id":@"12345",
                           @"product": [FakeModelObjects fakeJSONProduct],
                           @"buyer":[FakeModelObjects fakeJSONUser]
                           };
@@ -60,7 +60,7 @@
 - (void)testTransactionCreatedShouldMatchInputFields  {
     NSDictionary *json = [FakeModelObjects fakeJSONTransaction];
     Transaction *transaction = [[Transaction alloc] initWithJSON:json];
-    XCTAssertTrue([transaction.transactionId isEqualToString:json[@"_id"]], @"'saveSearchId' should be equal tu json[\"_id\"]");
+    XCTAssertTrue([transaction.transactionId isEqualToString:json[@"id"]], @"'saveSearchId' should be equal tu json[\"id\"]");
     XCTAssertTrue([transaction.product isEqual:[FakeModelObjects fakeProductObject]], @"'product' should be equal tu json[\"product\"]");
     XCTAssertTrue([transaction.buyer isEqual:[FakeModelObjects fakeUserObject]], @"'buyer' should be equal tu json[\"buyer\"]");
     XCTAssertTrue([transaction.date isEqualToDate:[FakeModelObjects fakePublishedDate]], @"'date' should be equal tu json[\"date\"]");
@@ -76,7 +76,7 @@
 - (void)testJSONCreatedShouldMatchInputFields  {
     Transaction *transaction = [FakeModelObjects fakeTransactionObject];
     NSDictionary *json = [[Transaction alloc] objectToJSON:transaction];
-    XCTAssertTrue([transaction.transactionId isEqualToString:json[@"_id"]], @"'saveSearchId' should be equal tu json[\"_id\"]");
+    XCTAssertTrue([transaction.transactionId isEqualToString:json[@"id"]], @"'saveSearchId' should be equal tu json[\"id\"]");
     XCTAssertTrue([[FakeModelObjects fakeJSONUser] isEqualToDictionary:json[@"buyer"]],
                   @"'buyer' should be equal tu json[\"buyer\"]");
     XCTAssertTrue([[FakeModelObjects fakeJSONProduct] isEqualToDictionary:json[@"product"]],

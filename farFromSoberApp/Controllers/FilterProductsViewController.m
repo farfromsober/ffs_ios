@@ -29,7 +29,7 @@ static NSUInteger const headerMargin = 23;
 
 @implementation FilterProductsViewController
 
--(instancetype) initWithIndexCategorySelected: (NSInteger) indexCategory andIndexDistance: (NSInteger) indexDistance {
+- (instancetype)initWithIndexCategorySelected:(NSInteger)indexCategory andIndexDistance:(NSInteger)indexDistance {
     self = [super init];
     
     if (self) {
@@ -84,25 +84,21 @@ static NSUInteger const headerMargin = 23;
 
 #pragma mark - TableViews
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-
-
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     if (tableView == self.tvCategories){
         return self.categoriesHeaderView;
     }
     return self.distanceHeaderView;
-    
 }
 
 
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.tvCategories) {
         return [self.categories count];
     } else {
@@ -112,7 +108,7 @@ static NSUInteger const headerMargin = 23;
 
 
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     FilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FilterTableViewCell cellId]];
     
@@ -123,17 +119,15 @@ static NSUInteger const headerMargin = 23;
         cell.lbName.text = cellData.name;
         if (self.indexCategorySelected && indexPath.row == self.indexCategorySelected.row) {
             cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
-        }else{
+        } else {
             cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
         }
-        
-        
     } else {
         
         cell.lbName.text = [NSString stringWithFormat:@"%@ km", [self.distances objectAtIndex:indexPath.row]];
         if (self.indexDistanceSelected && indexPath.row == self.indexDistanceSelected.row) {
             cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
-        }else{
+        } else {
             cell.imgCheck.image = [UIImage imageNamed:@"checkOff"];
         }
     }
@@ -141,7 +135,7 @@ static NSUInteger const headerMargin = 23;
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     FilterTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
@@ -175,50 +169,35 @@ static NSUInteger const headerMargin = 23;
             self.indexDistanceSelected = indexPath;
             cell.imgCheck.image = [UIImage imageNamed:@"circleCheck"];
         }
-        
     }
-    
-    
-    
 }
 
 #pragma mark - Buttons Action
 
 - (IBAction)btCancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)btSave:(id)sender {
     
-    if([self.myDelegate respondsToSelector:@selector(filterProductsViewControllerDismissed:indexDistance:)])
-    {
+    if([self.myDelegate respondsToSelector:@selector(filterProductsViewControllerDismissed:indexDistance:)]) {
         NSString *indexC = self.indexCategorySelected ? [NSString stringWithFormat:@"%ld",self.indexCategorySelected.row] : @"";
         NSString *indexD = self.indexDistanceSelected ? [NSString stringWithFormat:@"%ld",self.indexDistanceSelected.row] : @"";
         [self.myDelegate filterProductsViewControllerDismissed:indexC indexDistance:indexD];
     }
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Register cell
 
--(void) registerNib{
+- (void)registerNib {
     
-    UINib *nib = [UINib nibWithNibName:@"FilterTableViewCell"
-                                bundle:[NSBundle mainBundle]];
-    [self.tvCategories registerNib:nib
-         forCellReuseIdentifier:[FilterTableViewCell cellId]];
+    UINib *nib = [UINib nibWithNibName:@"FilterTableViewCell" bundle:[NSBundle mainBundle]];
+    [self.tvCategories registerNib:nib forCellReuseIdentifier:[FilterTableViewCell cellId]];
     
     
-    UINib *nibDistance = [UINib nibWithNibName:@"FilterTableViewCell"
-                                bundle:[NSBundle mainBundle]];
-    [self.tvDistance registerNib:nibDistance
-            forCellReuseIdentifier:[FilterTableViewCell cellId]];
-    
-    
+    UINib *nibDistance = [UINib nibWithNibName:@"FilterTableViewCell" bundle:[NSBundle mainBundle]];
+    [self.tvDistance registerNib:nibDistance forCellReuseIdentifier:[FilterTableViewCell cellId]];
 }
 
 @end

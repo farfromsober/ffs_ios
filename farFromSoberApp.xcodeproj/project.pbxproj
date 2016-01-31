@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0701B4521BF2963C00A3330A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4421BF2963C00A3330A /* AppDelegate.m */; };
 		0701B4541BF2963C00A3330A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701B4441BF2963C00A3330A /* main.m */; };
+		070D11D61C58331100445332 /* NSDictionary+Secure.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D11D51C58331100445332 /* NSDictionary+Secure.m */; };
+		07138C701C5C039D00F4375C /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07138C6F1C5C039D00F4375C /* LocationManager.m */; };
 		072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF1FD1BF3C88900515EB6 /* BaseVC.m */; };
 		072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2001BF3C92200515EB6 /* ProductListVC.m */; };
 		072AF2041BF3C95400515EB6 /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072AF2031BF3C95400515EB6 /* MapVC.m */; };
@@ -86,6 +88,10 @@
 		0701B4431BF2963C00A3330A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0701B4441BF2963C00A3330A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0701B44C1BF2963C00A3330A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		070D11D41C58331100445332 /* NSDictionary+Secure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Secure.h"; sourceTree = "<group>"; };
+		070D11D51C58331100445332 /* NSDictionary+Secure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Secure.m"; sourceTree = "<group>"; };
+		07138C6E1C5C039D00F4375C /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		07138C6F1C5C039D00F4375C /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		072AF1FC1BF3C88900515EB6 /* BaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseVC.h; sourceTree = "<group>"; };
 		072AF1FD1BF3C88900515EB6 /* BaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVC.m; sourceTree = "<group>"; };
 		072AF1FF1BF3C92200515EB6 /* ProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListVC.h; sourceTree = "<group>"; };
@@ -278,14 +284,16 @@
 		0701B4491BF2963C00A3330A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				07F365DB1C1460430029F8AD /* DRGKeyboardManager.h */,
-				07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */,
-				075D53211C00819F0043D91C /* UserManager.h */,
-				075D53221C00819F0043D91C /* UserManager.m */,
 				075D53271C00879C0043D91C /* APIManager.h */,
 				075D53281C00879C0043D91C /* APIManager.m */,
 				FB1E9EBF1C144F7D008B2B69 /* CategoryManager.h */,
 				FB1E9EC01C144F7D008B2B69 /* CategoryManager.m */,
+				07F365DB1C1460430029F8AD /* DRGKeyboardManager.h */,
+				07F365DC1C1460430029F8AD /* DRGKeyboardManager.m */,
+				07138C6E1C5C039D00F4375C /* LocationManager.h */,
+				07138C6F1C5C039D00F4375C /* LocationManager.m */,
+				075D53211C00819F0043D91C /* UserManager.h */,
+				075D53221C00819F0043D91C /* UserManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -332,6 +340,8 @@
 				07BE59801BFF9B3D00B4A3AA /* NSDate+Parser.m */,
 				FBA2BA0C1C08CBF5000C36EE /* AlertUtil.h */,
 				FBA2BA0D1C08CBF5000C36EE /* AlertUtil.m */,
+				070D11D41C58331100445332 /* NSDictionary+Secure.h */,
+				070D11D51C58331100445332 /* NSDictionary+Secure.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -704,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07564CED1BF7E2C6002EDBB2 /* ProductCategory.m in Sources */,
+				070D11D61C58331100445332 /* NSDictionary+Secure.m in Sources */,
 				075D53231C00819F0043D91C /* UserManager.m in Sources */,
 				FBE2BD1A1C0E524F0082090B /* ProductDetailViewController.m in Sources */,
 				072AF2011BF3C92200515EB6 /* ProductListVC.m in Sources */,
@@ -714,6 +725,7 @@
 				FB241ACB1C0B1EBD000AC1B6 /* ProductCollectionViewCell.m in Sources */,
 				072AF2071BF3C9AA00515EB6 /* NewItemVC.m in Sources */,
 				072AF1FE1BF3C88900515EB6 /* BaseVC.m in Sources */,
+				07138C701C5C039D00F4375C /* LocationManager.m in Sources */,
 				B81BA8131C54114E00BD551B /* UserDataCollectionViewCell.m in Sources */,
 				07F365E01C1463DF0029F8AD /* AppStyle.m in Sources */,
 				072AF20A1BF3C9C600515EB6 /* NotificationListVC.m in Sources */,

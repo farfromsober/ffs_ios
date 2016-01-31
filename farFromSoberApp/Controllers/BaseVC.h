@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppStyle.h"
+
 #import "APIManager.h"
+#import "MBProgressHUD.h"
 
 @interface BaseVC : UIViewController
 
 @property (nonatomic, strong) APIManager *api;
+
+- (UIAlertController *)errorAlert:(NSString *)message;
 
 @end

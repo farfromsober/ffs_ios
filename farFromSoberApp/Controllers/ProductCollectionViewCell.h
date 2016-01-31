@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class Product;
+
 @interface ProductCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgProduct;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lbPrice;
 
-- (void)setImageWithURL:(NSURL *)url;
+- (void)setupCell:(Product *)data;
 
 @end

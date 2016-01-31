@@ -9,6 +9,7 @@
 #import "ProductCollectionViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AppStyle.h"
+#import "Product.h"
 
 @implementation ProductCollectionViewCell
 
@@ -40,6 +41,15 @@
 - (void)awakeFromNib {
     // Initialization code
     [AppStyle styleProductCell:self];
+}
+
+#pragma mark - Set up
+
+- (void)setupCell:(Product *)data {
+    self.lbPrice.text = [NSString stringWithFormat:@"%@€",[data price]];
+    self.lbTitle.text = [data name];
+    
+    [self setImageWithURL:[[data images] firstObject]];
 }
 
 - (void)setImageWithURL:(NSURL *)url {

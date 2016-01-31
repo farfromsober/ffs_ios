@@ -10,7 +10,7 @@
 #import "User.h"
 #import "ProductCategory.h"
 
-static NSString * const idKey = @"_id";
+static NSString * const idKey = @"id";
 static NSString * const queryKey = @"query";
 static NSString * const userKey = @"user";
 static NSString * const categoryKey = @"category";

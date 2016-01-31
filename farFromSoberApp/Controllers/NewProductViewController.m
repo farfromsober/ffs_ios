@@ -195,7 +195,7 @@
         self.manager = [[ABSManager alloc] init];
         
         User *user = [self.userM currentUser];
-        NSString *now = [NSDate stringWithISO8601FormatDate:[NSDate new]];
+        NSString *now = [NSDate stringWithSimpleFormatDate:[NSDate new]];
         
         NSString *blobName = [NSString stringWithFormat:@"%@-%ld-%@",[user userId], (long)imageView.tag-4, now];
         NSString *imageUrl = [ABSManager getCDNURLStringForblobName:blobName];
@@ -276,7 +276,7 @@
 }
 
 - (void) showSuccesMessage {
-    UIAlertController * alert=   [UIAlertController
+    UIAlertController * alert =   [UIAlertController
                                   alertControllerWithTitle:@"Create product"
                                   message:@"Product successfully created"
                                   preferredStyle:UIAlertControllerStyleAlert];

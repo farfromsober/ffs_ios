@@ -7,7 +7,7 @@
 //
 
 #import "BaseVC.h"
-#import "AppStyle.h"
+#import "AlertUtil.h"
 
 @interface BaseVC ()
 
@@ -21,6 +21,13 @@
     [super viewDidLoad];
     self.api = [APIManager sharedManager];
     [AppStyle styleNavBar:self.navigationController.navigationBar];
+}
+
+- (UIAlertController *)errorAlert:(NSString *)message {
+    return [[AlertUtil alloc] alertwithTitle:@"Error"
+                                  andMessage:message
+                           andYesButtonTitle:@""
+                            andNoButtonTitle:@"Cerrar"];
 }
 
 @end

@@ -15,7 +15,7 @@
 @class User;
 
 @interface UserDetailVC : BaseVC<UICollectionViewDelegate, UICollectionViewDataSource, UserDataCollectionViewCellDelegate, ProductDetailDelegate>
-@property (weak, nonatomic) IBOutlet UICollectionView *cvProductsCollection;
+@property (weak, nonatomic) IBOutlet UICollectionView *productsCollectionView;
 
 - (instancetype)initWithUser:(User *)user;
 

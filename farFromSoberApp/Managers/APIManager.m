@@ -101,7 +101,7 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
 #pragma mark - Log In requests
 - (NSURLSessionDataTask *)logInViaEmail:(NSString *)userEmail
                             andPassword:(NSString *)userPassword
-                                Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     
     NSDictionary *parameters = @{@"user":userEmail, @"password":userPassword};
@@ -116,24 +116,28 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
 }
 
 #pragma mark - Products request
-- (NSURLSessionDataTask *)productsViaCategory:(NSString *)category
-                                  andDistance:(NSString *)distance
-                                      andWord:(NSString *) word
-                                Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+- (NSURLSessionDataTask *)fetchProductsWithCategory:(NSString *)category
+                                           distance:(NSString *)distance
+                                         andKeyword:(NSString *) word
+                                success:(void (^)(NSURLSessionDataTask *task, NSArray *responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     
     NSDictionary *parameters;
     if ([distance compare:@""] != 0) {
         distance = self.distances[[distance integerValue]];
-        parameters = @{@"category":category, @"name":word, @"distance":distance,
-                       @"longitude":[[UserManager sharedInstance] currentUser].longitude, @"latitude":[[UserManager sharedInstance] currentUser].latitude};
-    }else{
+        parameters = @{@"category":category,
+                       @"name":word,
+                       @"distance":distance,
+                       @"longitude":[[UserManager sharedInstance] currentUser].longitude,
+                       @"latitude":[[UserManager sharedInstance] currentUser].latitude
+                      };
+    } else {
         parameters = @{@"category":category, @"name":word};
     }
     
     return [[self sessionManager] GET:@"/api/1.0/products/?selling=2"
                             parameters:parameters
-                               success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                               success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
                                    success(task, responseObject);
                                } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                    failure(task, error);
@@ -142,14 +146,14 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
 
 - (NSURLSessionDataTask *)productsForUser:(NSString *)username
                                   selling:(BOOL )selling
-                                  Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                                  Success:(void (^)(NSURLSessionDataTask *task, NSArray *responseObject))success
                                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     
     NSDictionary *parameters = @{@"seller":username, @"selling":selling?@"2":@"3"};
     
     return [[self sessionManager] GET:@"/api/1.0/products/"
                            parameters:parameters
-                              success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                              success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
                                   success(task, responseObject);
                               } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                   failure(task, error);
@@ -181,8 +185,8 @@ static NSString *const serverBaseURL = @"http://forsale.cloudapp.net";
                               }];
 }
 
-- (NSURLSessionDataTask *)newImages:(NSArray *) images
-                         ViaProductId:(NSString *) productId
+- (NSURLSessionDataTask *)newImages:(NSArray *)images
+                         ViaProductId:(NSString *)productId
                             Success:(void (^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     

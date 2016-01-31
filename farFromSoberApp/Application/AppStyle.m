@@ -109,18 +109,32 @@ static NSUInteger const navBarIconHeight = 25;
     logo.hidden = hide;
 }
 
-+ (void)addSearchBarToNavBar:(UINavigationBar *) navBar {
++ (UISearchBar *)addSearchBarToNavBar:(UINavigationBar *) navBar {
     UISearchBar *searchBar = [UISearchBar new];
     [searchBar sizeToFit];
     searchBar.backgroundColor = [AppStyle mainColorDark];
     searchBar.barTintColor = [AppStyle mainColorDark];
     navBar.topItem.titleView = searchBar;
+    
+    return searchBar;
 }
 
 + (void)removeSearchBarFromNavBar:(UINavigationBar *) navBar {
     
     
 }
+
++ (void)addProductListNavigationItems:(UINavigationItem *)navItem {
+    navItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Favorites"]
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
+    navItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Filter"]
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:nil
+                                                                             action:nil];
+}
+
 
 #pragma mark - LoginViewController
 
