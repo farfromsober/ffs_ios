@@ -172,24 +172,26 @@
                          andKeyword:(NSString *)word {
     self.hud = [AppStyle getLoadingHUDWithView:self.view message:@"Loading products"];
     
+    __weak typeof(self) weakSelf = self;
     [self.api fetchProductsWithCategory:category
                                distance:distance
                              andKeyword:word
     success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
-        
-        self.products = [NSMutableArray new];
-        
+
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.products = [NSMutableArray new];
         for (NSDictionary *productDic in responseObject) {
             Product *product = [[Product alloc] initWithJSON:productDic];
-            [self.products addObject:product];
+            [strongSelf.products addObject:product];
         }
-        [self.productsCollectionView reloadData];
-        [self hideHud];
+        [strongSelf.productsCollectionView reloadData];
+        [strongSelf hideHud];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
         UIAlertController * alert = [self errorAlert:[error.userInfo valueForKey:@"NSLocalizedDescription"]];
-        [self presentViewController:alert animated:YES completion:nil];
-        [self hideHud];
+        [strongSelf presentViewController:alert animated:YES completion:nil];
+        [strongSelf hideHud];
     }];
 }
 
