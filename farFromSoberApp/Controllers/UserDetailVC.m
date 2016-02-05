@@ -68,6 +68,7 @@
                               
                               for (NSDictionary *productDic in responseObject) {
                                   Product *product = [[Product alloc] initWithJSON:productDic];
+                                  self.user = product.seller;
                                   [self.products addObject:product];
                               }
                               [self.productsCollectionView reloadData];
@@ -83,6 +84,7 @@
             
             for (NSDictionary *productDic in responseObject) {
                 Product *product = [[Product alloc] initWithJSON:productDic];
+                self.user = product.seller;
                 [self.products addObject:product];
             }
             [self.productsCollectionView reloadData];
@@ -180,6 +182,7 @@
 #pragma mark - ProductDetailDelegate
 - (void)productDetailProductBougth:(Product *)product {
     [self.products removeObject:product];
+    self.user.sales = @([self.user.sales intValue]+1);
     [self.productsCollectionView reloadData];
 }
 
