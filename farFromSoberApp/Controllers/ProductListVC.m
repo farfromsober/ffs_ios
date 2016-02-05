@@ -147,6 +147,7 @@
 
 - (void)setupRefreshController {
     /*
+     //Standard refresh controlller
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self
@@ -215,7 +216,8 @@
 - (void)hideHud {
     [self.hud hide:YES];
     self.hud = nil;
-    [self.refreshControl endRefreshing];
+    //[self.refreshControl endRefreshing];
+    [self.productsCollectionView stopPullToRefreshAnimation];
 }
 
 #pragma mark - UISearchBarDelegate
