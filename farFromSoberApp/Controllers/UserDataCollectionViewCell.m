@@ -19,7 +19,7 @@
 }
 
 - (void)setUser:(User *)user {
-    if (user != _user) {
+    //if (user != _user) {
         _user = user;
         self.usernameLabel.text = user.username;
         self.localizationLabel.text = user.city == nil?@"":user.city;
@@ -40,7 +40,7 @@
         } else {
             self.logoutButton.hidden = YES;
         }
-    }
+    //}
 }
 
 
