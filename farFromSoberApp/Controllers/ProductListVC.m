@@ -16,10 +16,12 @@
 #import "UserManager.h"
 #import "LocationManager.h"
 
+#import "UIScrollView+UzysAnimatedGifPullToRefresh.h"
+
+
 @interface ProductListVC () <UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource,
                              FilterProductsViewControllerDelegate, ProductDetailDelegate>
 
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MBProgressHUD *hud;
 @property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) UISearchBar *searchBar;
@@ -143,12 +145,18 @@
 }
 
 - (void)setupRefreshController {
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    [self.refreshControl addTarget:self
-                            action:@selector(initializeData)
-                  forControlEvents:UIControlEventValueChanged];
-    [self.productsCollectionView addSubview:self.refreshControl];
+    [self.productsCollectionView addTopInsetInPortrait:0 TopInsetInLandscape:0];
+    __weak typeof(self) weakSelf =self;
+    [self.productsCollectionView addPullToRefreshActionHandler:^{
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf initializeData];
+        [strongSelf.productsCollectionView stopPullToRefreshAnimation];
+
+    }
+                            ProgressImagesGifName:@"apple_loading.gif"
+                             LoadingImagesGifName:@"apple_loading.gif"
+                          ProgressScrollThreshold:60
+                            LoadingImageFrameRate:30];
 }
 
 #pragma mark - Data
@@ -198,7 +206,7 @@
 - (void)hideHud {
     [self.hud hide:YES];
     self.hud = nil;
-    [self.refreshControl endRefreshing];
+    [self.productsCollectionView stopPullToRefreshAnimation];
 }
 
 #pragma mark - UISearchBarDelegate

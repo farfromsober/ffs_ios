@@ -43,6 +43,7 @@
 		3A290C6D9135887442CB715A /* Pods_farFromSoberApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F736D76707F74714911CA544 /* Pods_farFromSoberApp.framework */; };
 		8E46E9951C20B7DA00B5E4D5 /* ProductImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E46E9931C20B7DA00B5E4D5 /* ProductImageVC.m */; };
 		8E46E9961C20B7DA00B5E4D5 /* ProductImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */; };
+		B80653D01C64B2E700CDBEBA /* apple_loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = B80653CF1C64B2E700CDBEBA /* apple_loading.gif */; };
 		B81BA8131C54114E00BD551B /* UserDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */; };
 		B81BA8141C54114E00BD551B /* UserDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */; };
 		B88120A11C59977D008AD59E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88120A01C59977D008AD59E /* CoreLocation.framework */; };
@@ -148,6 +149,7 @@
 		8E46E9931C20B7DA00B5E4D5 /* ProductImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImageVC.m; sourceTree = "<group>"; };
 		8E46E9941C20B7DA00B5E4D5 /* ProductImageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductImageVC.xib; sourceTree = "<group>"; };
 		B0E5D29A6D305F71E150BE10 /* Pods-farFromSoberApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-farFromSoberApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-farFromSoberApp/Pods-farFromSoberApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B80653CF1C64B2E700CDBEBA /* apple_loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = apple_loading.gif; sourceTree = "<group>"; };
 		B81BA8101C54114E00BD551B /* UserDataCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataCollectionViewCell.h; sourceTree = "<group>"; };
 		B81BA8111C54114E00BD551B /* UserDataCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDataCollectionViewCell.m; sourceTree = "<group>"; };
 		B81BA8121C54114E00BD551B /* UserDataCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDataCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 		0701B44B1BF2963C00A3330A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B80653CF1C64B2E700CDBEBA /* apple_loading.gif */,
 				FB129C6A1C1375E10017721D /* Azure */,
 				07BEAF931BF6490A00062D77 /* LaunchScreen.storyboard */,
 				0701B44C1BF2963C00A3330A /* Assets.xcassets */,
@@ -636,6 +639,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80653D01C64B2E700CDBEBA /* apple_loading.gif in Resources */,
 				8E46E9961C20B7DA00B5E4D5 /* ProductImageVC.xib in Resources */,
 				07BEAF941BF6490A00062D77 /* LaunchScreen.storyboard in Resources */,
 				FB9183591C07BF69001F7C44 /* LoginViewController.xib in Resources */,
