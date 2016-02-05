@@ -83,8 +83,7 @@
             self.products = [NSMutableArray new];
             
             for (NSDictionary *productDic in responseObject) {
-                Product *product = [[Product alloc] initWithJSON:productDic];
-                self.user = product.seller;
+                Product *product = [[Product alloc] initWithJSON:productDic];                
                 [self.products addObject:product];
             }
             [self.productsCollectionView reloadData];
