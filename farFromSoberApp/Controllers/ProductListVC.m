@@ -22,7 +22,6 @@
 @interface ProductListVC () <UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource,
                              FilterProductsViewControllerDelegate, ProductDetailDelegate>
 
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) MBProgressHUD *hud;
 @property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) UISearchBar *searchBar;
@@ -146,15 +145,6 @@
 }
 
 - (void)setupRefreshController {
-    /*
-     //Standard refresh controlller
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    [self.refreshControl addTarget:self
-                            action:@selector(initializeData)
-                  forControlEvents:UIControlEventValueChanged];
-    [self.productsCollectionView addSubview:self.refreshControl];
-     */
     [self.productsCollectionView addTopInsetInPortrait:0 TopInsetInLandscape:0];
     __weak typeof(self) weakSelf =self;
     [self.productsCollectionView addPullToRefreshActionHandler:^{
@@ -216,7 +206,6 @@
 - (void)hideHud {
     [self.hud hide:YES];
     self.hud = nil;
-    //[self.refreshControl endRefreshing];
     [self.productsCollectionView stopPullToRefreshAnimation];
 }
 
